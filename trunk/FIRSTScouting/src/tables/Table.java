@@ -10,6 +10,7 @@ public abstract class Table {
     public Table(String db) throws ClassNotFoundException, SQLException {
         this.database = db;
         Class.forName("");
-        con = DriverManager.getConnection("table:scouting:"+database);
+        this.con = DriverManager.getConnection("table:scouting:"+database);
+        this.stmnt = con.createStatement();
     }
 }
