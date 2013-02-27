@@ -8,6 +8,7 @@ public class Match implements Serializable {
     private int     scoreRed = -1, scoreBlue = -1;
     private boolean teamR1Def = false, teamR2Def = false, teamB1Def = false, teamB2Def = false;
     private boolean finalized = false;
+    private String comment = "";
     
     public Match(int teamR1, int teamR2, int teamB1, int teamB2) {
         this.teamR1 = teamR1; this.teamR2 = teamR2; this.teamB1 = teamB1; this.teamB2 = teamB2;
@@ -31,6 +32,10 @@ public class Match implements Serializable {
         if(team == Team.R2) teamR2Def = defMode;
         if(team == Team.B1) teamB1Def = defMode;
         if(team == Team.B2) teamB2Def = defMode;
+    }
+    
+    public final void setComment(String c) {
+        this.comment = c;
     }
     
     protected final void setId(int id) {
@@ -73,4 +78,5 @@ public class Match implements Serializable {
     public final boolean getR2Def() {return this.teamR2Def;}
     public final boolean getB1Def() {return this.teamB1Def;}
     public final boolean getB2Def() {return this.teamB2Def;}
+    public final String getComment() {return this.comment;}
 }
