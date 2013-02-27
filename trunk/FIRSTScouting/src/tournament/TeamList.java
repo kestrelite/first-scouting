@@ -22,4 +22,14 @@ public class TeamList implements Serializable {
         for(int i = 0; i < teamList.size(); i++)
             if(teamList.get(i).getId() == id) teamList.remove(i);
     }
+    
+    public static void printTeamData() {
+        for(Team t : teamList ) {
+            System.out.println("Team: " + t.getId());
+            for(Match m : t.getMatchList()) {
+                System.out.print("\tMatch " + m.getId() + ": ");
+                m.printMatchData();
+            }
+        }
+    }
 }

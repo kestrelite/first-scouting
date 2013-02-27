@@ -52,6 +52,16 @@ public class Match implements Serializable {
         this.finalized = true;
     }
     
+    public final void printMatchData() {
+        System.out.println("R1"+(this.getR1Def()?"(D)":"(O)")+": " + this.getR1() + "; " +
+        "R2"+(this.getR2Def()?"(D)":"(O)")+": " + this.getR2() + "; " + 
+        "B1"+(this.getB1Def()?"(D)":"(O)")+": " + this.getB1() + "; " + 
+        "B2"+(this.getB2Def()?"(D)":"(O)")+": " + this.getB2() + ". " +
+        (this.getScoreBlue() > this.getScoreRed() ? 
+            "Blue wins " + this.getScoreBlue() + " to " + this.getScoreRed() : 
+            "Red wins " + this.getScoreRed() + " to " + this.getScoreBlue()) + ".");
+    }
+    
     public final int getId() {return this.id;}
     public final int getR1() {return this.teamR1;}
     public final int getR2() {return this.teamR2;}

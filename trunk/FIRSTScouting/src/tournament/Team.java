@@ -12,6 +12,7 @@ public class Team implements Serializable {
     private final int teamNum;
     
     private       ArrayList<Match> matchList = new ArrayList<>();
+    private       String comment;
     
     public Team(int teamNum) {
         this.teamNum = teamNum;
@@ -19,6 +20,11 @@ public class Team implements Serializable {
     
     public void addMatch(Match m) {
         this.matchList.add(m);
+        this.calcData();
+    }
+    
+    private void calcData() {
+        
     }
     
     public int getId() {return teamNum;}

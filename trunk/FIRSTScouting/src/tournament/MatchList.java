@@ -15,4 +15,10 @@ public class MatchList implements Serializable {
     }
     
     public static Match getMatch(int id) {return matchList.get(id);}
+    
+    public static void printMatchData() {
+        for(Match m : matchList) {
+            m.printMatchData();
+        }
+    }
 }
