@@ -3,9 +3,9 @@ package firstscouting;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.UIManager;
-import tournament.Match;
-import tournament.MatchList;
-import tournament.TeamList;
+import tournamentftc.MatchFTC;
+import tournamentftc.MatchListFTC;
+import tournamentftc.TeamListFTC;
 
 public class FIRSTScouting {
     public static void main(String[] args) throws Exception {
@@ -21,11 +21,11 @@ public class FIRSTScouting {
                 System.out.print("Team B2: "); int b2 = s.nextInt();
                 System.out.print("Score R: "); int rS = s.nextInt();
                 System.out.print("Score B: "); int bS = s.nextInt();
-                MatchList.addMatch(new Match(r1, r2, b1, b2, rS, bS));
+                MatchListFTC.addMatch(new MatchFTC(r1, r2, b1, b2, rS, bS));
 
-                MatchList.printMatchData();
-                TeamList.printTeamData();
-                int[][] data = MatchList.calcTeamData();
+                MatchListFTC.printMatchData();
+                TeamListFTC.printTeamData();
+                int[][] data = MatchListFTC.calcTeamData();
 //                for(int i = 0; i < data[0].length; i++) 
 //                    System.out.println("Team: " + data[0][i] + ", WtdScore: " + data[1][i]);
 
