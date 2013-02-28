@@ -27,7 +27,7 @@ public class TeamListFTC implements Serializable {
         for(TeamFTC t : teamList ) {
             System.out.println("Team: " + t.getId());
             for(MatchFTC m : t.getMatchList()) {
-                System.out.print("\tMatch " + m.getId() + ": ");
+                System.out.print("\tMatch " + (m.getId()+1) + ": ");
                 m.printMatchData();
             }
         }

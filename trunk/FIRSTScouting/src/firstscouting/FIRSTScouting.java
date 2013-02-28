@@ -1,5 +1,8 @@
 package firstscouting;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.UIManager;
@@ -12,26 +15,38 @@ class Sort {
 }
 
 public class FIRSTScouting {
+    
+    public static void runFile(String fName) throws Exception {
+        Scanner s;
+        File f = new File(fName);
+        
+        if(f.exists()) {
+            FileInputStream fs = new FileInputStream(fName);
+            InputStreamReader is = new InputStreamReader(fs);
+            s = new Scanner(is);
 
-    public static void main(String[] args) throws Exception {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        FIRSTScoutingDisp display = new FIRSTScoutingDisp();
-
-        Scanner s = new Scanner(System.in);
+            while(s.hasNext()) MatchListFTC.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+            s.nextLine();
+            
+            TeamListFTC.printTeamData();
+            MatchListFTC.calcTeamData();
+            
+            System.exit(0);
+        }
+        if(1==1) throw new Error("File does not exist!");
+    }
+    
+    public static void runCmdLine() {
+        Scanner s;        
+        s = new Scanner(System.in);
         while (true) {
             try {
-                System.out.print("Team R1: ");
-                int r1 = s.nextInt();
-                System.out.print("Team R2: ");
-                int r2 = s.nextInt();
-                System.out.print("Team B1: ");
-                int b1 = s.nextInt();
-                System.out.print("Team B2: ");
-                int b2 = s.nextInt();
-                System.out.print("Score R: ");
-                int rS = s.nextInt();
-                System.out.print("Score B: ");
-                int bS = s.nextInt();
+                System.out.print("Team R1: "); int r1 = s.nextInt();
+                System.out.print("Team R2: "); int r2 = s.nextInt();
+                System.out.print("Team B1: "); int b1 = s.nextInt();
+                System.out.print("Team B2: "); int b2 = s.nextInt();
+                System.out.print("Score R: "); int rS = s.nextInt();
+                System.out.print("Score B: "); int bS = s.nextInt();
                 MatchListFTC.addMatch(new MatchFTC(r1, r2, b1, b2, rS, bS));
 
                 MatchListFTC.printMatchData();
@@ -44,6 +59,15 @@ public class FIRSTScouting {
                 s = new Scanner(System.in);
                 continue;
             }
-        }
+        }        
+    }
+    
+    public static void runGUI() throws Exception {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        FIRSTScoutingDisp display = new FIRSTScoutingDisp();        
+    }
+    
+    public static void main(String[] args) throws Exception {
+        FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
     }
 }

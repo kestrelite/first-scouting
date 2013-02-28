@@ -9,7 +9,6 @@ public class MatchFTC implements Serializable {
     private boolean teamR1Def = false, teamR2Def = false, teamB1Def = false, teamB2Def = false;
     private boolean teamR1ConFail = false, teamR2ConFail = false, teamB1ConFail = false, teamB2ConFail = false;
     private boolean finalized = false;
-    private String comment = "";
     
     public MatchFTC(int teamR1, int teamR2, int teamB1, int teamB2) {
         this.teamR1 = teamR1; this.teamR2 = teamR2; this.teamB1 = teamB1; this.teamB2 = teamB2;
@@ -29,16 +28,12 @@ public class MatchFTC implements Serializable {
     }
     
     public final void setDefense(int team, boolean defMode) {
-        if(team == TeamFTC.R1) teamR1Def = defMode;
-        if(team == TeamFTC.R2) teamR2Def = defMode;
-        if(team == TeamFTC.B1) teamB1Def = defMode;
-        if(team == TeamFTC.B2) teamB2Def = defMode;
+        if(team == PositionID.R1) teamR1Def = defMode;
+        if(team == PositionID.R2) teamR2Def = defMode;
+        if(team == PositionID.B1) teamB1Def = defMode;
+        if(team == PositionID.B2) teamB2Def = defMode;
     }
-    
-    public final void setComment(String c) {
-        this.comment = c;
-    }
-    
+        
     protected final void setId(int id) {
         this.id = id;
     }
@@ -83,5 +78,4 @@ public class MatchFTC implements Serializable {
     public final boolean getR2ConFail() {return this.teamR2ConFail;}
     public final boolean getB1ConFail() {return this.teamB1ConFail;}
     public final boolean getB2ConFail() {return this.teamB2ConFail;}
-    public final String getComment() {return this.comment;}
 }

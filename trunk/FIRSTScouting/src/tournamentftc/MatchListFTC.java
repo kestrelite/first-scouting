@@ -129,7 +129,7 @@ public class MatchListFTC implements Serializable {
         //for(int i = 0; i < teamList.size(); i++) 
         //    System.out.println("Team: " + teamList.get(i).doubleValue() + ", AvgScore: " + teamAvgList.get(i).doubleValue());
         for(int i = 0; i < teamList.size(); i++) 
-            System.out.println("Team: " + teamList.get(i).doubleValue() + ", WtdScore: " + teamWtdList.get(i).doubleValue());
+            System.out.println("Team: " + teamList.get(i).intValue() + ", \tWtdScore: " + teamWtdList.get(i).doubleValue());
         
         int[][] out = new int[2][teamList.size()];
         for(int i = 0; i < teamList.size(); i++) {
