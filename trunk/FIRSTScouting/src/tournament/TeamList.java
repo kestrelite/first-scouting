@@ -32,4 +32,7 @@ public class TeamList implements Serializable {
             }
         }
     }
+
+    private TeamList() {
+    }
 }

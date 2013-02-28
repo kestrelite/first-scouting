@@ -16,8 +16,8 @@ public class FIRSTScouting {
         while(true) {
             try {
                 System.out.print("Team R1: "); int r1 = s.nextInt();
-                System.out.print("Team R2: "); int b1 = s.nextInt();
-                System.out.print("Team B1: "); int r2 = s.nextInt();
+                System.out.print("Team R2: "); int r2 = s.nextInt();
+                System.out.print("Team B1: "); int b1 = s.nextInt();
                 System.out.print("Team B2: "); int b2 = s.nextInt();
                 System.out.print("Score R: "); int rS = s.nextInt();
                 System.out.print("Score B: "); int bS = s.nextInt();
@@ -26,14 +26,15 @@ public class FIRSTScouting {
                 MatchList.printMatchData();
                 TeamList.printTeamData();
                 int[][] data = MatchList.calcTeamData();
-                for(int i = 0; i < data[0].length; i++) 
-                    System.out.println("Team: " + data[0][i] + ", AvgScore: " + data[1][i]);
+//                for(int i = 0; i < data[0].length; i++) 
+//                    System.out.println("Team: " + data[0][i] + ", WtdScore: " + data[1][i]);
 
                 System.out.println("");
             } catch(InputMismatchException e) {
                 System.out.println("Invalid input detected - restarting iteration...\n");
                 s = new Scanner(System.in);
-                continue;}
+                continue;
+            }
         }
     }
 }
