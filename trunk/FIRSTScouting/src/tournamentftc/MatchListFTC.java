@@ -88,7 +88,7 @@ public class MatchListFTC implements Serializable {
                     int index = teamList.indexOf(m.getB1());
                     double currSum = sumList.get(index).doubleValue();
                     double nextSum = (double)((double)currSum + (double)m.getScoreBlue() - ((double)teamAvgList.get(teamList.indexOf(m.getB2())).doubleValue() * bScale));
-                    System.out.println("*B1* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", bScale:"+bScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getB2())) + ", currSum:" + currSum + ", nextSum:" + nextSum);
+                    //System.out.println("*B1* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", bScale:"+bScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getB2())) + ", currSum:" + currSum + ", nextSum:" + nextSum);
                     sumList.set(index, nextSum);
                 }
                 
@@ -96,7 +96,7 @@ public class MatchListFTC implements Serializable {
                     int index = teamList.indexOf(m.getB2());
                     double currSum = sumList.get(index).doubleValue();
                     double nextSum = (double)currSum + (double)m.getScoreBlue() - ((double)teamAvgList.get(teamList.indexOf(m.getB1())).doubleValue() * bScale);
-                    System.out.println("*B2* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", bScale:"+bScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getB1()))+", currSum:" + currSum + ", nextSum:" + nextSum);
+                    //System.out.println("*B2* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", bScale:"+bScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getB1()))+", currSum:" + currSum + ", nextSum:" + nextSum);
                     sumList.set(index, nextSum);
                 }
 
@@ -104,7 +104,7 @@ public class MatchListFTC implements Serializable {
                     int index = teamList.indexOf(m.getR1());
                     double currSum = sumList.get(index).doubleValue();
                     double nextSum = (double)((double)currSum + (double)m.getScoreRed() - ((double)teamAvgList.get(teamList.indexOf(m.getR2())).doubleValue() * rScale));
-                    System.out.println("*R1* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", rScale:"+rScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getR2()))+", currSum:" + currSum + ", nextSum:" + nextSum);
+                    //System.out.println("*R1* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", rScale:"+rScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getR2()))+", currSum:" + currSum + ", nextSum:" + nextSum);
                     sumList.set(index, nextSum);
                 }
                 
@@ -112,7 +112,7 @@ public class MatchListFTC implements Serializable {
                     int index = teamList.indexOf(m.getR2());
                     double currSum = sumList.get(index).doubleValue();
                     double nextSum = (double)((double)currSum + (double)m.getScoreRed() - ((double)teamAvgList.get(teamList.indexOf(m.getR1())).doubleValue() * rScale));
-                    System.out.println("*R2* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", rScale:"+rScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getR1()))+", currSum:" + currSum + ", nextSum:" + nextSum);
+                    //System.out.println("*R2* Index:" + index + ", Team:" + teamList.get(index).intValue() + ", mcScore:" + m.getScoreBlue() + ", rScale:"+rScale+", avgAlly:" + teamAvgList.get(teamList.indexOf(m.getR1()))+", currSum:" + currSum + ", nextSum:" + nextSum);
                     sumList.set(index, nextSum);
                 }
                 
@@ -126,8 +126,8 @@ public class MatchListFTC implements Serializable {
             }
         }
         
-        for(int i = 0; i < teamList.size(); i++) 
-            System.out.println("Team: " + teamList.get(i).doubleValue() + ", AvgScore: " + teamAvgList.get(i).doubleValue());
+        //for(int i = 0; i < teamList.size(); i++) 
+        //    System.out.println("Team: " + teamList.get(i).doubleValue() + ", AvgScore: " + teamAvgList.get(i).doubleValue());
         for(int i = 0; i < teamList.size(); i++) 
             System.out.println("Team: " + teamList.get(i).doubleValue() + ", WtdScore: " + teamWtdList.get(i).doubleValue());
         
