@@ -7,6 +7,7 @@ public class Match implements Serializable {
     private int     teamR1 = -1, teamR2 = -1, teamB1 = -1, teamB2 = -1;
     private int     scoreRed = -1, scoreBlue = -1;
     private boolean teamR1Def = false, teamR2Def = false, teamB1Def = false, teamB2Def = false;
+    private boolean teamR1ConFail = false, teamR2ConFail = false, teamB1ConFail = false, teamB2ConFail = false;
     private boolean finalized = false;
     private String comment = "";
     
@@ -78,5 +79,9 @@ public class Match implements Serializable {
     public final boolean getR2Def() {return this.teamR2Def;}
     public final boolean getB1Def() {return this.teamB1Def;}
     public final boolean getB2Def() {return this.teamB2Def;}
+    public final boolean getR1ConFail() {return this.teamR1ConFail;}
+    public final boolean getR2ConFail() {return this.teamR2ConFail;}
+    public final boolean getB1ConFail() {return this.teamB1ConFail;}
+    public final boolean getB2ConFail() {return this.teamB2ConFail;}
     public final String getComment() {return this.comment;}
 }
