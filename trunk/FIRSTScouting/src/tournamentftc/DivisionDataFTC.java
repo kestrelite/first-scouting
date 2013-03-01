@@ -97,62 +97,22 @@ public class DivisionDataFTC {
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
     
     public void calcTeamAvg() {
-        ArrayList<Integer> teamNumList = new ArrayList<>();
-        ArrayList<Integer> sumList = new ArrayList<>();
-        ArrayList<Integer> cntList = new ArrayList<>();
-
+        ArrayList<Integer> sumList = this.newEmptyIntList(this.teamNumber.size());
+        this.teamAvgScore = this.newEmptyDoubleList(this.teamNumber.size());
+        
         for (MatchFTC m : this.matchList) {
             if (!this.getMatchIsValid(m)) continue;
 
-            if (!teamNumList.contains(m.getR1())) {
-                sumList.add(0);
-                cntList.add(0);
-                teamNumList.add(m.getR1());
-            }
-
-            if (!teamNumList.contains(m.getR2())) {
-                sumList.add(0);
-                cntList.add(0);
-                teamNumList.add(m.getR2());
-            }
-
-            if (!teamNumList.contains(m.getB1())) {
-                sumList.add(0);
-                cntList.add(0);
-                teamNumList.add(m.getB1());
-            }
-
-            if (!teamNumList.contains(m.getB2())) {
-                sumList.add(0);
-                cntList.add(0);
-                teamNumList.add(m.getB2());
-            }
-
-            if (!m.getR1ConFail()) {
-                sumList.set(teamNumList.indexOf(m.getR1()), sumList.get(teamNumList.indexOf(m.getR1())) + m.getScoreRed());
-                cntList.set(teamNumList.indexOf(m.getR1()), cntList.get(teamNumList.indexOf(m.getR1())) + 1);
-            }
-            
-            if (!m.getR2ConFail()) {
-                sumList.set(teamNumList.indexOf(m.getR2()), sumList.get(teamNumList.indexOf(m.getR2())) + m.getScoreRed());
-                cntList.set(teamNumList.indexOf(m.getR2()), cntList.get(teamNumList.indexOf(m.getR2())) + 1);
-            }
-            
-            if (!m.getB1ConFail()) {
-                sumList.set(teamNumList.indexOf(m.getB1()), sumList.get(teamNumList.indexOf(m.getB1())) + m.getScoreRed());
-                cntList.set(teamNumList.indexOf(m.getB1()), cntList.get(teamNumList.indexOf(m.getB1())) + 1);
-            }
-            
-            if (!m.getB2ConFail()) {
-                sumList.set(teamNumList.indexOf(m.getB2()), sumList.get(teamNumList.indexOf(m.getB2())) + m.getScoreRed());
-                cntList.set(teamNumList.indexOf(m.getB2()), cntList.get(teamNumList.indexOf(m.getB2())) + 1);
-            }
+            if (!m.getR1ConFail()) sumList.set(this.teamNumber.indexOf(m.getR1()), sumList.get(teamNumber.indexOf(m.getR1())) + m.getScoreRed());
+            if (!m.getR2ConFail()) sumList.set(this.teamNumber.indexOf(m.getR2()), sumList.get(teamNumber.indexOf(m.getR2())) + m.getScoreRed());
+            if (!m.getB1ConFail()) sumList.set(this.teamNumber.indexOf(m.getB1()), sumList.get(teamNumber.indexOf(m.getB1())) + m.getScoreBlue());
+            if (!m.getB2ConFail()) sumList.set(this.teamNumber.indexOf(m.getB2()), sumList.get(teamNumber.indexOf(m.getB2())) + m.getScoreBlue());
         }
         
         ArrayList<Double> outs = new ArrayList<>();
         for(int i = 0; i < this.teamNumber.size(); i++)
-            outs.add(sumList.get(teamNumList.indexOf(this.teamNumber.get(i))).doubleValue() 
-                    / cntList.get(teamNumList.indexOf(this.teamNumber.get(i))).doubleValue());
+            outs.add(sumList.get(teamNumber.indexOf(this.teamNumber.get(i))).doubleValue() 
+                    / this.teamMatchCnt.get(teamNumber.indexOf(this.teamNumber.get(i))).doubleValue());
         this.setTeamAvgScore(outs);
     }
     public void calcTeamMatchCnt() {
@@ -160,10 +120,10 @@ public class DivisionDataFTC {
         
         for(MatchFTC m : this.matchList) {
             if(!this.getMatchIsValid(m)) continue;
-            if(m.getB1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB1())) + 1);
-            if(m.getB2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB2())) + 1);
-            if(m.getR1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR1())) + 1);
-            if(m.getR2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR2())) + 1);
+            if(!m.getB1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB1())) + 1);
+            if(!m.getB2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB2())) + 1);
+            if(!m.getR1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR1())) + 1);
+            if(!m.getR2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR2())) + 1);
         }
     }
     
@@ -174,20 +134,20 @@ public class DivisionDataFTC {
             if(!this.getMatchIsValid(m)) continue;
             
             double bScale, rScale;
-            if(m.getScoreBlue() > m.getScoreRed()) {bScale = 0.70; rScale = 0.45;}
-            else {bScale = 0.45; rScale = 0.70;}
+            if(m.getScoreBlue() > m.getScoreRed()) {bScale = 0.70; rScale = 0.35;}
+            else {bScale = 0.35; rScale = 0.70;}
             
             int index = this.teamNumber.indexOf(m.getB1());
-            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1())).doubleValue() * bScale)));
-            
-            index = this.teamNumber.indexOf(m.getB2());
             sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB2())).doubleValue() * bScale)));
             
+            index = this.teamNumber.indexOf(m.getB2());
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1())).doubleValue() * bScale)));
+            
             index = this.teamNumber.indexOf(m.getR1());
-            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())).doubleValue() * rScale)));
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2())).doubleValue() * rScale)));
             
             index = this.teamNumber.indexOf(m.getR2());
-            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2())).doubleValue() * rScale)));
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())).doubleValue() * rScale)));
         }
         
         for(int i = 0; i < this.teamNumber.size(); i++) 

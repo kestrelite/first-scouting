@@ -23,8 +23,8 @@ public class FIRSTScouting {
             while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
             s.nextLine();
             
-            d.calcTeamAvg();
             d.calcTeamMatchCnt();
+            d.calcTeamAvg();
             d.calcTeamWtd();
             d.printMatchDump(); System.out.println(""); d.printTeamDump();
 
@@ -64,9 +64,16 @@ public class FIRSTScouting {
     public static void runCmdLineDivision() {
         DivisionDataFTC d = new DivisionDataFTC();
         
-        d.addMatch(new MatchFTC(1, 2, 3, 4, 50, 60));
+        d.addMatch(new MatchFTC(1, 2, 3, 4, 80, 30));
+        d.addMatch(new MatchFTC(2, 3, 4, 5, 60, 20));
+        d.addMatch(new MatchFTC(3, 4, 5, 1, 40, 90));
+        d.addMatch(new MatchFTC(4, 5, 1, 2, 50, 75));
         
-        d.printMatchDump(); System.out.println(""); d.printTeamDump();
+        d.calcTeamMatchCnt();
+        d.calcTeamAvg();
+        d.calcTeamWtd();
+        
+        d.printTeamDump();
     }
     
     public static void runGUI() throws Exception {
