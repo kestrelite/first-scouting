@@ -25,6 +25,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+import tournamentftc.DivisionDataFTC;
+import tournamentftc.MatchFTC;
 
 /**
  *
@@ -80,10 +83,10 @@ public class DivisionGUI extends JFrame
     private JLabel editMatchRedScoreLabel;
     private JTextField editMatchRedScoreTextField;
     private JButton editMatchSubmitButton;
-    private JTable teamTabel;
+    private JTable teamTable;
     private JTabbedPane mainTabPane;
     private JPanel matchTab;
-    private JTable matchTabel;
+    private JTable matchTable;
     private JScrollPane matchTabelScrollPane;
     private JLabel teamCommentsLabel;
     private JLabel teamCommentsNumLabel;
@@ -95,40 +98,27 @@ public class DivisionGUI extends JFrame
     private JPanel teamTab;
     private JLabel tourneyNameDivNumLabel;
     
-    public DivisionGUI()
+    private DefaultTableModel matchTableModel;
+    private DefaultTableModel teamTableModel;
+    
+    private DivisionDataFTC d;
+    
+    public DivisionGUI(DivisionDataFTC div)
     {
         initComponents();
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TournamentInterfaceFTC.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(TournamentInterfaceFTC.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(TournamentInterfaceFTC.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(TournamentInterfaceFTC.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new TournamentInterfaceFTC().setVisible(true);
-            }
-        });
+        d = div;
+        loadTablesWithData();
+        
+        this.setVisible(true);
     }
     
-    private void initComponents() {
-
+    private void initComponents() 
+    {
         mainTabPane = new JTabbedPane();
         matchTab = new JPanel();
         matchTabelScrollPane = new JScrollPane();
-        matchTabel = new JTable();
+        matchTable = new JTable();
         editMatchLabel = new JLabel();
         editMatchNumLabel = new JLabel();
         editMatchRed1Label = new JLabel();
@@ -179,7 +169,7 @@ public class DivisionGUI extends JFrame
         addMatchBlue2DisconnectCheckBox = new JCheckBox();
         teamTab = new JPanel();
         teamScrollPane = new JScrollPane();
-        teamTabel = new JTable();
+        teamTable = new JTable();
         teamCommentsLabel = new JLabel();
         teamCommentsNumLabel = new JLabel();
         teamCommentsScrollPane = new JScrollPane();
@@ -190,17 +180,7 @@ public class DivisionGUI extends JFrame
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        matchTabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Match #", "Red 1", "Red 2", "Blue 1", "Blue 2", "Red Score", "Blue Score", "Played"
-            }
-        ) {
+        matchTableModel = new DefaultTableModel(new String[]{"Match #", "Red 1", "Red 2", "Blue 1", "Blue 2", "Red Score", "Blue Score", "Played"},0){
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
             };
@@ -208,8 +188,11 @@ public class DivisionGUI extends JFrame
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });
-        matchTabelScrollPane.setViewportView(matchTabel);
+        };
+        
+        matchTable.setModel(matchTableModel);
+        matchTable.getTableHeader().setReorderingAllowed(false);
+        matchTabelScrollPane.setViewportView(matchTable);
 
         editMatchLabel.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         editMatchLabel.setText("Edit Match");
@@ -258,37 +241,37 @@ public class DivisionGUI extends JFrame
             }
         });
 
-        editMatchRed1DefenseCheckBox.setText("DF");
+        editMatchRed1DefenseCheckBox.setText("DFR1");
 
-        editMatchRed1DisconnectCheckBox.setText("DC");
+        editMatchRed1DisconnectCheckBox.setText("DCR1");
 
-        editMatchRed2DisconnectCheckBox.setText("DC");
+        editMatchRed2DisconnectCheckBox.setText("DCR2");
 
-        editMatchRed2DefenseCheckBox.setText("DF");
+        editMatchRed2DefenseCheckBox.setText("DFR2");
 
-        editMatchBlue1DisconnectCheckBox.setText("DC");
+        editMatchBlue1DisconnectCheckBox.setText("DCB1");
 
-        editMatchBlue1DefenseCheckBox.setText("DF");
+        editMatchBlue1DefenseCheckBox.setText("DFB1");
 
-        editMatchBlue2DisconnectCheckBox.setText("DC");
+        editMatchBlue2DisconnectCheckBox.setText("DCB2");
 
-        editMatchBlue2DefenseCheckBox.setText("DF");
+        editMatchBlue2DefenseCheckBox.setText("DFB2");
 
-        addMatchRed1DefenseCheckBox.setText("DF");
+        addMatchRed1DefenseCheckBox.setText("DFR1");
 
-        addMatchRed1DisconnectCheckBox.setText("DC");
+        addMatchRed1DisconnectCheckBox.setText("DCR1");
 
-        addMatchRed2DefenseCheckBox.setText("DF");
+        addMatchRed2DefenseCheckBox.setText("DFR2");
 
-        addMatchRed2DisconnectCheckBox.setText("DC");
+        addMatchRed2DisconnectCheckBox.setText("DCR2");
 
-        addMatchBlue1DefenseCheckBox.setText("DF");
+        addMatchBlue1DefenseCheckBox.setText("DFB1");
 
-        addMatchBlue1DisconnectCheckBox.setText("DC");
+        addMatchBlue1DisconnectCheckBox.setText("DCB1");
 
-        addMatchBlue2DefenseCheckBox.setText("DF");
+        addMatchBlue2DefenseCheckBox.setText("DFB2");
 
-        addMatchBlue2DisconnectCheckBox.setText("DC");
+        addMatchBlue2DisconnectCheckBox.setText("DCB2");
 
         GroupLayout matchTabLayout = new GroupLayout(matchTab);
         matchTab.setLayout(matchTabLayout);
@@ -472,17 +455,7 @@ public class DivisionGUI extends JFrame
 
         mainTabPane.addTab("Division Match List", matchTab);
 
-        teamTabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "Team Comment"
-            }
-        ) {
+        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "Team Comment"},0){
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
@@ -490,9 +463,12 @@ public class DivisionGUI extends JFrame
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });
-        teamTabel.getTableHeader().setReorderingAllowed(false);
-        teamScrollPane.setViewportView(teamTabel);
+        };
+        
+        teamTable.setModel(teamTableModel);
+        
+        teamTable.getTableHeader().setReorderingAllowed(false);
+        teamScrollPane.setViewportView(teamTable);
 
         teamCommentsLabel.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         teamCommentsLabel.setText("Team Comments:");
@@ -575,7 +551,29 @@ public class DivisionGUI extends JFrame
         );
 
         pack();
-    }                                     
+    }  
+    
+    private void loadTablesWithData()
+    {
+        clearTables();
+        for(MatchFTC match : d.matchList)
+        {
+            matchTableModel.addRow(new Object[] {match.getId()+1, match.getR1(), match.getR2(), match.getB1(), match.getB2(), match.getScoreRed(), match.getScoreBlue(), "Yes"});
+        }
+        
+        for(int i = 0; i < d.teamNumber.size(); i++)
+        {
+            teamTableModel.addRow(new Object[] {d.teamNumber.get(i), d.teamMatchCnt.get(i), d.teamAvgScore.get(i), d.teamWtdScore.get(i), d.teamDisconPct.get(i), d.teamDefendPct.get(i), d.teamComment.get(i)});
+        }
+    }
+    
+    private void clearTables()
+    {
+        for(int i = 0; i < matchTableModel.getRowCount(); i++) 
+            matchTableModel.removeRow(i);
+        for(int i = 0; i < teamTableModel.getRowCount(); i++) 
+            teamTableModel.removeRow(i);
+    }
 
     private void addMatchSubmitButtonActionPerformed(ActionEvent evt) {                                         
         // TODO add your handling code here:

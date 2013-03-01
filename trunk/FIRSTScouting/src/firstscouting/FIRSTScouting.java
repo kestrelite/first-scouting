@@ -74,15 +74,31 @@ public class FIRSTScouting {
         d.printTeamDump();
     }
     
-    public static void runGUI() throws Exception {
-        DivisionGUI dGUI = new DivisionGUI();
+    public static void runGUI(String fName) throws Exception 
+    {
+        Scanner s;
+        DivisionDataFTC d = new DivisionDataFTC();
+        
+        File f = new File(fName);
+        
+        if(f.exists()) {
+            FileInputStream fs = new FileInputStream(fName);
+            InputStreamReader is = new InputStreamReader(fs);
+            s = new Scanner(is);
+
+            while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+            s.nextLine();
+            
+            d.calcAll();
+        }
+        DivisionGUI dGUI = new DivisionGUI(d);
     }
     
     public static void main(String[] args) throws Exception {
         //FIRSTScouting.runFile("L:\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
         //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
-        FIRSTScouting.runFile("C:\\Users\\sutton-smolinn3979\\Desktop\\first-scouting\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
+        //FIRSTScouting.runFile("C:\\Users\\sutton-smolinn3979\\Desktop\\first-scouting\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
         //FIRSTScouting.runCmdLineDivision();
-        //FIRSTScouting.runGUI();
+        FIRSTScouting.runGUI("L:\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
     }
 }
