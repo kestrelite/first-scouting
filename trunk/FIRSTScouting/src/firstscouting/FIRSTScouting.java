@@ -4,6 +4,7 @@ import gui.DivisionGUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
@@ -23,14 +24,8 @@ public class FIRSTScouting {
             while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
             s.nextLine();
             
-            d.calcTeamMatchCnt();
-            d.calcTeamAvg();
-            d.calcTeamWtd();
+            d.calcAll();
             d.printMatchDump(); System.out.println(""); d.printTeamDump();
-
-            
-            d.printMatchDump(); System.out.println(""); d.printTeamDump();
-            
             
             //MatchListFTC.calcTeamData();
             
@@ -39,8 +34,8 @@ public class FIRSTScouting {
         if(1==1) throw new Error("File does not exist!");
     }
     
-    /*public static void runCmdLine() {
-        Scanner s;        
+    public static void runCmdLine() {
+        Scanner s; DivisionDataFTC d = new DivisionDataFTC();
         s = new Scanner(System.in);
         while (true) {
             try {
@@ -50,11 +45,10 @@ public class FIRSTScouting {
                 System.out.print("Team B2: "); int b2 = s.nextInt();
                 System.out.print("Score R: "); int rS = s.nextInt();
                 System.out.print("Score B: "); int bS = s.nextInt();
-                MatchListFTC.addMatch(new MatchFTC(r1, r2, b1, b2, rS, bS));
+                d.addMatch(new MatchFTC(r1, r2, b1, b2, rS, bS));
 
-                MatchListFTC.printMatchData();
-                TeamListFTC.printTeamData();
-                int[][] data = MatchListFTC.calcTeamData();
+                d.printMatchDump();
+                d.printTeamDump();
 
                 System.out.println("");
             } catch (InputMismatchException e) {
@@ -63,9 +57,9 @@ public class FIRSTScouting {
                 continue;
             }
         }        
-    }*/
+    }
     
-    public static void runCmdLineDivision() {
+    public static void runRawData() {
         DivisionDataFTC d = new DivisionDataFTC();
         
         d.addMatch(new MatchFTC(1, 2, 3, 4, 80, 30));
@@ -87,7 +81,8 @@ public class FIRSTScouting {
     public static void main(String[] args) throws Exception {
         //FIRSTScouting.runFile("L:\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
         //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
+        FIRSTScouting.runFile("C:\\Users\\sutton-smolinn3979\\Desktop\\first-scouting\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
         //FIRSTScouting.runCmdLineDivision();
-        FIRSTScouting.runGUI();
+        //FIRSTScouting.runGUI();
     }
 }

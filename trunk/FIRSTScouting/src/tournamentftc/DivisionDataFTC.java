@@ -96,6 +96,14 @@ public class DivisionDataFTC {
     
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
     
+    public void calcAll() {
+        this.calcTeamMatchCnt();
+        this.calcTeamDefendsPct();
+        this.calcTeamConFailPct();
+        this.calcTeamAvg();
+        this.calcTeamWtd();
+    }
+    
     public void calcTeamAvg() {
         ArrayList<Integer> sumList = this.newEmptyIntList(this.teamNumber.size());
         this.teamAvgScore = this.newEmptyDoubleList(this.teamNumber.size());
@@ -120,13 +128,12 @@ public class DivisionDataFTC {
         
         for(MatchFTC m : this.matchList) {
             if(!this.getMatchIsValid(m)) continue;
-            if(!m.getB1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB1())) + 1);
-            if(!m.getB2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB2())) + 1);
-            if(!m.getR1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR1())) + 1);
-            if(!m.getR2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR2())) + 1);
+            teamMatchCnt.set(this.teamNumber.indexOf(m.getB1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB1())) + 1);
+            teamMatchCnt.set(this.teamNumber.indexOf(m.getB2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB2())) + 1);
+            teamMatchCnt.set(this.teamNumber.indexOf(m.getR1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR1())) + 1);
+            teamMatchCnt.set(this.teamNumber.indexOf(m.getR2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR2())) + 1);
         }
-    }
-    
+    }    
     public void calcTeamWtd() {
         ArrayList<Double> sumList = this.newEmptyDoubleList(this.teamNumber.size());
         
@@ -153,7 +160,36 @@ public class DivisionDataFTC {
         for(int i = 0; i < this.teamNumber.size(); i++) 
             this.teamWtdScore.set(i, sumList.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
     }
-
+    public void calcTeamDefendsPct() {
+        ArrayList<Double> defendsPct = this.newEmptyDoubleList(this.teamNumber.size());
+        for(MatchFTC m : this.matchList) {
+            if(!this.getMatchIsValid(m)) continue;
+            if(m.getB1Def()) defendsPct.set(this.teamNumber.indexOf(m.getB1()), defendsPct.get(this.teamNumber.indexOf(m.getB1())) + 1);
+            if(m.getB2Def()) defendsPct.set(this.teamNumber.indexOf(m.getB2()), defendsPct.get(this.teamNumber.indexOf(m.getB2())) + 1);
+            if(m.getR1Def()) defendsPct.set(this.teamNumber.indexOf(m.getR1()), defendsPct.get(this.teamNumber.indexOf(m.getR1())) + 1);
+            if(m.getR2Def()) defendsPct.set(this.teamNumber.indexOf(m.getR2()), defendsPct.get(this.teamNumber.indexOf(m.getR2())) + 1);
+        }
+        
+        for(int i = 0; i < this.teamNumber.size(); i++)
+            this.teamDefendPct.set(i, defendsPct.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
+    }
+    public void calcTeamConFailPct() {
+        ArrayList<Double> conFail = this.newEmptyDoubleList(this.teamNumber.size());
+        for(MatchFTC m : this.matchList) {
+            if(!this.getMatchIsValid(m)) continue;
+            if(m.getB1ConFail()) conFail.set(this.teamNumber.indexOf(m.getB1()), conFail.get(this.teamNumber.indexOf(m.getB1())) + 1);
+            if(m.getB2ConFail()) conFail.set(this.teamNumber.indexOf(m.getB2()), conFail.get(this.teamNumber.indexOf(m.getB2())) + 1);
+            if(m.getR1ConFail()) conFail.set(this.teamNumber.indexOf(m.getR1()), conFail.get(this.teamNumber.indexOf(m.getR1())) + 1);
+            if(m.getR2ConFail()) conFail.set(this.teamNumber.indexOf(m.getR2()), conFail.get(this.teamNumber.indexOf(m.getR2())) + 1);
+        }
+        
+        for(int i = 0; i < this.teamNumber.size(); i++) {
+            this.teamDisconPct.set(i, conFail.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
+            System.out.println("team:"+this.teamNumber.get(i).intValue()+", dcc:"+conFail.get(i).intValue()+", mc:"+this.teamMatchCnt.get(i));
+        }
+            
+    }
+    
     private ArrayList<Integer> newEmptyIntList(int length) {
         ArrayList<Integer> out = new ArrayList<>();
         for(int i = 0; i < length; i++) out.add(0);
