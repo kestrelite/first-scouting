@@ -3,18 +3,16 @@ package firstscouting;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.UIManager;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
-import tournamentftc.MatchListFTC;
-import tournamentftc.TeamListFTC;
 
 public class FIRSTScouting {
-    
     public static void runFile(String fName) throws Exception {
         Scanner s;
+        DivisionDataFTC d = new DivisionDataFTC();
+        
         File f = new File(fName);
         
         if(f.exists()) {
@@ -22,18 +20,18 @@ public class FIRSTScouting {
             InputStreamReader is = new InputStreamReader(fs);
             s = new Scanner(is);
 
-            while(s.hasNext()) MatchListFTC.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+            while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
             s.nextLine();
             
-            TeamListFTC.printTeamData();
-            MatchListFTC.calcTeamData();
+            d.printMatchDump(); System.out.println(""); d.printTeamDump();
+            //MatchListFTC.calcTeamData();
             
             System.exit(0);
         }
         if(1==1) throw new Error("File does not exist!");
     }
     
-    public static void runCmdLine() {
+    /*public static void runCmdLine() {
         Scanner s;        
         s = new Scanner(System.in);
         while (true) {
@@ -57,7 +55,7 @@ public class FIRSTScouting {
                 continue;
             }
         }        
-    }
+    }*/
     
     public static void runCmdLineDivision() {
         DivisionDataFTC d = new DivisionDataFTC();
@@ -73,7 +71,7 @@ public class FIRSTScouting {
     }
     
     public static void main(String[] args) throws Exception {
-        //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
-        FIRSTScouting.runCmdLineDivision();
+        FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
+        //FIRSTScouting.runCmdLineDivision();
     }
 }

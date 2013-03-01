@@ -26,17 +26,17 @@ public class MatchFTC implements Serializable {
     }
     
     public final void setDefense(int team, boolean defMode) {
-        if(team == PositionID.R1 || team == this.teamR1) teamR1Def = defMode;
-        if(team == PositionID.R2 || team == this.teamR2) teamR2Def = defMode;
-        if(team == PositionID.B1 || team == this.teamB1) teamB1Def = defMode;
-        if(team == PositionID.B2 || team == this.teamB2) teamB2Def = defMode;
+        if(team == this.teamR1) teamR1Def = defMode;
+        if(team == this.teamR2) teamR2Def = defMode;
+        if(team == this.teamB1) teamB1Def = defMode;
+        if(team == this.teamB2) teamB2Def = defMode;
     }
     
     public final void setConFail(int team, boolean conFail) {
-        if(team == PositionID.R1 || team == this.teamR1) teamR1ConFail = conFail;
-        if(team == PositionID.R2 || team == this.teamR2) teamR2ConFail = conFail;
-        if(team == PositionID.B1 || team == this.teamB1) teamB1ConFail = conFail;
-        if(team == PositionID.B2 || team == this.teamB2) teamB2ConFail = conFail;
+        if(team == this.teamR1) teamR1ConFail = conFail;
+        if(team == this.teamR2) teamR2ConFail = conFail;
+        if(team == this.teamB1) teamB1ConFail = conFail;
+        if(team == this.teamB2) teamB2ConFail = conFail;
     }
     
     protected final void setId(int id) {
@@ -68,4 +68,20 @@ public class MatchFTC implements Serializable {
     public final boolean getR2ConFail() {return this.teamR2ConFail;}
     public final boolean getB1ConFail() {return this.teamB1ConFail;}
     public final boolean getB2ConFail() {return this.teamB2ConFail;}
+
+    public boolean getConFail(int teamNum) {
+        if(teamNum == this.teamB1) return this.teamB1ConFail;
+        if(teamNum == this.teamB2) return this.teamB2ConFail;
+        if(teamNum == this.teamR1) return this.teamR1ConFail;
+        if(teamNum == this.teamR2) return this.teamR2ConFail;
+        return false;
+    }
+    
+    public boolean getDefend(int teamNum) {
+        if(teamNum == this.teamB1) return this.teamB1Def;
+        if(teamNum == this.teamB2) return this.teamB2Def;
+        if(teamNum == this.teamR1) return this.teamR1Def;
+        if(teamNum == this.teamR2) return this.teamR2Def;
+        return false;
+    }
 }
