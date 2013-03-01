@@ -8,7 +8,6 @@ public class MatchFTC implements Serializable {
     private int     scoreRed = -1, scoreBlue = -1;
     private boolean teamR1Def = false, teamR2Def = false, teamB1Def = false, teamB2Def = false;
     private boolean teamR1ConFail = false, teamR2ConFail = false, teamB1ConFail = false, teamB2ConFail = false;
-    private boolean finalized = false;
     
     public MatchFTC(int teamR1, int teamR2, int teamB1, int teamB2) {
         this.teamR1 = teamR1; this.teamR2 = teamR2; this.teamB1 = teamB1; this.teamB2 = teamB2;
@@ -19,7 +18,6 @@ public class MatchFTC implements Serializable {
     }
     
     public final void setTeams(int teamR1, int teamR2, int teamB1, int teamB2) {
-        if(this.finalized) {System.out.println("You cannnot set teams on a finalized match!"); return;}
         this.teamR1 = teamR1; this.teamR2 = teamR2; this.teamB1 = teamB1; this.teamB2 = teamB2;
     }
     
@@ -36,21 +34,6 @@ public class MatchFTC implements Serializable {
         
     protected final void setId(int id) {
         this.id = id;
-    }
-    
-    protected final void finalizeMatch() {
-        if(finalized) throw new Error("You cannot finalize a match twice!");
-        if(id == -1) throw new Error("Match is missing ID - cannot be finalized!");
-        if(teamR1 == -1 || teamR2 == -1 || teamB1 == -1 || teamB2 == -1) 
-            throw new Error("Match is missing team number - cannot be finalized!");
-        if(scoreRed == -1 || scoreBlue == -1)
-            throw new Error("Match is missing team scores - cannot be finalized!");
-        
-        TeamListFTC.getTeam(teamR1).addMatch(this);
-        TeamListFTC.getTeam(teamR2).addMatch(this);
-        TeamListFTC.getTeam(teamB1).addMatch(this);
-        TeamListFTC.getTeam(teamB2).addMatch(this);
-        this.finalized = true;
     }
     
     public final void printMatchData() {

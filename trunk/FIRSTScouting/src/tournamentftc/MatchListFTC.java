@@ -10,7 +10,6 @@ public class MatchListFTC implements Serializable {
     
     public static int addMatch(MatchFTC m) {
         m.setId(matchList.size());
-        m.finalizeMatch();
         matchList.add(m);
         
         return matchList.size()-1;
