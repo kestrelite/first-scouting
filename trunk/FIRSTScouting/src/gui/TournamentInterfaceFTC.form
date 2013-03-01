@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -25,8 +25,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="mainTabPane" alignment="0" pref="780" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="mainTabPane" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tourneyNameDivNumLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -36,9 +36,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="tourneyNameDivNumLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="mainTabPane" pref="538" max="32767" attributes="0"/>
+              <Component id="mainTabPane" pref="540" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -64,71 +64,118 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="matchTabelScrollPane" alignment="0" pref="755" max="32767" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="1">
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField7" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField8" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField9" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField10" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField11" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField12" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="matchTabelScrollPane" pref="768" max="32767" attributes="0"/>
+                          <Component id="editMatchLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="editMatchNumLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addMatchLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField4" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField5" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField6" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="editMatchRed1Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed1TextField" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed2Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed2TextField" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue1Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue1TextField" min="-2" pref="32" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="editMatchRed1DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed1DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed2DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRed2DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue1DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue1DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="editMatchBlue2Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue2TextField" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRedScoreLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchRedScoreTextField" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlueScoreLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlueScoreTextField" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="editMatchPlayedCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="editMatchSubmitButton" min="-2" pref="75" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="editMatchBlue2DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editMatchBlue2DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="addMatchNumLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addMatchRed1DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed1DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed2DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed2DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue1DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue1DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue2DefenseCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue2DisconnectCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="addMatchRed1Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed1TextField" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed2Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRed2TextField" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue1Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue1TextField" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue2Label" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlue2TextField" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchRedScoreLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchredScoreTextField" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlueScoreLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="addMatchBlueScoreTextField" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="addMatchPlayedCheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="addMatchSubmitButton" min="-2" pref="75" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -142,46 +189,74 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="matchTabelScrollPane" min="-2" pref="354" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="editMatchLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRed1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRed1TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRed2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlue1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlue2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRedScoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlueScoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRed2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlue1TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlue2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchRedScoreTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchBlueScoreTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editMatchPlayedCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="addMatchLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="editMatchRed1DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchRed1DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchRed2DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchRed2DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchBlue1DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchBlue1DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchBlue2DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editMatchBlue2DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed1TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRedScoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlueScoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue1TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchredScoreTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlueScoreTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchPlayedCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue2Label" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="addMatchRed1DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed1DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed2DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchRed2DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue1DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue1DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue2DefenseCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addMatchBlue2DisconnectCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -256,7 +331,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="editMatchLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -264,73 +339,73 @@
                 <Property name="text" type="java.lang.String" value="Edit Match"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="editMatchNumLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Match Number: #"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="editMatchRed1Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red 1: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="editMatchRed1TextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchRed1TextFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="editMatchRed2Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red 2: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="editMatchRed2TextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="editMatchBlue1Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue 1: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="editMatchBlue1TextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="editMatchBlue2Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue 2: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="editMatchBlue2TextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchBlue2TextFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="editMatchRedScoreLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red Score: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="editMatchRedScoreTextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="editMatchBlueScoreLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue Score: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
+            <Component class="javax.swing.JTextField" name="editMatchBlueScoreTextField">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="editMatchPlayedCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Played"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchPlayedCheckBoxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="editMatchSubmitButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="addMatchLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -338,71 +413,178 @@
                 <Property name="text" type="java.lang.String" value="Add Match"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
+            <Component class="javax.swing.JLabel" name="addMatchNumLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Match Number: #"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
+            <Component class="javax.swing.JLabel" name="addMatchRed1Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red 1: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
+            <Component class="javax.swing.JTextField" name="addMatchRed1TextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchRed1TextFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel13">
+            <Component class="javax.swing.JLabel" name="addMatchRed2Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red 2: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
+            <Component class="javax.swing.JTextField" name="addMatchRed2TextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel14">
+            <Component class="javax.swing.JLabel" name="addMatchBlue1Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue 1: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField9">
+            <Component class="javax.swing.JTextField" name="addMatchBlue1TextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel15">
+            <Component class="javax.swing.JLabel" name="addMatchBlue2Label">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue 2: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField10">
+            <Component class="javax.swing.JTextField" name="addMatchBlue2TextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField10ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchBlue2TextFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel16">
+            <Component class="javax.swing.JLabel" name="addMatchRedScoreLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Red Score: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField11">
+            <Component class="javax.swing.JTextField" name="addMatchredScoreTextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel17">
+            <Component class="javax.swing.JLabel" name="addMatchBlueScoreLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blue Score: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField12">
+            <Component class="javax.swing.JTextField" name="addMatchBlueScoreTextField">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+            <Component class="javax.swing.JCheckBox" name="addMatchPlayedCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Played"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchPlayedCheckBoxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="addMatchSubmitButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchSubmitButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchRed1DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchRed1DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchRed1DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchRed2DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchRed2DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchRed2DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchBlue1DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchBlue1DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchBlue1DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchBlue2DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editMatchBlue2DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="editMatchBlue2DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchRed1DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchRed1DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchRed1DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchRed2DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchRed2DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchRed2DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchBlue1DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchBlue1DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchBlue1DisconnectCheckBoxActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchBlue2DefenseCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="addMatchBlue2DisconnectCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="DC"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMatchBlue2DisconnectCheckBoxActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -418,9 +600,27 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="755" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="teamScrollPane" alignment="0" pref="768" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="teamCommentsScrollPane" alignment="0" min="-2" pref="570" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="teamCommentsLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="teamCommentsNumLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="teamCommentsSubmitButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="teamRecalculateDataButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -429,14 +629,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="354" max="-2" attributes="0"/>
-                      <EmptySpace pref="145" max="32767" attributes="0"/>
+                      <Component id="teamScrollPane" min="-2" pref="354" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="teamCommentsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="teamCommentsNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="1">
+                              <Component id="teamRecalculateDataButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="teamCommentsSubmitButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="teamCommentsScrollPane" alignment="1" min="-2" pref="102" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="teamScrollPane">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
@@ -499,11 +713,49 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="teamCommentsLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Team Comments:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="teamCommentsNumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Team Number: #"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="teamCommentsScrollPane">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="teamCommentsTextArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="teamCommentsSubmitButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update Comment"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="teamRecalculateDataButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recalculate Data"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="tourneyNameDivNumLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="0"/>

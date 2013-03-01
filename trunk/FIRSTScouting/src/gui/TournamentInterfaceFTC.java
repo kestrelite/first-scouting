@@ -34,42 +34,64 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
         matchTab = new javax.swing.JPanel();
         matchTabelScrollPane = new javax.swing.JScrollPane();
         matchTabel = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
+        editMatchLabel = new javax.swing.JLabel();
+        editMatchNumLabel = new javax.swing.JLabel();
+        editMatchRed1Label = new javax.swing.JLabel();
+        editMatchRed1TextField = new javax.swing.JTextField();
+        editMatchRed2Label = new javax.swing.JLabel();
+        editMatchRed2TextField = new javax.swing.JTextField();
+        editMatchBlue1Label = new javax.swing.JLabel();
+        editMatchBlue1TextField = new javax.swing.JTextField();
+        editMatchBlue2Label = new javax.swing.JLabel();
+        editMatchBlue2TextField = new javax.swing.JTextField();
+        editMatchRedScoreLabel = new javax.swing.JLabel();
+        editMatchRedScoreTextField = new javax.swing.JTextField();
+        editMatchBlueScoreLabel = new javax.swing.JLabel();
+        editMatchBlueScoreTextField = new javax.swing.JTextField();
+        editMatchPlayedCheckBox = new javax.swing.JCheckBox();
+        editMatchSubmitButton = new javax.swing.JButton();
+        addMatchLabel = new javax.swing.JLabel();
+        addMatchNumLabel = new javax.swing.JLabel();
+        addMatchRed1Label = new javax.swing.JLabel();
+        addMatchRed1TextField = new javax.swing.JTextField();
+        addMatchRed2Label = new javax.swing.JLabel();
+        addMatchRed2TextField = new javax.swing.JTextField();
+        addMatchBlue1Label = new javax.swing.JLabel();
+        addMatchBlue1TextField = new javax.swing.JTextField();
+        addMatchBlue2Label = new javax.swing.JLabel();
+        addMatchBlue2TextField = new javax.swing.JTextField();
+        addMatchRedScoreLabel = new javax.swing.JLabel();
+        addMatchredScoreTextField = new javax.swing.JTextField();
+        addMatchBlueScoreLabel = new javax.swing.JLabel();
+        addMatchBlueScoreTextField = new javax.swing.JTextField();
+        addMatchPlayedCheckBox = new javax.swing.JCheckBox();
+        addMatchSubmitButton = new javax.swing.JButton();
+        editMatchRed1DefenseCheckBox = new javax.swing.JCheckBox();
+        editMatchRed1DisconnectCheckBox = new javax.swing.JCheckBox();
+        editMatchRed2DisconnectCheckBox = new javax.swing.JCheckBox();
+        editMatchRed2DefenseCheckBox = new javax.swing.JCheckBox();
+        editMatchBlue1DisconnectCheckBox = new javax.swing.JCheckBox();
+        editMatchBlue1DefenseCheckBox = new javax.swing.JCheckBox();
+        editMatchBlue2DisconnectCheckBox = new javax.swing.JCheckBox();
+        editMatchBlue2DefenseCheckBox = new javax.swing.JCheckBox();
+        addMatchRed1DefenseCheckBox = new javax.swing.JCheckBox();
+        addMatchRed1DisconnectCheckBox = new javax.swing.JCheckBox();
+        addMatchRed2DefenseCheckBox = new javax.swing.JCheckBox();
+        addMatchRed2DisconnectCheckBox = new javax.swing.JCheckBox();
+        addMatchBlue1DefenseCheckBox = new javax.swing.JCheckBox();
+        addMatchBlue1DisconnectCheckBox = new javax.swing.JCheckBox();
+        addMatchBlue2DefenseCheckBox = new javax.swing.JCheckBox();
+        addMatchBlue2DisconnectCheckBox = new javax.swing.JCheckBox();
         teamTab = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        teamScrollPane = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        teamCommentsLabel = new javax.swing.JLabel();
+        teamCommentsNumLabel = new javax.swing.JLabel();
+        teamCommentsScrollPane = new javax.swing.JScrollPane();
+        teamCommentsTextArea = new javax.swing.JTextArea();
+        teamCommentsSubmitButton = new javax.swing.JButton();
+        teamRecalculateDataButton = new javax.swing.JButton();
+        tourneyNameDivNumLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,81 +116,158 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
         });
         matchTabelScrollPane.setViewportView(matchTabel);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Edit Match");
+        editMatchLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        editMatchLabel.setText("Edit Match");
 
-        jLabel3.setText("Match Number: #");
+        editMatchNumLabel.setText("Match Number: #");
 
-        jLabel4.setText("Red 1: ");
+        editMatchRed1Label.setText("Red 1: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        editMatchRed1TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                editMatchRed1TextFieldActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Red 2: ");
+        editMatchRed2Label.setText("Red 2: ");
 
-        jLabel6.setText("Blue 1: ");
+        editMatchBlue1Label.setText("Blue 1: ");
 
-        jLabel7.setText("Blue 2: ");
+        editMatchBlue2Label.setText("Blue 2: ");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        editMatchBlue2TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                editMatchBlue2TextFieldActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Red Score: ");
+        editMatchRedScoreLabel.setText("Red Score: ");
 
-        jLabel9.setText("Blue Score: ");
+        editMatchBlueScoreLabel.setText("Blue Score: ");
 
-        jCheckBox1.setText("Played");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        editMatchPlayedCheckBox.setText("Played");
+        editMatchPlayedCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                editMatchPlayedCheckBoxActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Edit");
+        editMatchSubmitButton.setText("Edit");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("Add Match");
+        addMatchLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        addMatchLabel.setText("Add Match");
 
-        jLabel11.setText("Match Number: #");
+        addMatchNumLabel.setText("Match Number: #");
 
-        jLabel12.setText("Red 1: ");
+        addMatchRed1Label.setText("Red 1: ");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        addMatchRed1TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                addMatchRed1TextFieldActionPerformed(evt);
             }
         });
 
-        jLabel13.setText("Red 2: ");
+        addMatchRed2Label.setText("Red 2: ");
 
-        jLabel14.setText("Blue 1: ");
+        addMatchBlue1Label.setText("Blue 1: ");
 
-        jLabel15.setText("Blue 2: ");
+        addMatchBlue2Label.setText("Blue 2: ");
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        addMatchBlue2TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                addMatchBlue2TextFieldActionPerformed(evt);
             }
         });
 
-        jLabel16.setText("Red Score: ");
+        addMatchRedScoreLabel.setText("Red Score: ");
 
-        jLabel17.setText("Blue Score: ");
+        addMatchBlueScoreLabel.setText("Blue Score: ");
 
-        jCheckBox2.setText("Played");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        addMatchPlayedCheckBox.setText("Played");
+        addMatchPlayedCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                addMatchPlayedCheckBoxActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add");
+        addMatchSubmitButton.setText("Add");
+        addMatchSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMatchSubmitButtonActionPerformed(evt);
+            }
+        });
+
+        editMatchRed1DefenseCheckBox.setText("DF");
+
+        editMatchRed1DisconnectCheckBox.setText("DC");
+        editMatchRed1DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMatchRed1DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        editMatchRed2DisconnectCheckBox.setText("DC");
+        editMatchRed2DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMatchRed2DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        editMatchRed2DefenseCheckBox.setText("DF");
+
+        editMatchBlue1DisconnectCheckBox.setText("DC");
+        editMatchBlue1DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMatchBlue1DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        editMatchBlue1DefenseCheckBox.setText("DF");
+
+        editMatchBlue2DisconnectCheckBox.setText("DC");
+        editMatchBlue2DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMatchBlue2DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        editMatchBlue2DefenseCheckBox.setText("DF");
+
+        addMatchRed1DefenseCheckBox.setText("DF");
+
+        addMatchRed1DisconnectCheckBox.setText("DC");
+        addMatchRed1DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMatchRed1DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        addMatchRed2DefenseCheckBox.setText("DF");
+
+        addMatchRed2DisconnectCheckBox.setText("DC");
+        addMatchRed2DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMatchRed2DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        addMatchBlue1DefenseCheckBox.setText("DF");
+
+        addMatchBlue1DisconnectCheckBox.setText("DC");
+        addMatchBlue1DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMatchBlue1DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
+
+        addMatchBlue2DefenseCheckBox.setText("DF");
+
+        addMatchBlue2DisconnectCheckBox.setText("DC");
+        addMatchBlue2DisconnectCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMatchBlue2DisconnectCheckBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout matchTabLayout = new javax.swing.GroupLayout(matchTab);
         matchTab.setLayout(matchTabLayout);
@@ -177,70 +276,108 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
             .addGroup(matchTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(matchTabelScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel10)
-                    .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, matchTabLayout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel13)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCheckBox2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, matchTabLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCheckBox1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(matchTabelScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                    .addComponent(editMatchLabel)
+                    .addGroup(matchTabLayout.createSequentialGroup()
+                        .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editMatchNumLabel)
+                            .addComponent(addMatchLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(editMatchRed1Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed2Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue1Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(editMatchRed1DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed1DisconnectCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed2DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRed2DisconnectCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue1DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue1DisconnectCheckBox)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(editMatchBlue2Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRedScoreLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchRedScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlueScoreLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlueScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(editMatchPlayedCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(editMatchSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(editMatchBlue2DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editMatchBlue2DisconnectCheckBox))))
+                    .addGroup(matchTabLayout.createSequentialGroup()
+                        .addComponent(addMatchNumLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(addMatchRed1DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed1DisconnectCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed2DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed2DisconnectCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue1DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue1DisconnectCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue2DefenseCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue2DisconnectCheckBox))
+                            .addGroup(matchTabLayout.createSequentialGroup()
+                                .addComponent(addMatchRed1Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed2Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRed2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue1Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addMatchBlue2Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlue2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchRedScoreLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchredScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlueScoreLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMatchBlueScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(addMatchPlayedCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(addMatchSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         matchTabLayout.setVerticalGroup(
@@ -249,44 +386,67 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(matchTabelScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(editMatchLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(editMatchNumLabel)
+                    .addComponent(editMatchRed1Label)
+                    .addComponent(editMatchRed1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchRed2Label)
+                    .addComponent(editMatchBlue1Label)
+                    .addComponent(editMatchBlue2Label)
+                    .addComponent(editMatchRedScoreLabel)
+                    .addComponent(editMatchBlueScoreLabel)
+                    .addComponent(editMatchSubmitButton)
+                    .addComponent(editMatchRed2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchBlue1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchBlue2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchRedScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchBlueScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMatchPlayedCheckBox))
+                .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(matchTabLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(addMatchLabel))
+                    .addGroup(matchTabLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editMatchRed1DefenseCheckBox)
+                            .addComponent(editMatchRed1DisconnectCheckBox)
+                            .addComponent(editMatchRed2DefenseCheckBox)
+                            .addComponent(editMatchRed2DisconnectCheckBox)
+                            .addComponent(editMatchBlue1DefenseCheckBox)
+                            .addComponent(editMatchBlue1DisconnectCheckBox)
+                            .addComponent(editMatchBlue2DefenseCheckBox)
+                            .addComponent(editMatchBlue2DisconnectCheckBox))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jButton2))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(addMatchNumLabel)
+                    .addComponent(addMatchRed1Label)
+                    .addComponent(addMatchRed1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchRed2Label)
+                    .addComponent(addMatchBlue1Label)
+                    .addComponent(addMatchRedScoreLabel)
+                    .addComponent(addMatchBlueScoreLabel)
+                    .addComponent(addMatchSubmitButton)
+                    .addComponent(addMatchRed2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchBlue1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchBlue2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchredScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchBlueScoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMatchPlayedCheckBox)
+                    .addComponent(addMatchBlue2Label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(matchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addMatchRed1DefenseCheckBox)
+                    .addComponent(addMatchRed1DisconnectCheckBox)
+                    .addComponent(addMatchRed2DefenseCheckBox)
+                    .addComponent(addMatchRed2DisconnectCheckBox)
+                    .addComponent(addMatchBlue1DefenseCheckBox)
+                    .addComponent(addMatchBlue1DisconnectCheckBox)
+                    .addComponent(addMatchBlue2DefenseCheckBox)
+                    .addComponent(addMatchBlue2DisconnectCheckBox))
+                .addContainerGap())
         );
 
         mainTabPane.addTab("Division Match List", matchTab);
@@ -311,7 +471,20 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        teamScrollPane.setViewportView(jTable1);
+
+        teamCommentsLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        teamCommentsLabel.setText("Team Comments:");
+
+        teamCommentsNumLabel.setText("Team Number: #");
+
+        teamCommentsTextArea.setColumns(20);
+        teamCommentsTextArea.setRows(5);
+        teamCommentsScrollPane.setViewportView(teamCommentsTextArea);
+
+        teamCommentsSubmitButton.setText("Update Comment");
+
+        teamRecalculateDataButton.setText("Recalculate Data");
 
         javax.swing.GroupLayout teamTabLayout = new javax.swing.GroupLayout(teamTab);
         teamTab.setLayout(teamTabLayout);
@@ -319,21 +492,45 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
             teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(teamTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                .addGroup(teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(teamScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
+                        .addGroup(teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(teamCommentsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(teamTabLayout.createSequentialGroup()
+                                .addComponent(teamCommentsLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(teamCommentsNumLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addGroup(teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(teamCommentsSubmitButton)
+                            .addComponent(teamRecalculateDataButton))
+                        .addGap(30, 30, 30)))
                 .addContainerGap())
         );
         teamTabLayout.setVerticalGroup(
             teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(teamTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addComponent(teamScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(teamCommentsLabel)
+                    .addComponent(teamCommentsNumLabel))
+                .addGap(9, 9, 9)
+                .addGroup(teamTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
+                        .addComponent(teamRecalculateDataButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(teamCommentsSubmitButton))
+                    .addComponent(teamCommentsScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         mainTabPane.addTab("Division Team Rankings", teamTab);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Tournament Name - Division #");
+        tourneyNameDivNumLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tourneyNameDivNumLabel.setText("Tournament Name - Division #");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -342,46 +539,82 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
+                    .addComponent(mainTabPane)
+                    .addComponent(tourneyNameDivNumLabel))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tourneyNameDivNumLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void editMatchRed1TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchRed1TextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_editMatchRed1TextFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void editMatchBlue2TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchBlue2TextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_editMatchBlue2TextFieldActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void editMatchPlayedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchPlayedCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_editMatchPlayedCheckBoxActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void addMatchRed1TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchRed1TextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_addMatchRed1TextFieldActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void addMatchBlue2TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchBlue2TextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_addMatchBlue2TextFieldActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void addMatchPlayedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchPlayedCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_addMatchPlayedCheckBoxActionPerformed
+
+    private void addMatchSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchSubmitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMatchSubmitButtonActionPerformed
+
+    private void editMatchRed1DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchRed1DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editMatchRed1DisconnectCheckBoxActionPerformed
+
+    private void editMatchRed2DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchRed2DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editMatchRed2DisconnectCheckBoxActionPerformed
+
+    private void editMatchBlue1DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchBlue1DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editMatchBlue1DisconnectCheckBoxActionPerformed
+
+    private void editMatchBlue2DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMatchBlue2DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editMatchBlue2DisconnectCheckBoxActionPerformed
+
+    private void addMatchRed1DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchRed1DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMatchRed1DisconnectCheckBoxActionPerformed
+
+    private void addMatchRed2DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchRed2DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMatchRed2DisconnectCheckBoxActionPerformed
+
+    private void addMatchBlue1DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchBlue1DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMatchBlue1DisconnectCheckBoxActionPerformed
+
+    private void addMatchBlue2DisconnectCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatchBlue2DisconnectCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMatchBlue2DisconnectCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,45 +652,67 @@ public class TournamentInterfaceFTC extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox addMatchBlue1DefenseCheckBox;
+    private javax.swing.JCheckBox addMatchBlue1DisconnectCheckBox;
+    private javax.swing.JLabel addMatchBlue1Label;
+    private javax.swing.JTextField addMatchBlue1TextField;
+    private javax.swing.JCheckBox addMatchBlue2DefenseCheckBox;
+    private javax.swing.JCheckBox addMatchBlue2DisconnectCheckBox;
+    private javax.swing.JLabel addMatchBlue2Label;
+    private javax.swing.JTextField addMatchBlue2TextField;
+    private javax.swing.JLabel addMatchBlueScoreLabel;
+    private javax.swing.JTextField addMatchBlueScoreTextField;
+    private javax.swing.JLabel addMatchLabel;
+    private javax.swing.JLabel addMatchNumLabel;
+    private javax.swing.JCheckBox addMatchPlayedCheckBox;
+    private javax.swing.JCheckBox addMatchRed1DefenseCheckBox;
+    private javax.swing.JCheckBox addMatchRed1DisconnectCheckBox;
+    private javax.swing.JLabel addMatchRed1Label;
+    private javax.swing.JTextField addMatchRed1TextField;
+    private javax.swing.JCheckBox addMatchRed2DefenseCheckBox;
+    private javax.swing.JCheckBox addMatchRed2DisconnectCheckBox;
+    private javax.swing.JLabel addMatchRed2Label;
+    private javax.swing.JTextField addMatchRed2TextField;
+    private javax.swing.JLabel addMatchRedScoreLabel;
+    private javax.swing.JButton addMatchSubmitButton;
+    private javax.swing.JTextField addMatchredScoreTextField;
+    private javax.swing.JCheckBox editMatchBlue1DefenseCheckBox;
+    private javax.swing.JCheckBox editMatchBlue1DisconnectCheckBox;
+    private javax.swing.JLabel editMatchBlue1Label;
+    private javax.swing.JTextField editMatchBlue1TextField;
+    private javax.swing.JCheckBox editMatchBlue2DefenseCheckBox;
+    private javax.swing.JCheckBox editMatchBlue2DisconnectCheckBox;
+    private javax.swing.JLabel editMatchBlue2Label;
+    private javax.swing.JTextField editMatchBlue2TextField;
+    private javax.swing.JLabel editMatchBlueScoreLabel;
+    private javax.swing.JTextField editMatchBlueScoreTextField;
+    private javax.swing.JLabel editMatchLabel;
+    private javax.swing.JLabel editMatchNumLabel;
+    private javax.swing.JCheckBox editMatchPlayedCheckBox;
+    private javax.swing.JCheckBox editMatchRed1DefenseCheckBox;
+    private javax.swing.JCheckBox editMatchRed1DisconnectCheckBox;
+    private javax.swing.JLabel editMatchRed1Label;
+    private javax.swing.JTextField editMatchRed1TextField;
+    private javax.swing.JCheckBox editMatchRed2DefenseCheckBox;
+    private javax.swing.JCheckBox editMatchRed2DisconnectCheckBox;
+    private javax.swing.JLabel editMatchRed2Label;
+    private javax.swing.JTextField editMatchRed2TextField;
+    private javax.swing.JLabel editMatchRedScoreLabel;
+    private javax.swing.JTextField editMatchRedScoreTextField;
+    private javax.swing.JButton editMatchSubmitButton;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTabbedPane mainTabPane;
     private javax.swing.JPanel matchTab;
     private javax.swing.JTable matchTabel;
     private javax.swing.JScrollPane matchTabelScrollPane;
+    private javax.swing.JLabel teamCommentsLabel;
+    private javax.swing.JLabel teamCommentsNumLabel;
+    private javax.swing.JScrollPane teamCommentsScrollPane;
+    private javax.swing.JButton teamCommentsSubmitButton;
+    private javax.swing.JTextArea teamCommentsTextArea;
+    private javax.swing.JButton teamRecalculateDataButton;
+    private javax.swing.JScrollPane teamScrollPane;
     private javax.swing.JPanel teamTab;
+    private javax.swing.JLabel tourneyNameDivNumLabel;
     // End of variables declaration//GEN-END:variables
 }

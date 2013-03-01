@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
-import javax.swing.UIManager;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
 
