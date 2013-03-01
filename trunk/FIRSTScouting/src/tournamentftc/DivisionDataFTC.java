@@ -29,7 +29,6 @@ public class DivisionDataFTC {
         teamDefendPct.add(-1.0);
         teamComment.add("None");
     }
-    
     public int addMatch(MatchFTC m) {
         m.setId(matchList.size());
 
@@ -150,11 +149,59 @@ public class DivisionDataFTC {
             }
         }
         
-        
         ArrayList<Double> outs = new ArrayList<>();
         for(int i = 0; i < this.teamNumber.size(); i++)
             outs.add(sumList.get(teamNumList.indexOf(this.teamNumber.get(i))).doubleValue() 
                     / cntList.get(teamNumList.indexOf(this.teamNumber.get(i))).doubleValue());
         this.setTeamAvgScore(outs);
+    }
+    public void calcTeamMatchCnt() {
+        this.teamMatchCnt = this.newEmptyIntList(this.teamNumber.size());
+        
+        for(MatchFTC m : this.matchList) {
+            if(!this.getMatchIsValid(m)) continue;
+            if(m.getB1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB1())) + 1);
+            if(m.getB2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getB2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getB2())) + 1);
+            if(m.getR1ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR1()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR1())) + 1);
+            if(m.getR2ConFail()) teamMatchCnt.set(this.teamNumber.indexOf(m.getR2()), teamMatchCnt.get(this.teamNumber.indexOf(m.getR2())) + 1);
+        }
+    }
+    
+    public void calcTeamWtd() {
+        ArrayList<Double> sumList = this.newEmptyDoubleList(this.teamNumber.size());
+        
+        for(MatchFTC m : this.matchList) {
+            if(!this.getMatchIsValid(m)) continue;
+            
+            double bScale, rScale;
+            if(m.getScoreBlue() > m.getScoreRed()) {bScale = 0.70; rScale = 0.45;}
+            else {bScale = 0.45; rScale = 0.70;}
+            
+            int index = this.teamNumber.indexOf(m.getB1());
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1())).doubleValue() * bScale)));
+            
+            index = this.teamNumber.indexOf(m.getB2());
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB2())).doubleValue() * bScale)));
+            
+            index = this.teamNumber.indexOf(m.getR1());
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())).doubleValue() * rScale)));
+            
+            index = this.teamNumber.indexOf(m.getR2());
+            sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2())).doubleValue() * rScale)));
+        }
+        
+        for(int i = 0; i < this.teamNumber.size(); i++) 
+            this.teamWtdScore.set(i, sumList.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
+    }
+
+    private ArrayList<Integer> newEmptyIntList(int length) {
+        ArrayList<Integer> out = new ArrayList<>();
+        for(int i = 0; i < length; i++) out.add(0);
+        return out;
+    }
+    private ArrayList<Double> newEmptyDoubleList(int length) {
+        ArrayList<Double> out = new ArrayList<>();
+        for(int i = 0; i < length; i++) out.add(0.0);
+        return out;
     }
 }

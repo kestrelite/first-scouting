@@ -24,6 +24,8 @@ public class FIRSTScouting {
             s.nextLine();
             
             d.calcTeamAvg();
+            d.calcTeamMatchCnt();
+            d.calcTeamWtd();
             d.printMatchDump(); System.out.println(""); d.printTeamDump();
 
             //MatchListFTC.calcTeamData();
