@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import javax.swing.UIManager;
+import tournamentftc.Calculation;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
 
@@ -24,6 +25,7 @@ public class FIRSTScouting {
             s.nextLine();
             
             d.printMatchDump(); System.out.println(""); d.printTeamDump();
+            Calculation.calcTeamAvg(d);
             //MatchListFTC.calcTeamData();
             
             System.exit(0);
