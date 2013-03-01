@@ -1,5 +1,6 @@
 package firstscouting;
 
+import gui.DivisionGUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -28,6 +29,10 @@ public class FIRSTScouting {
             d.calcTeamWtd();
             d.printMatchDump(); System.out.println(""); d.printTeamDump();
 
+            
+            d.printMatchDump(); System.out.println(""); d.printTeamDump();
+            
+            
             //MatchListFTC.calcTeamData();
             
             System.exit(0);
@@ -77,12 +82,13 @@ public class FIRSTScouting {
     }
     
     public static void runGUI() throws Exception {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        FIRSTScoutingDisp display = new FIRSTScoutingDisp();        
+        DivisionGUI dGUI = new DivisionGUI();
     }
     
     public static void main(String[] args) throws Exception {
-        FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
+        //FIRSTScouting.runFile("L:\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
+        //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
         //FIRSTScouting.runCmdLineDivision();
+        FIRSTScouting.runGUI();
     }
 }
