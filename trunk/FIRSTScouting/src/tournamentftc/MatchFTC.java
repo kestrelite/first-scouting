@@ -26,12 +26,19 @@ public class MatchFTC implements Serializable {
     }
     
     public final void setDefense(int team, boolean defMode) {
-        if(team == PositionID.R1) teamR1Def = defMode;
-        if(team == PositionID.R2) teamR2Def = defMode;
-        if(team == PositionID.B1) teamB1Def = defMode;
-        if(team == PositionID.B2) teamB2Def = defMode;
+        if(team == PositionID.R1 || team == this.teamR1) teamR1Def = defMode;
+        if(team == PositionID.R2 || team == this.teamR2) teamR2Def = defMode;
+        if(team == PositionID.B1 || team == this.teamB1) teamB1Def = defMode;
+        if(team == PositionID.B2 || team == this.teamB2) teamB2Def = defMode;
     }
-        
+    
+    public final void setConFail(int team, boolean conFail) {
+        if(team == PositionID.R1 || team == this.teamR1) teamR1ConFail = conFail;
+        if(team == PositionID.R2 || team == this.teamR2) teamR2ConFail = conFail;
+        if(team == PositionID.B1 || team == this.teamB1) teamB1ConFail = conFail;
+        if(team == PositionID.B2 || team == this.teamB2) teamB2ConFail = conFail;
+    }
+    
     protected final void setId(int id) {
         this.id = id;
     }

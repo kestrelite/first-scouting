@@ -6,13 +6,10 @@ import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.UIManager;
+import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
 import tournamentftc.MatchListFTC;
 import tournamentftc.TeamListFTC;
-
-class Sort {
-    
-}
 
 public class FIRSTScouting {
     
@@ -62,12 +59,21 @@ public class FIRSTScouting {
         }        
     }
     
+    public static void runCmdLineDivision() {
+        DivisionDataFTC d = new DivisionDataFTC();
+        
+        d.addMatch(new MatchFTC(1, 2, 3, 4, 50, 60));
+        
+        d.printMatchDump(); System.out.println(""); d.printTeamDump();
+    }
+    
     public static void runGUI() throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         FIRSTScoutingDisp display = new FIRSTScoutingDisp();        
     }
     
     public static void main(String[] args) throws Exception {
-        FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
+        //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
+        FIRSTScouting.runCmdLineDivision();
     }
 }
