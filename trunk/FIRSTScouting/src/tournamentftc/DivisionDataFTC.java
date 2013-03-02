@@ -98,6 +98,7 @@ public class DivisionDataFTC {
     
     public void calcAll() {
         this.calcTeamMatchCnt();
+        this.calcTeamTournamentScore();
         this.calcTeamDefendsPct();
         this.calcTeamConFailPct();
         this.calcTeamAvg();
@@ -186,7 +187,7 @@ public class DivisionDataFTC {
             this.teamDisconPct.set(i, conFail.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
     }
     
-    public void calcTeamQualifyPts() {
+    public void calcTeamTournamentScore() {
         this.teamQualifyPt = this.newEmptyIntList(this.teamNumber.size());
         this.teamRankingPt = this.newEmptyIntList(this.teamNumber.size());
         
@@ -194,8 +195,19 @@ public class DivisionDataFTC {
             if(m.getScoreBlue() > m.getScoreRed()) {
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB1()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB2()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
+
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
             } else {
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR1()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR2()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
                 
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
             }
         }
     }

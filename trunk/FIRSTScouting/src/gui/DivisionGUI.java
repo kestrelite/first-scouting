@@ -455,7 +455,7 @@ public class DivisionGUI extends JFrame
 
         mainTabPane.addTab("Division Match List", matchTab);
 
-        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "RankPts", "QualPts", "Team Comment"},0){
+        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "QualPts", "RankPts", "Team Comment"},0){
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
             };
@@ -563,7 +563,7 @@ public class DivisionGUI extends JFrame
         
         for(int i = 0; i < d.teamNumber.size(); i++)
         {
-            teamTableModel.addRow(new Object[] {d.teamNumber.get(i), d.teamMatchCnt.get(i), d.teamAvgScore.get(i), d.teamWtdScore.get(i), d.teamDisconPct.get(i), d.teamDefendPct.get(i), d.teamComment.get(i)});
+            teamTableModel.addRow(new Object[] {d.teamNumber.get(i), d.teamMatchCnt.get(i), d.roundTo(d.teamAvgScore.get(i).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(i).doubleValue(), 3), d.teamDisconPct.get(i) + "%", d.teamDefendPct.get(i) + "%", d.teamRankingPt.get(i), d.teamQualifyPt.get(i), d.teamComment.get(i)});
         }
     }
     
