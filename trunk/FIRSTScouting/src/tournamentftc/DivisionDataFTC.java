@@ -1,8 +1,20 @@
 package tournamentftc;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DivisionDataFTC {
+public class DivisionDataFTC implements Serializable {
     public ArrayList<Integer> teamNumber    = new ArrayList<>();
     public ArrayList<Integer> teamMatchCnt  = new ArrayList<>();
     public ArrayList<Double>  teamAvgScore  = new ArrayList<>();
@@ -31,7 +43,7 @@ public class DivisionDataFTC {
         teamDefendPct.add(-1.0);
         teamComment.add("None");
     }
-    public int addMatch(MatchFTC m) {
+    public int  addMatch(MatchFTC m) {
         m.setId(matchList.size());
 
         if(!teamNumber.contains(m.getR1())) addTeam(m.getR1());
@@ -263,6 +275,28 @@ public class DivisionDataFTC {
         this.teamRankingPt = teamRankingPtNew;
         this.teamComment = teamCommentNew;
     }
-    
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
+    
+    public void writeToFile(String path) {
+        try {
+            OutputStream fileOut = new FileOutputStream(path);
+            OutputStream bufferOut = new BufferedOutputStream(fileOut);
+            ObjectOutput output = new ObjectOutputStream(bufferOut);
+            
+            output.writeObject(this);
+        } catch(IOException e) {}
+    }
+    
+    public static DivisionDataFTC readFromFile(String path) {
+        try {
+            InputStream fileIn = new FileInputStream(path);
+            InputStream bufferIn = new BufferedInputStream(fileIn);
+            ObjectInput input = new ObjectInputStream(bufferIn);
+            
+            return (DivisionDataFTC)input.readObject();
+        } catch(Exception e) {e.printStackTrace();}
+        
+        if(1==1) throw new Error("Could not read DivisionDataFTC at " + path);
+        return null;
+    }
 }
