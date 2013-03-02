@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -580,6 +581,19 @@ public class DivisionGUI extends JFrame {
 
         tourneyNameDivNumLabel.setFont(new Font("Tahoma", 0, 24)); // NOI18N
         tourneyNameDivNumLabel.setText("Tournament Name - Division #");
+        
+        tourneyNameDivNumLabel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e){
+                if(e.getClickCount()==2){
+                    String tName = JOptionPane.showInputDialog("Enter the Tournament Name.");
+                    String divNum = JOptionPane.showInputDialog("Enter the Division Number.");
+                    
+                    if(tName != null & divNum != null)
+                        tourneyNameDivNumLabel.setText(tName+" - Division "+divNum);
+                }
+            }
+        });
+        
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
