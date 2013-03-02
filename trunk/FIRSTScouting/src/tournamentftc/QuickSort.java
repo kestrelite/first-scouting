@@ -51,7 +51,7 @@ public class QuickSort {
         ArrayList sortedValues = new ArrayList(values);
         Collections.sort(sortedValues);
 
-        ArrayList ranks = new ArrayList();
+        ArrayList<Integer> ranks = new ArrayList();
 
         for (int i = 0; i < values.size(); i++) {
             ranks.add(sortedValues.indexOf(values.get(i)));

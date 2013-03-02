@@ -26,6 +26,8 @@ public class DivisionDataFTC implements Serializable {
     public ArrayList<Integer> teamRankingPt = new ArrayList<>();
     public ArrayList<String>  teamComment   = new ArrayList<>();
     
+    public ArrayList<Integer> sortedIndex   = new ArrayList<>();
+    
     public ArrayList<MatchFTC> matchList    = new ArrayList<>();
     public ArrayList<String>   matchComment = new ArrayList<>();
     
@@ -42,6 +44,7 @@ public class DivisionDataFTC implements Serializable {
         teamDisconPct.add(-1.0);
         teamDefendPct.add(-1.0);
         teamComment.add("None");
+        sortedIndex.add(teamNumber.size()-1);
     }
     public int  addMatch(MatchFTC m) {
         m.setId(matchList.size());

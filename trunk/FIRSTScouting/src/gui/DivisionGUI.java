@@ -623,8 +623,8 @@ public class DivisionGUI extends JFrame {
             matchTableModel.addRow(new Object[]{match.getId() + 1, match.getR1(), match.getR2(), match.getB1(), match.getB2(), match.getScoreRed(), match.getScoreBlue(), "Yes"});
         }
 
-        for (int i = 0; i < d.teamNumber.size(); i++) {
-            teamTableModel.addRow(new Object[]{d.teamNumber.get(i), d.teamMatchCnt.get(i), d.roundTo(d.teamAvgScore.get(i).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(i).doubleValue(), 3), d.teamDisconPct.get(i) + "%", d.teamDefendPct.get(i) + "%", d.teamRankingPt.get(i), d.teamQualifyPt.get(i), d.teamComment.get(i)});
+        for (int i = 0; i < d.sortedIndex.size(); i++) {
+            teamTableModel.addRow(new Object[]{d.teamNumber.get(d.sortedIndex.get(i)), d.teamMatchCnt.get(d.sortedIndex.get(i)), d.roundTo(d.teamAvgScore.get(d.sortedIndex.get(i)).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(d.sortedIndex.get(i)).doubleValue(), 3), d.teamDisconPct.get(d.sortedIndex.get(i)) + "%", d.teamDefendPct.get(d.sortedIndex.get(i)) + "%", d.teamRankingPt.get(d.sortedIndex.get(i)), d.teamQualifyPt.get(d.sortedIndex.get(i)), d.teamComment.get(d.sortedIndex.get(i))});
         }
     }
 
@@ -698,6 +698,37 @@ public class DivisionGUI extends JFrame {
     
     public void teamTableHeaderClicked(int i)
     {
-        //DO SORTING STUFF
+        if(i == 0)
+        {
+            //sort by team number
+        }
+        else if(i == 1)
+        {
+            //sort by match count
+        }
+        else if(i == 2)
+        {
+            //sort by avg score
+        }
+        else if(i == 3)
+        {
+            //sort by wtd score
+        }
+        else if(i == 4)
+        {
+            //sort by dscon %
+        }
+        else if(i == 5)
+        {
+            //sort by def %
+        }
+        else if(i == 6)
+        {
+            //sort by qual pts
+        }
+        else if(i == 7)
+        {
+            //sort by rank pts
+        }
     }
 }
