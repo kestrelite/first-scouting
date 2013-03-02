@@ -2,7 +2,8 @@ package tournamentftc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Collections;
+import java.util.List;
 
 public class QuickSort {
 
@@ -33,12 +34,6 @@ public class QuickSort {
         array[j] = t;
     }
 
-    private static void swap(int[] array, int i, int j) {
-        int t = array[i];
-        array[i] = array[j];
-        array[j] = t;
-    }
-
     private static int partition(Double[] a, int left, int right, int pivotIndex) {
         swap(a, pivotIndex, right);
         int pos = left;
@@ -52,30 +47,23 @@ public class QuickSort {
         return pos;
     }
 
-    public static int[] rank(Double[] values) {
-        int n = values.length;
-        final Integer[] indexes = new Integer[n];
-        final Double[] data = new Double[n];
-        for (int i = 0; i < n; i++) {
-            indexes[i] = new Integer(i);
-            data[i] = new Double(values[i]);
+    public static ArrayList Rank(List values) {
+        ArrayList sortedValues = new ArrayList(values);
+        Collections.sort(sortedValues);
+
+        ArrayList ranks = new ArrayList();
+
+        for (int i = 0; i < values.size(); i++) {
+            ranks.add(sortedValues.indexOf(values.get(i)));
         }
-        Arrays.sort(indexes, new Comparator<Integer>() {
-            public int compare(final Integer o1, final Integer o2) {
-                return data[o1].compareTo(data[o2]);
-            }
-        });
-        int[] indexes2 = new int[n];
-        for (int i = 0; i < n; i++) {
-            indexes2[i] = indexes[i].intValue();
-        }
-        return indexes2;
+        return ranks;
     }
 
     public static void main(String[] args) {
-        Double[] d = {0.0, 80.0, 81.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 1.0};
+        Double[] d = {0.0, 80.0, 80.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 0.0};
+        List d2 = Arrays.asList(d);
+        System.out.println(Rank(d2));
         System.out.println(Arrays.toString(d));
-        System.out.println(Arrays.toString(rank(d)));
         sort(d, 0, d.length - 1);
         System.out.println(Arrays.toString(d));
     }
