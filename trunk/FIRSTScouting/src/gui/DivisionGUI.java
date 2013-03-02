@@ -25,6 +25,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
@@ -33,8 +35,8 @@ import tournamentftc.MatchFTC;
  *
  * @author Dasty
  */
-public class DivisionGUI extends JFrame
-{
+public class DivisionGUI extends JFrame {
+
     private JCheckBox addMatchBlue1DefenseCheckBox;
     private JCheckBox addMatchBlue1DisconnectCheckBox;
     private JLabel addMatchBlue1Label;
@@ -58,7 +60,7 @@ public class DivisionGUI extends JFrame
     private JTextField addMatchRed2TextField;
     private JLabel addMatchRedScoreLabel;
     private JButton addMatchSubmitButton;
-    private JTextField addMatchredScoreTextField;
+    private JTextField addMatchRedScoreTextField;
     private JCheckBox editMatchBlue1DefenseCheckBox;
     private JCheckBox editMatchBlue1DisconnectCheckBox;
     private JLabel editMatchBlue1Label;
@@ -97,24 +99,20 @@ public class DivisionGUI extends JFrame
     private JScrollPane teamScrollPane;
     private JPanel teamTab;
     private JLabel tourneyNameDivNumLabel;
-    
     private DefaultTableModel matchTableModel;
     private DefaultTableModel teamTableModel;
-    
     private DivisionDataFTC d;
-    
-    public DivisionGUI(DivisionDataFTC div)
-    {
+
+    public DivisionGUI(DivisionDataFTC div) {
         initComponents();
-        
+
         d = div;
         loadTablesWithData();
-        
+
         this.setVisible(true);
     }
-    
-    private void initComponents() 
-    {
+
+    private void initComponents() {
         mainTabPane = new JTabbedPane();
         matchTab = new JPanel();
         matchTabelScrollPane = new JScrollPane();
@@ -146,7 +144,7 @@ public class DivisionGUI extends JFrame
         addMatchBlue2Label = new JLabel();
         addMatchBlue2TextField = new JTextField();
         addMatchRedScoreLabel = new JLabel();
-        addMatchredScoreTextField = new JTextField();
+        addMatchRedScoreTextField = new JTextField();
         addMatchBlueScoreLabel = new JLabel();
         addMatchBlueScoreTextField = new JTextField();
         addMatchPlayedCheckBox = new JCheckBox();
@@ -180,18 +178,30 @@ public class DivisionGUI extends JFrame
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        matchTableModel = new DefaultTableModel(new String[]{"Match #", "Red 1", "Red 2", "Blue 1", "Blue 2", "Red Score", "Blue Score", "Played"},0){
-            boolean[] canEdit = new boolean [] {
+        matchTableModel = new DefaultTableModel(new String[]{"Match #", "Red 1", "Red 2", "Blue 1", "Blue 2", "Red Score", "Blue Score", "Played"}, 0) {
+            boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         };
-        
+
         matchTable.setModel(matchTableModel);
         matchTable.getTableHeader().setReorderingAllowed(false);
+        matchTable.getColumnModel().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                matchTableUpdated(e);
+            }
+        });
+        matchTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                matchTableUpdated(e);
+            }
+        });
         matchTabelScrollPane.setViewportView(matchTable);
 
         editMatchLabel.setFont(new Font("Tahoma", 1, 11)); // NOI18N
@@ -214,6 +224,11 @@ public class DivisionGUI extends JFrame
         editMatchPlayedCheckBox.setText("Played");
 
         editMatchSubmitButton.setText("Edit");
+        editMatchSubmitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                editMatchSubmitButtonActionPerformed(evt);
+            }
+        });
 
         addMatchLabel.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         addMatchLabel.setText("Add Match");
@@ -276,197 +291,195 @@ public class DivisionGUI extends JFrame
         GroupLayout matchTabLayout = new GroupLayout(matchTab);
         matchTab.setLayout(matchTabLayout);
         matchTabLayout.setHorizontalGroup(
-            matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(matchTabLayout.createSequentialGroup()
+                matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(matchTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(matchTabelScrollPane, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                    .addComponent(editMatchLabel)
-                    .addGroup(matchTabLayout.createSequentialGroup()
-                        .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(editMatchNumLabel)
-                            .addComponent(addMatchLabel))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(editMatchRed1Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed1TextField, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed2Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed2TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue1Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(editMatchRed1DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed1DisconnectCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed2DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRed2DisconnectCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue1DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue1DisconnectCheckBox)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(editMatchBlue2Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRedScoreLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlueScoreLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(editMatchPlayedCheckBox)
-                                .addGap(18, 18, 18)
-                                .addComponent(editMatchSubmitButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(editMatchBlue2DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editMatchBlue2DisconnectCheckBox))))
-                    .addGroup(matchTabLayout.createSequentialGroup()
-                        .addComponent(addMatchNumLabel)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(addMatchRed1DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed1DisconnectCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed2DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed2DisconnectCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue1DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue1DisconnectCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue2DefenseCheckBox)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue2DisconnectCheckBox))
-                            .addGroup(matchTabLayout.createSequentialGroup()
-                                .addComponent(addMatchRed1Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed1TextField, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed2Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRed2TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue1Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addMatchBlue2Label)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchRedScoreLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchredScoreTextField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlueScoreLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addMatchPlayedCheckBox)
-                                .addGap(18, 18, 18)
-                                .addComponent(addMatchSubmitButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-        );
+                .addComponent(matchTabelScrollPane, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addComponent(editMatchLabel)
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(editMatchNumLabel)
+                .addComponent(addMatchLabel))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(editMatchRed1Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed1TextField, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed2Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed2TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue1Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(editMatchRed1DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed1DisconnectCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed2DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRed2DisconnectCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue1DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue1DisconnectCheckBox)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(editMatchBlue2Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRedScoreLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlueScoreLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editMatchPlayedCheckBox)
+                .addGap(18, 18, 18)
+                .addComponent(editMatchSubmitButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(editMatchBlue2DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editMatchBlue2DisconnectCheckBox))))
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(addMatchNumLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(addMatchRed1DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed1DisconnectCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed2DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed2DisconnectCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue1DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue1DisconnectCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue2DefenseCheckBox)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue2DisconnectCheckBox))
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addComponent(addMatchRed1Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed1TextField, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed2Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRed2TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue1Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addMatchBlue2Label)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRedScoreLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlueScoreLabel)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addMatchPlayedCheckBox)
+                .addGap(18, 18, 18)
+                .addComponent(addMatchSubmitButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap()));
         matchTabLayout.setVerticalGroup(
-            matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(matchTabLayout.createSequentialGroup()
+                matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(matchTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(matchTabelScrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editMatchLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(editMatchNumLabel)
-                    .addComponent(editMatchRed1Label)
-                    .addComponent(editMatchRed1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchRed2Label)
-                    .addComponent(editMatchBlue1Label)
-                    .addComponent(editMatchBlue2Label)
-                    .addComponent(editMatchRedScoreLabel)
-                    .addComponent(editMatchBlueScoreLabel)
-                    .addComponent(editMatchSubmitButton)
-                    .addComponent(editMatchRed2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editMatchPlayedCheckBox))
+                .addComponent(editMatchNumLabel)
+                .addComponent(editMatchRed1Label)
+                .addComponent(editMatchRed1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchRed2Label)
+                .addComponent(editMatchBlue1Label)
+                .addComponent(editMatchBlue2Label)
+                .addComponent(editMatchRedScoreLabel)
+                .addComponent(editMatchBlueScoreLabel)
+                .addComponent(editMatchSubmitButton)
+                .addComponent(editMatchRed2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(editMatchPlayedCheckBox))
                 .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(matchTabLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(addMatchLabel))
-                    .addGroup(matchTabLayout.createSequentialGroup()
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(editMatchRed1DefenseCheckBox)
-                            .addComponent(editMatchRed1DisconnectCheckBox)
-                            .addComponent(editMatchRed2DefenseCheckBox)
-                            .addComponent(editMatchRed2DisconnectCheckBox)
-                            .addComponent(editMatchBlue1DefenseCheckBox)
-                            .addComponent(editMatchBlue1DisconnectCheckBox)
-                            .addComponent(editMatchBlue2DefenseCheckBox)
-                            .addComponent(editMatchBlue2DisconnectCheckBox))))
+                .addGroup(matchTabLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(addMatchLabel))
+                .addGroup(matchTabLayout.createSequentialGroup()
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(addMatchNumLabel)
-                    .addComponent(addMatchRed1Label)
-                    .addComponent(addMatchRed1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchRed2Label)
-                    .addComponent(addMatchBlue1Label)
-                    .addComponent(addMatchRedScoreLabel)
-                    .addComponent(addMatchBlueScoreLabel)
-                    .addComponent(addMatchSubmitButton)
-                    .addComponent(addMatchRed2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchredScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addMatchPlayedCheckBox)
-                    .addComponent(addMatchBlue2Label))
+                .addComponent(editMatchRed1DefenseCheckBox)
+                .addComponent(editMatchRed1DisconnectCheckBox)
+                .addComponent(editMatchRed2DefenseCheckBox)
+                .addComponent(editMatchRed2DisconnectCheckBox)
+                .addComponent(editMatchBlue1DefenseCheckBox)
+                .addComponent(editMatchBlue1DisconnectCheckBox)
+                .addComponent(editMatchBlue2DefenseCheckBox)
+                .addComponent(editMatchBlue2DisconnectCheckBox))))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(addMatchNumLabel)
+                .addComponent(addMatchRed1Label)
+                .addComponent(addMatchRed1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchRed2Label)
+                .addComponent(addMatchBlue1Label)
+                .addComponent(addMatchRedScoreLabel)
+                .addComponent(addMatchBlueScoreLabel)
+                .addComponent(addMatchSubmitButton)
+                .addComponent(addMatchRed2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchBlue1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchBlue2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchRedScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchBlueScoreTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMatchPlayedCheckBox)
+                .addComponent(addMatchBlue2Label))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(matchTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(addMatchRed1DefenseCheckBox)
-                    .addComponent(addMatchRed1DisconnectCheckBox)
-                    .addComponent(addMatchRed2DefenseCheckBox)
-                    .addComponent(addMatchRed2DisconnectCheckBox)
-                    .addComponent(addMatchBlue1DefenseCheckBox)
-                    .addComponent(addMatchBlue1DisconnectCheckBox)
-                    .addComponent(addMatchBlue2DefenseCheckBox)
-                    .addComponent(addMatchBlue2DisconnectCheckBox))
-                .addContainerGap())
-        );
+                .addComponent(addMatchRed1DefenseCheckBox)
+                .addComponent(addMatchRed1DisconnectCheckBox)
+                .addComponent(addMatchRed2DefenseCheckBox)
+                .addComponent(addMatchRed2DisconnectCheckBox)
+                .addComponent(addMatchBlue1DefenseCheckBox)
+                .addComponent(addMatchBlue1DisconnectCheckBox)
+                .addComponent(addMatchBlue2DefenseCheckBox)
+                .addComponent(addMatchBlue2DisconnectCheckBox))
+                .addContainerGap()));
 
         mainTabPane.addTab("Division Match List", matchTab);
 
-        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "QualPts", "RankPts", "Team Comment"},0){
-            boolean[] canEdit = new boolean [] {
+        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "QualPts", "RankPts", "Team Comment"}, 0) {
+            boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         };
-        
+
         teamTable.setModel(teamTableModel);
-        
+
         teamTable.getTableHeader().setReorderingAllowed(false);
         teamScrollPane.setViewportView(teamTable);
 
@@ -486,43 +499,41 @@ public class DivisionGUI extends JFrame
         GroupLayout teamTabLayout = new GroupLayout(teamTab);
         teamTab.setLayout(teamTabLayout);
         teamTabLayout.setHorizontalGroup(
-            teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(teamTabLayout.createSequentialGroup()
+                teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(teamTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(teamScrollPane, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
-                        .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(teamCommentsScrollPane, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(teamTabLayout.createSequentialGroup()
-                                .addComponent(teamCommentsLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(teamCommentsNumLabel)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(teamCommentsSubmitButton)
-                            .addComponent(teamRecalculateDataButton))
-                        .addGap(30, 30, 30)))
-                .addContainerGap())
-        );
+                .addComponent(teamScrollPane, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addGroup(GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
+                .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(teamCommentsScrollPane, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
+                .addGroup(teamTabLayout.createSequentialGroup()
+                .addComponent(teamCommentsLabel)
+                .addGap(18, 18, 18)
+                .addComponent(teamCommentsNumLabel)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(teamCommentsSubmitButton)
+                .addComponent(teamRecalculateDataButton))
+                .addGap(30, 30, 30)))
+                .addContainerGap()));
         teamTabLayout.setVerticalGroup(
-            teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(teamTabLayout.createSequentialGroup()
+                teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(teamTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(teamScrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(teamCommentsLabel)
-                    .addComponent(teamCommentsNumLabel))
+                .addComponent(teamCommentsLabel)
+                .addComponent(teamCommentsNumLabel))
                 .addGap(9, 9, 9)
                 .addGroup(teamTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addGroup(GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
-                        .addComponent(teamRecalculateDataButton)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(teamCommentsSubmitButton))
-                    .addComponent(teamCommentsScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+                .addGroup(GroupLayout.Alignment.TRAILING, teamTabLayout.createSequentialGroup()
+                .addComponent(teamRecalculateDataButton)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(teamCommentsSubmitButton))
+                .addComponent(teamCommentsScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()));
 
         mainTabPane.addTab("Division Team Rankings", teamTab);
 
@@ -532,51 +543,78 @@ public class DivisionGUI extends JFrame
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(mainTabPane)
-                    .addComponent(tourneyNameDivNumLabel))
-                .addContainerGap())
-        );
+                .addComponent(mainTabPane)
+                .addComponent(tourneyNameDivNumLabel))
+                .addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tourneyNameDivNumLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainTabPane, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                .addContainerGap()));
 
         pack();
-    }  
-    
-    private void loadTablesWithData()
-    {
+    }
+
+    private void loadTablesWithData() {
         clearTables();
-        for(MatchFTC match : d.matchList)
-        {
-            matchTableModel.addRow(new Object[] {match.getId()+1, match.getR1(), match.getR2(), match.getB1(), match.getB2(), match.getScoreRed(), match.getScoreBlue(), "Yes"});
+        for (MatchFTC match : d.matchList) {
+            matchTableModel.addRow(new Object[]{match.getId() + 1, match.getR1(), match.getR2(), match.getB1(), match.getB2(), match.getScoreRed(), match.getScoreBlue(), "Yes"});
         }
-        
-        for(int i = 0; i < d.teamNumber.size(); i++)
-        {
-            teamTableModel.addRow(new Object[] {d.teamNumber.get(i), d.teamMatchCnt.get(i), d.roundTo(d.teamAvgScore.get(i).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(i).doubleValue(), 3), d.teamDisconPct.get(i) + "%", d.teamDefendPct.get(i) + "%", d.teamRankingPt.get(i), d.teamQualifyPt.get(i), d.teamComment.get(i)});
+
+        for (int i = 0; i < d.teamNumber.size(); i++) {
+            teamTableModel.addRow(new Object[]{d.teamNumber.get(i), d.teamMatchCnt.get(i), d.roundTo(d.teamAvgScore.get(i).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(i).doubleValue(), 3), d.teamDisconPct.get(i) + "%", d.teamDefendPct.get(i) + "%", d.teamRankingPt.get(i), d.teamQualifyPt.get(i), d.teamComment.get(i)});
         }
     }
-    
-    private void clearTables()
-    {
-        for(int i = 0; i < matchTableModel.getRowCount(); i++) 
+
+    private void clearTables() {
+        for (int i = 0; i < matchTableModel.getRowCount(); i++) {
             matchTableModel.removeRow(i);
-        for(int i = 0; i < teamTableModel.getRowCount(); i++) 
+        }
+        for (int i = 0; i < teamTableModel.getRowCount(); i++) {
             teamTableModel.removeRow(i);
+        }
     }
 
-    private void addMatchSubmitButtonActionPerformed(ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+    private void addMatchSubmitButtonActionPerformed(ActionEvent evt) {
+        d.addMatch(new MatchFTC(Integer.parseInt(addMatchRed1TextField.getText()), Integer.parseInt(addMatchRed2TextField.getText()), Integer.parseInt(addMatchBlue1TextField.getText()), Integer.parseInt(addMatchBlue2TextField.getText()), Integer.parseInt(addMatchRedScoreTextField.getText()), Integer.parseInt(addMatchBlueScoreTextField.getText())));
+        d.calcAll();
+        this.loadTablesWithData();
+    }
 
-}   
+    private void editMatchSubmitButtonActionPerformed(ActionEvent evt) {
+        if (matchTable.getSelectedRow() >= 0) {
+            matchTable.setValueAt(editMatchRed1TextField.getText(), matchTable.getSelectedRow(), 1);
+            matchTable.setValueAt(editMatchRed2TextField.getText(), matchTable.getSelectedRow(), 2);
+            matchTable.setValueAt(editMatchBlue1TextField.getText(), matchTable.getSelectedRow(), 3);
+            matchTable.setValueAt(editMatchBlue2TextField.getText(), matchTable.getSelectedRow(), 4);
+            matchTable.setValueAt(editMatchRedScoreTextField.getText(), matchTable.getSelectedRow(), 5);
+            matchTable.setValueAt(editMatchBlueScoreTextField.getText(), matchTable.getSelectedRow(), 6);
+        }
+    }
+
+    public void matchTableUpdated(ListSelectionEvent e) {
+        MatchFTC match = d.matchList.get(matchTable.getSelectedRow() < 0 ? 0 : matchTable.getSelectedRow());
+        editMatchNumLabel.setText("Match Number: " + (match.getId() + 1));
+        editMatchRed1TextField.setText("" + match.getR1());
+        editMatchRed2TextField.setText("" + match.getR2());
+        editMatchBlue1TextField.setText("" + match.getB1());
+        editMatchBlue2TextField.setText("" + match.getB2());
+        editMatchRedScoreTextField.setText("" + match.getScoreRed());
+        editMatchBlueScoreTextField.setText("" + match.getScoreBlue());
+        this.editMatchRed1DefenseCheckBox.setSelected(match.getR1Def());
+        this.editMatchRed1DisconnectCheckBox.setSelected(match.getR1ConFail());
+        this.editMatchRed2DefenseCheckBox.setSelected(match.getR2Def());
+        this.editMatchRed2DisconnectCheckBox.setSelected(match.getR2ConFail());
+        this.editMatchBlue1DefenseCheckBox.setSelected(match.getB1Def());
+        this.editMatchBlue1DisconnectCheckBox.setSelected(match.getB1ConFail());
+        this.editMatchBlue2DefenseCheckBox.setSelected(match.getB2Def());
+        this.editMatchBlue2DisconnectCheckBox.setSelected(match.getB2ConFail());
+    }
+}

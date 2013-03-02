@@ -99,6 +99,6 @@ public class FIRSTScouting {
         //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
         //FIRSTScouting.runFile("C:\\Users\\sutton-smolinn3979\\Desktop\\first-scouting\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
         //FIRSTScouting.runCmdLineDivision();
-        FIRSTScouting.runGUI("/home/nom/NetBeansProjects/FIRSTScouting/src/[Documents]/tScores.txt");
+        FIRSTScouting.runGUI("/Users/Yousuf/Desktop/first-scouting/FIRSTScouting/src/[Documents]/tScores.txt");
     }
 }
