@@ -9,6 +9,8 @@ public class DivisionDataFTC {
     public ArrayList<Double>  teamWtdScore  = new ArrayList<>();
     public ArrayList<Double>  teamDisconPct = new ArrayList<>();
     public ArrayList<Double>  teamDefendPct = new ArrayList<>();
+    public ArrayList<Integer> teamQualifyPt = new ArrayList<>();
+    public ArrayList<Integer> teamRankingPt = new ArrayList<>();
     public ArrayList<String>  teamComment   = new ArrayList<>();
     
     public ArrayList<MatchFTC> matchList    = new ArrayList<>();
@@ -94,8 +96,6 @@ public class DivisionDataFTC {
     }
     public boolean getMatchIsValid(MatchFTC m) {return getMatchIsValid(this.matchList.indexOf(m));}
     
-    public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
-    
     public void calcAll() {
         this.calcTeamMatchCnt();
         this.calcTeamDefendsPct();
@@ -103,7 +103,6 @@ public class DivisionDataFTC {
         this.calcTeamAvg();
         this.calcTeamWtd();
     }
-    
     public void calcTeamAvg() {
         ArrayList<Integer> sumList = this.newEmptyIntList(this.teamNumber.size());
         this.teamAvgScore = this.newEmptyDoubleList(this.teamNumber.size());
@@ -183,11 +182,22 @@ public class DivisionDataFTC {
             if(m.getR2ConFail()) conFail.set(this.teamNumber.indexOf(m.getR2()), conFail.get(this.teamNumber.indexOf(m.getR2())) + 1);
         }
         
-        for(int i = 0; i < this.teamNumber.size(); i++) {
+        for(int i = 0; i < this.teamNumber.size(); i++)
             this.teamDisconPct.set(i, conFail.get(i).doubleValue() / this.teamMatchCnt.get(i).doubleValue());
-            System.out.println("team:"+this.teamNumber.get(i).intValue()+", dcc:"+conFail.get(i).intValue()+", mc:"+this.teamMatchCnt.get(i));
+    }
+    
+    public void calcTeamQualifyPts() {
+        this.teamQualifyPt = this.newEmptyIntList(this.teamNumber.size());
+        this.teamRankingPt = this.newEmptyIntList(this.teamNumber.size());
+        
+        for(MatchFTC m : this.matchList) {
+            if(m.getScoreBlue() > m.getScoreRed()) {
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB1()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB2()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
+            } else {
+                
+            }
         }
-            
     }
     
     private ArrayList<Integer> newEmptyIntList(int length) {
@@ -200,4 +210,6 @@ public class DivisionDataFTC {
         for(int i = 0; i < length; i++) out.add(0.0);
         return out;
     }
+
+    public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
 }
