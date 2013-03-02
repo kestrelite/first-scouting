@@ -96,7 +96,6 @@ public class FIRSTScouting {
     
     public static void main(String[] args) throws Exception {
         String path = ""+new File("").getCanonicalPath()+"\\src\\[Documents]\\tScores.txt";
-        path = path.replace("\\", "/");
         FIRSTScouting.runGUI(path);
     }
 }
