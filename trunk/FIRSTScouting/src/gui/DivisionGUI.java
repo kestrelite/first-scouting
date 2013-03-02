@@ -455,9 +455,9 @@ public class DivisionGUI extends JFrame
 
         mainTabPane.addTab("Division Match List", matchTab);
 
-        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "Team Comment"},0){
+        teamTableModel = new DefaultTableModel(new String[]{"Team #", "Match Count", "Avg Score", "Wtd Score", "Discon %", "Defend %", "RankPts", "QualPts", "Team Comment"},0){
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
