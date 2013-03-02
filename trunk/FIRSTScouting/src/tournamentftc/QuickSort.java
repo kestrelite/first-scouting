@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class QuickSort {
 
     private static int[] index;
-
+    private static boolean firstRun = true;
     public static void sort(Double[] array) {
         sort(array, 0, array.length - 1);
     }
@@ -14,8 +14,12 @@ public class QuickSort {
     public static void sort(Double[] array, int begin, int end) {
 
         index = new int[array.length];
-        for (int i = 0; i < index.length; i++) {
-            index[i] = i + 1;
+        if (firstRun) {
+            for (int i = 0; i < index.length; i++) {
+                index[i] = i + 1;
+            }
+            firstRun = false;
+            System.out.println(Arrays.toString(index));
         }
         if (begin < end) {
             int pivotIndex = (begin + end) / 2;
@@ -38,6 +42,7 @@ public class QuickSort {
         array[i] = array[j];
         array[j] = t;
         int a = index[i];
+        System.out.println(a);
         index[i] = index[j];
         index[j] = a;
     }
@@ -58,6 +63,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         Double[] d = {0.0, 80.0, 80.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 0.0};
+
         System.out.println(Arrays.toString(d));
         sort(d, 0, d.length - 1);
         System.out.println(Arrays.toString(d));
