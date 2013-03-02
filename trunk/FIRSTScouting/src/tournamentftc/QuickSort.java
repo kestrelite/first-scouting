@@ -7,6 +7,7 @@ public class QuickSort {
 
     private static int[] index;
     private static boolean firstRun = true;
+
     public static void sort(Double[] array) {
         sort(array, 0, array.length - 1);
     }
@@ -19,8 +20,8 @@ public class QuickSort {
                 index[i] = i + 1;
             }
             firstRun = false;
-            System.out.println(Arrays.toString(index));
         }
+        System.out.println(Arrays.toString(index));
         if (begin < end) {
             int pivotIndex = (begin + end) / 2;
             int pos = partition(array, begin, end, pivotIndex);
@@ -41,23 +42,29 @@ public class QuickSort {
         double t = array[i];
         array[i] = array[j];
         array[j] = t;
-        int a = index[i];
-        System.out.println(a);
-        index[i] = index[j];
-        index[j] = a;
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
     }
 
     private static int partition(Double[] a, int left, int right, int pivotIndex) {
         swap(a, pivotIndex, right);
+        swap(index, pivotIndex, right);
         int pos = left;
         for (int i = left; i < right; i++) {
             if (a[i] < a[right]) {
                 swap(a, i, pos);
-
+                swap(index, i, pos);
                 pos++;
             }
+            System.out.println(Arrays.toString(index));
         }
+        System.out.println(Arrays.toString(index));
         swap(a, right, pos);
+        swap(index, right, pos);
         return pos;
     }
 
