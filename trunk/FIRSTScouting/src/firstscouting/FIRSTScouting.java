@@ -95,10 +95,8 @@ public class FIRSTScouting {
     }
     
     public static void main(String[] args) throws Exception {
-        //FIRSTScouting.runFile("L:\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
-        //FIRSTScouting.runFile("C:\\Users\\Noah\\Desktop\\tScores.txt");
-        //FIRSTScouting.runFile("C:\\Users\\sutton-smolinn3979\\Desktop\\first-scouting\\FIRSTScouting\\src\\[Documents]\\tScores.txt");
-        //FIRSTScouting.runCmdLineDivision();
-        FIRSTScouting.runGUI("/Users/Yousuf/Desktop/first-scouting/FIRSTScouting/src/[Documents]/tScores.txt");
+        String path = ""+new File("").getCanonicalPath()+"\\src\\[Documents]\\tScores.txt";
+        path = path.replace("\\", "/");
+        FIRSTScouting.runGUI(path);
     }
 }
