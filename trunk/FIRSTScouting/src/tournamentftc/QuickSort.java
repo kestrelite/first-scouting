@@ -47,7 +47,7 @@ public class QuickSort {
         return pos;
     }
 
-    public static ArrayList Rank(List values) {
+    public static ArrayList Rank(ArrayList values) {
         ArrayList sortedValues = new ArrayList(values);
         Collections.sort(sortedValues);
 
@@ -57,14 +57,5 @@ public class QuickSort {
             ranks.add(sortedValues.indexOf(values.get(i)));
         }
         return ranks;
-    }
-
-    public static void main(String[] args) {
-        Double[] d = {0.0, 80.0, 80.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 0.0};
-        List d2 = Arrays.asList(d);
-        System.out.println(Rank(d2));
-        System.out.println(Arrays.toString(d));
-        sort(d, 0, d.length - 1);
-        System.out.println(Arrays.toString(d));
     }
 }

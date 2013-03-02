@@ -33,6 +33,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
+import tournamentftc.QuickSort;
 
 /**
  *
@@ -701,34 +702,43 @@ public class DivisionGUI extends JFrame {
         if(i == 0)
         {
             //sort by team number
+            d.sortedIndex = QuickSort.Rank(d.teamNumber);
         }
         else if(i == 1)
         {
             //sort by match count
+            d.sortedIndex = QuickSort.Rank(d.teamMatchCnt);
         }
         else if(i == 2)
         {
             //sort by avg score
+            d.sortedIndex = QuickSort.Rank(d.teamAvgScore);
         }
         else if(i == 3)
         {
             //sort by wtd score
+            d.sortedIndex = QuickSort.Rank(d.teamWtdScore);
         }
         else if(i == 4)
         {
             //sort by dscon %
+            d.sortedIndex = QuickSort.Rank(d.teamDisconPct);
         }
         else if(i == 5)
         {
             //sort by def %
+            d.sortedIndex = QuickSort.Rank(d.teamDefendPct);
         }
         else if(i == 6)
         {
             //sort by qual pts
+            d.sortedIndex = QuickSort.Rank(d.teamQualifyPt);
         }
         else if(i == 7)
         {
             //sort by rank pts
+            d.sortedIndex = QuickSort.Rank(d.teamRankingPt);
         }
+        this.loadTablesWithData();
     }
 }
