@@ -79,15 +79,15 @@ public class FIRSTScouting {
         Scanner s;
         DivisionDataFTC d = new DivisionDataFTC();
         
-        d = DivisionDataFTC.readFromFile("C:\\Users\\Noah\\Desktop\\out.ser");
+        //d = DivisionDataFTC.readFromFile("C:\\Users\\Noah\\Desktop\\out.ser");
         
         if(new File(fName).exists()){
             FileInputStream fs = new FileInputStream(fName);
             InputStreamReader is = new InputStreamReader(fs);
             s = new Scanner(is);
 
-            //while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
-            //s.nextLine();
+            while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+            s.nextLine();
             
             d.calcAll();
             DivisionGUI dGUI = new DivisionGUI(d);

@@ -647,12 +647,11 @@ public class DivisionGUI extends JFrame {
 
     private void editMatchSubmitButtonActionPerformed(ActionEvent evt) {
         if (matchTable.getSelectedRow() >= 0) {
-            matchTable.setValueAt(editMatchRed1TextField.getText(), matchTable.getSelectedRow(), 1);
-            matchTable.setValueAt(editMatchRed2TextField.getText(), matchTable.getSelectedRow(), 2);
-            matchTable.setValueAt(editMatchBlue1TextField.getText(), matchTable.getSelectedRow(), 3);
-            matchTable.setValueAt(editMatchBlue2TextField.getText(), matchTable.getSelectedRow(), 4);
-            matchTable.setValueAt(editMatchRedScoreTextField.getText(), matchTable.getSelectedRow(), 5);
-            matchTable.setValueAt(editMatchBlueScoreTextField.getText(), matchTable.getSelectedRow(), 6);
+            d.matchList.get(matchTable.getSelectedRow()).setTeams(Integer.parseInt(editMatchRed1TextField.getText()), Integer.parseInt(editMatchRed2TextField.getText()), 
+                    Integer.parseInt(editMatchBlue1TextField.getText()), Integer.parseInt(editMatchBlue2TextField.getText()));
+            d.matchList.get(matchTable.getSelectedRow()).setScore(Integer.parseInt(editMatchRedScoreTextField.getText()), Integer.parseInt(editMatchBlueScoreTextField.getText()));
+            d.calcAll();
+            this.loadTablesWithData();
         }
     }
     
