@@ -2,6 +2,7 @@ package tournamentftc;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class DivisionDataFTC implements Serializable {
     
     public ArrayList<MatchFTC> matchList    = new ArrayList<>();
     public ArrayList<String>   matchComment = new ArrayList<>();
-    public ArrayList<Boolean>  matchInvalid = new ArrayList<>();
     
     public String divisionName = "";
     
@@ -51,7 +51,7 @@ public class DivisionDataFTC implements Serializable {
         if(!teamNumber.contains(m.getB1())) addTeam(m.getB1());
         if(!teamNumber.contains(m.getB2())) addTeam(m.getB2());
 
-        matchList.add(m); matchComment.add("None"); matchInvalid.add(Boolean.FALSE);
+        matchList.add(m); matchComment.add("None"); //matchInvalid.add(Boolean.FALSE);
         return matchList.size()-1;
     }
     
@@ -84,11 +84,10 @@ public class DivisionDataFTC implements Serializable {
     public void setTeamComment (int teamNum, String com)  {this.teamComment.set(this.teamNumber.indexOf(teamNum), com);}
     public void setMatchComment(int matchNum, String com) {this.matchComment.set(matchNum, com);}
     
-    protected void setTeamDisconPct(ArrayList<Double>  d) {this.teamDisconPct = d;}
-    protected void setTeamDefendPct(ArrayList<Double>  d) {this.teamDefendPct = d;}
-    protected void setTeamAvgScore (ArrayList<Double>  d) {this.teamAvgScore  = d;}
-    protected void setTeamWtdScore (ArrayList<Double>  d) {this.teamWtdScore  = d;}
-    protected void setTeamMatchCnt (ArrayList<Integer> d) {this.teamMatchCnt  = d;}
+    protected void setTeamNumber  (ArrayList<Integer> d)  {this.teamNumber = d;}
+    protected void setTeamComment (ArrayList<String> d)   {this.teamComment = d;}
+    protected void setMatchList   (ArrayList<MatchFTC> d) {this.matchList = d;}
+    protected void setMatchComment(ArrayList<String> d)   {this.matchComment = d;}
     
     public boolean getTeamMatchDefend (int matchNum, int teamNum) {return this.matchList.get(matchNum).getConFail(teamNum);}
     public boolean getTeamMatchConFail(int matchNum, int teamNum) {return this.matchList.get(matchNum).getDefend(teamNum);}
@@ -101,7 +100,6 @@ public class DivisionDataFTC implements Serializable {
     public String  getMatchComment(int matchNum) {return this.matchComment.get(matchNum);}
     public boolean getMatchIsValid(int matchNum) {
         MatchFTC m = this.matchList.get(matchNum);
-        if(matchInvalid.get(matchNum).booleanValue()) return false;
         if((m.getB1Def()?1:0) + (m.getB2Def()?1:0) + (m.getR1Def()?1:0) + (m.getR2Def()?1:0) > 1) return false;
         if((m.getB1ConFail()?1:0) + (m.getB2ConFail()?1:0) + (m.getR1ConFail()?1:0) + (m.getR2ConFail()?1:0) > 1) return false;
         return true;
@@ -133,7 +131,7 @@ public class DivisionDataFTC implements Serializable {
         for(int i = 0; i < this.teamNumber.size(); i++)
             outs.add(sumList.get(teamNumber.indexOf(this.teamNumber.get(i))).doubleValue() 
                     / this.teamMatchCnt.get(teamNumber.indexOf(this.teamNumber.get(i))).doubleValue());
-        this.setTeamAvgScore(outs);
+        this.teamAvgScore = outs;
     }
     public void calcTeamMatchCnt() {
         this.teamMatchCnt = this.newEmptyIntList(this.teamNumber.size());
@@ -278,6 +276,9 @@ public class DivisionDataFTC implements Serializable {
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
     
     public void writeToFile(String path) {
+        File f = new File(path);
+        if(f.exists()) f.delete();
+        
         try {
             OutputStream fileOut = new FileOutputStream(path);
             OutputStream bufferOut = new BufferedOutputStream(fileOut);
@@ -294,7 +295,10 @@ public class DivisionDataFTC implements Serializable {
             ObjectInput input = new ObjectInputStream(bufferIn);
             
             return (DivisionDataFTC)input.readObject();
-        } catch(Exception e) {e.printStackTrace();}
+        } catch(Exception e) {
+            System.out.println(path);
+            e.printStackTrace();
+        }
         
         if(1==1) throw new Error("Could not read DivisionDataFTC at " + path);
         return null;

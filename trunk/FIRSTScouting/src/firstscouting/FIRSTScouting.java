@@ -79,19 +79,21 @@ public class FIRSTScouting {
         Scanner s;
         DivisionDataFTC d = new DivisionDataFTC();
         
-        File f = new File(fName);
+        d = DivisionDataFTC.readFromFile("C:\\Users\\Noah\\Desktop\\out.ser");
         
-        if(f.exists()) {
+        if(new File(fName).exists()){
             FileInputStream fs = new FileInputStream(fName);
             InputStreamReader is = new InputStreamReader(fs);
             s = new Scanner(is);
 
-            while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
-            s.nextLine();
+            //while(s.hasNext()) d.addMatch(new MatchFTC(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+            //s.nextLine();
             
             d.calcAll();
             DivisionGUI dGUI = new DivisionGUI(d);
         } else System.out.println("File does not exist");
+        
+        //d.writeToFile("C:\\Users\\Noah\\Desktop\\out.ser");
     }
     
     public static void main(String[] args) throws Exception {
