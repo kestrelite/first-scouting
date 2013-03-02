@@ -230,5 +230,39 @@ public class DivisionDataFTC {
         return out;
     }
 
+    public void sortTeamData(int[] indexOrder) {
+        ArrayList<Integer> teamNumberNew = new ArrayList<>();
+        ArrayList<Integer> teamMatchCntNew = new ArrayList<>();
+        ArrayList<Double> teamAvgScoreNew = new ArrayList<>();
+        ArrayList<Double> teamWtdScoreNew = new ArrayList<>();
+        ArrayList<Double> teamDisconPctNew = new ArrayList<>();
+        ArrayList<Double> teamDefendPctNew = new ArrayList<>();
+        ArrayList<Integer> teamQualifyPtNew = new ArrayList<>();
+        ArrayList<Integer> teamRankingPtNew = new ArrayList<>();
+        ArrayList<String> teamCommentNew = new ArrayList<>();
+        
+        for(int i = 0; i < indexOrder.length; i++) {
+            teamNumberNew.add(this.teamNumber.get(indexOrder[i]));
+            teamMatchCntNew.add(this.teamMatchCnt.get(indexOrder[i]));
+            teamAvgScoreNew.add(this.teamAvgScore.get(indexOrder[i]));
+            teamWtdScoreNew.add(this.teamWtdScore.get(indexOrder[i]));
+            teamDisconPctNew.add(this.teamDisconPct.get(indexOrder[i]));
+            teamDefendPctNew.add(this.teamDefendPct.get(indexOrder[i]));
+            teamQualifyPtNew.add(this.teamQualifyPt.get(indexOrder[i]));
+            teamRankingPtNew.add(this.teamRankingPt.get(indexOrder[i]));
+            teamCommentNew.add(this.teamComment.get(indexOrder[i]));
+        }
+        
+        this.teamNumber = teamNumberNew;
+        this.teamMatchCnt = teamMatchCntNew;
+        this.teamAvgScore = teamAvgScoreNew;
+        this.teamWtdScore = teamWtdScoreNew;
+        this.teamDisconPct = teamDisconPctNew;
+        this.teamDefendPct = teamDefendPctNew;
+        this.teamQualifyPt = teamQualifyPtNew;
+        this.teamRankingPt = teamRankingPtNew;
+        this.teamComment = teamCommentNew;
+    }
+    
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
 }
