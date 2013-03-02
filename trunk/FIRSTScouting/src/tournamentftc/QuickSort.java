@@ -2,26 +2,15 @@ package tournamentftc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class QuickSort {
-
-    private static int[] index;
-    private static boolean firstRun = true;
 
     public static void sort(Double[] array) {
         sort(array, 0, array.length - 1);
     }
 
     public static void sort(Double[] array, int begin, int end) {
-
-        index = new int[array.length];
-        if (firstRun) {
-            for (int i = 0; i < index.length; i++) {
-                index[i] = i + 1;
-            }
-            firstRun = false;
-        }
-        System.out.println(Arrays.toString(index));
         if (begin < end) {
             int pivotIndex = (begin + end) / 2;
             int pos = partition(array, begin, end, pivotIndex);
@@ -52,28 +41,42 @@ public class QuickSort {
 
     private static int partition(Double[] a, int left, int right, int pivotIndex) {
         swap(a, pivotIndex, right);
-        swap(index, pivotIndex, right);
         int pos = left;
         for (int i = left; i < right; i++) {
             if (a[i] < a[right]) {
                 swap(a, i, pos);
-                swap(index, i, pos);
                 pos++;
             }
-            System.out.println(Arrays.toString(index));
         }
-        System.out.println(Arrays.toString(index));
         swap(a, right, pos);
-        swap(index, right, pos);
         return pos;
     }
 
-    public static void main(String[] args) {
-        Double[] d = {0.0, 80.0, 80.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 0.0};
+    public static int[] rank(Double[] values) {
+        int n = values.length;
+        final Integer[] indexes = new Integer[n];
+        final Double[] data = new Double[n];
+        for (int i = 0; i < n; i++) {
+            indexes[i] = new Integer(i);
+            data[i] = new Double(values[i]);
+        }
+        Arrays.sort(indexes, new Comparator<Integer>() {
+            public int compare(final Integer o1, final Integer o2) {
+                return data[o1].compareTo(data[o2]);
+            }
+        });
+        int[] indexes2 = new int[n];
+        for (int i = 0; i < n; i++) {
+            indexes2[i] = indexes[i].intValue();
+        }
+        return indexes2;
+    }
 
+    public static void main(String[] args) {
+        Double[] d = {0.0, 80.0, 81.0, 10.0, 50.0, 70.0, 60.0, 90.0, 20.0, 30.0, 40.0, 1.0};
         System.out.println(Arrays.toString(d));
+        System.out.println(Arrays.toString(rank(d)));
         sort(d, 0, d.length - 1);
         System.out.println(Arrays.toString(d));
-        System.out.println(Arrays.toString(index));
     }
 }
