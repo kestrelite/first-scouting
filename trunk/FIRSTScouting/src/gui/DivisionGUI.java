@@ -8,6 +8,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.GroupLayout;
@@ -200,6 +202,14 @@ public class DivisionGUI extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 matchTableUpdated(e);
+            }
+        });
+        
+        matchTable.getTableHeader().addMouseListener(new MouseAdapter() 
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                matchTableHeaderClicked(matchTable.getColumnModel().getColumnIndexAtX(e.getX()));
             }
         });
         matchTabelScrollPane.setViewportView(matchTable);
@@ -482,6 +492,27 @@ public class DivisionGUI extends JFrame {
 
         teamTable.getTableHeader().setReorderingAllowed(false);
         teamScrollPane.setViewportView(teamTable);
+        
+        teamTable.getColumnModel().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                teamTableUpdated(e);
+            }
+        });
+        teamTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                teamTableUpdated(e);
+            }
+        });
+        
+        teamTable.getTableHeader().addMouseListener(new MouseAdapter() 
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                teamTableHeaderClicked(teamTable.getColumnModel().getColumnIndexAtX(e.getX()));
+            }
+        });
 
         teamCommentsLabel.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         teamCommentsLabel.setText("Team Comments:");
@@ -493,8 +524,18 @@ public class DivisionGUI extends JFrame {
         teamCommentsScrollPane.setViewportView(teamCommentsTextArea);
 
         teamCommentsSubmitButton.setText("Update Comment");
+        teamCommentsSubmitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                teamCommentsSubmitButtonActionPerformed(evt);
+            }
+        });
 
         teamRecalculateDataButton.setText("Recalculate Data");
+        teamRecalculateDataButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                teamRecalculateDataButtonActionPerformed(evt);
+            }
+        });
 
         GroupLayout teamTabLayout = new GroupLayout(teamTab);
         teamTab.setLayout(teamTabLayout);
@@ -600,9 +641,18 @@ public class DivisionGUI extends JFrame {
             matchTable.setValueAt(editMatchBlueScoreTextField.getText(), matchTable.getSelectedRow(), 6);
         }
     }
+    
+    private void teamCommentsSubmitButtonActionPerformed(ActionEvent evt) {
+        d.setTeamComment(Integer.parseInt(teamCommentsNumLabel.getText().substring("Team Number: ".length())), teamCommentsTextArea.getText());
+        this.loadTablesWithData();
+    }
+    
+    private void teamRecalculateDataButtonActionPerformed(ActionEvent evt) {
+        d.calcAll();
+        this.loadTablesWithData();
+    }
 
     public void matchTableUpdated(ListSelectionEvent e) {
-        System.out.println("Selected Row: "+matchTable.getSelectedRow());
         MatchFTC match = d.matchList.get(matchTable.getSelectedRow() < 0 ? 0 : matchTable.getSelectedRow());
         editMatchNumLabel.setText("Match Number: " + (match.getId() + 1));
         editMatchRed1TextField.setText("" + match.getR1());
@@ -619,5 +669,22 @@ public class DivisionGUI extends JFrame {
         this.editMatchBlue1DisconnectCheckBox.setSelected(match.getB1ConFail());
         this.editMatchBlue2DefenseCheckBox.setSelected(match.getB2Def());
         this.editMatchBlue2DisconnectCheckBox.setSelected(match.getB2ConFail());
+    }
+    
+    public void teamTableUpdated(ListSelectionEvent e) {
+        int index = teamTable.getSelectedRow() < 0 ? 0 : teamTable.getSelectedRow();
+        int teamNumber = d.teamNumber.get(index);
+        teamCommentsNumLabel.setText("Team Number: "+teamNumber);
+        teamCommentsTextArea.setText(d.teamComment.get(index));
+    }
+    
+    public void matchTableHeaderClicked(int i)
+    {
+        //DO SORTING STUFF
+    }
+    
+    public void teamTableHeaderClicked(int i)
+    {
+        //DO SORTING STUFF
     }
 }
