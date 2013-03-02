@@ -577,9 +577,11 @@ public class DivisionGUI extends JFrame {
         for (int i = 0; i < matchTableModel.getRowCount(); i++) {
             matchTableModel.removeRow(i);
         }
+        matchTableModel.setRowCount(0);
         for (int i = 0; i < teamTableModel.getRowCount(); i++) {
             teamTableModel.removeRow(i);
         }
+        teamTableModel.setRowCount(0);
     }
 
     private void addMatchSubmitButtonActionPerformed(ActionEvent evt) {
@@ -600,6 +602,7 @@ public class DivisionGUI extends JFrame {
     }
 
     public void matchTableUpdated(ListSelectionEvent e) {
+        System.out.println("Selected Row: "+matchTable.getSelectedRow());
         MatchFTC match = d.matchList.get(matchTable.getSelectedRow() < 0 ? 0 : matchTable.getSelectedRow());
         editMatchNumLabel.setText("Match Number: " + (match.getId() + 1));
         editMatchRed1TextField.setText("" + match.getR1());
