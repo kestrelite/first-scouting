@@ -10,9 +10,11 @@ import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
 
 public class FIRSTScouting {
+    public static String backupPath = "/home/nom/Desktop/out";
+    
     public static void runFile(String fName) throws Exception {
         Scanner s;
-        DivisionDataFTC d = new DivisionDataFTC();
+        DivisionDataFTC d = new DivisionDataFTC(backupPath);
         
         File f = new File(fName);
         
@@ -35,7 +37,7 @@ public class FIRSTScouting {
     }
     
     public static void runCmdLine() {
-        Scanner s; DivisionDataFTC d = new DivisionDataFTC();
+        Scanner s; DivisionDataFTC d = new DivisionDataFTC(backupPath);
         s = new Scanner(System.in);
         while (true) {
             try {
@@ -60,7 +62,7 @@ public class FIRSTScouting {
     }
     
     public static void runRawData() {
-        DivisionDataFTC d = new DivisionDataFTC();
+        DivisionDataFTC d = new DivisionDataFTC(backupPath);
         
         d.addMatch(new MatchFTC(1, 2, 3, 4, 80, 30));
         d.addMatch(new MatchFTC(2, 3, 4, 5, 60, 20));
@@ -77,7 +79,7 @@ public class FIRSTScouting {
     public static void runGUI(String fName) throws Exception 
     {
         Scanner s;
-        DivisionDataFTC d = new DivisionDataFTC();
+        DivisionDataFTC d = new DivisionDataFTC(backupPath);
         
         //d = DivisionDataFTC.readFromFile("C:\\Users\\Noah\\Desktop\\out.ser");
         

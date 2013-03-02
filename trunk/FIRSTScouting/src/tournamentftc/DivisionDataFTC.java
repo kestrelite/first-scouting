@@ -32,9 +32,10 @@ public class DivisionDataFTC implements Serializable {
     public ArrayList<String>   matchComment = new ArrayList<>();
     
     public String divisionName = "";
+    public final String backupLocation;
     
-    public DivisionDataFTC(String name) {}
-    public DivisionDataFTC() {}
+    public DivisionDataFTC(String name, String backupLocation) {this.backupLocation = backupLocation;}
+    public DivisionDataFTC(String backupLocation) {this.backupLocation = backupLocation;}
     
     public void addTeam(int teamNum) {
         teamNumber.add(teamNum);
@@ -116,6 +117,8 @@ public class DivisionDataFTC implements Serializable {
         this.calcTeamConFailPct();
         this.calcTeamAvg();
         this.calcTeamWtd();
+        
+        this.writeToFile(this.backupLocation + this.divisionName);
     }
     public void calcTeamAvg() {
         ArrayList<Integer> sumList = this.newEmptyIntList(this.teamNumber.size());
