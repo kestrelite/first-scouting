@@ -285,6 +285,7 @@ public class DivisionDataFTC implements Serializable {
             ObjectOutput output = new ObjectOutputStream(bufferOut);
             
             output.writeObject(this);
+            output.close();
         } catch(IOException e) {}
     }
     
