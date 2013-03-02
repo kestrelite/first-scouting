@@ -295,7 +295,9 @@ public class DivisionDataFTC implements Serializable {
             InputStream bufferIn = new BufferedInputStream(fileIn);
             ObjectInput input = new ObjectInputStream(bufferIn);
             
-            return (DivisionDataFTC)input.readObject();
+            DivisionDataFTC ret = (DivisionDataFTC)input.readObject();
+            ret.calcAll();
+            return ret;
         } catch(Exception e) {
             System.out.println(path);
             e.printStackTrace();
