@@ -1,6 +1,6 @@
 package firstscouting;
 
-import gui.DivisionGUI;
+import guiftc.DivisionGUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
