@@ -47,7 +47,7 @@ public class QuickSort {
         return pos;
     }
 
-    public static ArrayList Rank(ArrayList values) {
+    public static ArrayList rank(ArrayList values) {
         ArrayList sortedValues = new ArrayList(values);
         Collections.sort(sortedValues);
 

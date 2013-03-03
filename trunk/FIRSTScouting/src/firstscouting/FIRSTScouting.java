@@ -14,7 +14,7 @@ public class FIRSTScouting {
     
     public static void runFile(String fName) throws Exception {
         Scanner s;
-        DivisionDataFTC d = new DivisionDataFTC(backupPath);
+        DivisionDataFTC d = new DivisionDataFTC(fName);
         
         File f = new File(fName);
         
@@ -92,14 +92,17 @@ public class FIRSTScouting {
             s.nextLine();
             
             d.calcAll();
-            DivisionGUI dGUI = new DivisionGUI(d);
         } else System.out.println("File does not exist");
         
-        //d.writeToFile("C:\\Users\\Noah\\Desktop\\out.ser");
+        DivisionGUI dGUI = new DivisionGUI(d);
+        DivisionGUI cGUI = new DivisionGUI(new DivisionDataFTC(backupPath));
+        
     }
     
     public static void main(String[] args) throws Exception {
-        String path = ""+new File("").getCanonicalPath()+"\\src\\[Documents]\\tScores.txt";
-        FIRSTScouting.runGUI(path);
+        //String path = ""+new File("").getCanonicalPath()+"\\src\\[Documents]\\tScores.txt";
+        //String path = ""+new File("").getCanonicalPath()+"/src/[Documents]/tScores.txt";
+        //FIRSTScouting.runGUI(path);
+        FIRSTScouting.runGUI("");
     }
 }

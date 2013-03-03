@@ -26,8 +26,6 @@ public class DivisionDataFTC implements Serializable {
     public ArrayList<Integer> teamRankingPt = new ArrayList<>();
     public ArrayList<String>  teamComment   = new ArrayList<>();
     
-    public ArrayList<Integer> sortedIndex   = new ArrayList<>();
-    
     public ArrayList<MatchFTC> matchList    = new ArrayList<>();
     public ArrayList<String>   matchComment = new ArrayList<>();
     
@@ -45,7 +43,6 @@ public class DivisionDataFTC implements Serializable {
         teamDisconPct.add(-1.0);
         teamDefendPct.add(-1.0);
         teamComment.add("None");
-        sortedIndex.add(teamNumber.size()-1);
     }
     public int  addMatch(MatchFTC m) {
         m.setId(matchList.size());
@@ -104,8 +101,9 @@ public class DivisionDataFTC implements Serializable {
     public String  getMatchComment(int matchNum) {return this.matchComment.get(matchNum);}
     public boolean getMatchIsValid(int matchNum) {
         MatchFTC m = this.matchList.get(matchNum);
-        if((m.getB1Def()?1:0) + (m.getB2Def()?1:0) + (m.getR1Def()?1:0) + (m.getR2Def()?1:0) > 1) return false;
-        if((m.getB1ConFail()?1:0) + (m.getB2ConFail()?1:0) + (m.getR1ConFail()?1:0) + (m.getR2ConFail()?1:0) > 1) return false;
+        if((m.getB1Def()?1:0) + (m.getB2Def()?1:0) + (m.getR1Def()?1:0) + 
+                (m.getR2Def()?1:0) + (m.getB1ConFail()?1:0) + (m.getB2ConFail()?1:0) + 
+                (m.getR1ConFail()?1:0) + (m.getR2ConFail()?1:0) > 1) return false;
         return true;
     }
     public boolean getMatchIsValid(MatchFTC m) {return getMatchIsValid(this.matchList.indexOf(m));}
@@ -154,30 +152,38 @@ public class DivisionDataFTC implements Serializable {
         ArrayList<Double> sumList = this.newEmptyDoubleList(this.teamNumber.size());
         
         for(MatchFTC m : this.matchList) {
-            if(!this.getMatchIsValid(m)) continue;
+            if(!this.getMatchIsValid(m)) {System.out.println("Match discounted!"); m.printMatchData(); continue;}
             
-            double bScale, rScale, defScale = 0.25;
+            double bScale, rScale, defScale = 0.15, conScale = 0.25;
             if(m.getScoreBlue() > m.getScoreRed()) {bScale = 0.70; rScale = 0.35;}
             else {bScale = 0.35; rScale = 0.70;}
             
             int index = this.teamNumber.indexOf(m.getB1());
-            if(m.getB1Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.getTeamAvgScore(m.getR1())) + this.getTeamAvgScore(m.getR2())/2.0 - (double)m.getScoreRed()));}
+            if(m.getB1Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1()))) + this.teamAvgScore.get(this.teamNumber.indexOf(m.getB2())))/2.0 - (double)m.getScoreRed());}
             else if(m.getB2Def()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getB2ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getB1ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * conScale);}
             else {sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB2())).doubleValue() * bScale)));}
             
             index = this.teamNumber.indexOf(m.getB2());
-            if(m.getB2Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.getTeamAvgScore(m.getR1())) + this.getTeamAvgScore(m.getR2())/2.0 - (double)m.getScoreRed()));}
+            if(m.getB2Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1()))) + this.teamAvgScore.get(m.getB2()))/2.0 - (double)m.getScoreRed());}
             else if(m.getB1Def()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getB1ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getB2ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * conScale);}
             else {sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreBlue() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getB1())).doubleValue() * bScale)));}
             
             index = this.teamNumber.indexOf(m.getR1());
-            if(m.getR1Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.getTeamAvgScore(m.getB1())) + this.getTeamAvgScore(m.getB2())/2.0 - (double)m.getScoreBlue()));}
+            if(m.getR1Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())) + this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2()))))/2.0 - (double)m.getScoreBlue());}
             else if(m.getR2Def()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreRed() * rScale);}
+            else if(m.getR2ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getR1ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * conScale);}
             else {sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2())).doubleValue() * rScale)));}
             
             index = this.teamNumber.indexOf(m.getR2());
-            if(m.getR2Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.getTeamAvgScore(m.getB1())) + this.getTeamAvgScore(m.getB2())/2.0 - (double)m.getScoreBlue()));}
+            if(m.getR2Def()) {sumList.set(index, sumList.get(index).doubleValue() + defScale * ((this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())) + this.teamAvgScore.get(this.teamNumber.indexOf(m.getR2()))))/2.0 - (double)m.getScoreBlue());}
             else if(m.getR1Def()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreRed() * rScale);}
+            else if(m.getR1ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * bScale);}
+            else if(m.getR2ConFail()) {sumList.set(index, sumList.get(index).doubleValue() + m.getScoreBlue() * conScale);}
             sumList.set(index, (double)((double)sumList.get(index).doubleValue() + (double)m.getScoreRed() - ((double)this.teamAvgScore.get(this.teamNumber.indexOf(m.getR1())).doubleValue() * rScale)));
         }
         
@@ -215,22 +221,27 @@ public class DivisionDataFTC implements Serializable {
         this.teamRankingPt = this.newEmptyIntList(this.teamNumber.size());
         
         for(MatchFTC m : this.matchList) {
-            if(m.getScoreBlue() > m.getScoreRed()) {
+            if(m.getScoreBlue() == m.getScoreRed()) {
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB1()), 1 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB2()), 1 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR1()), 1 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR2()), 1 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
+            } else if(m.getScoreBlue() > m.getScoreRed()) {
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB1()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getB2()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
 
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreRed() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreRed() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreRed() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getB2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreRed() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreRed() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getR2())));
             } else {
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR1()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
                 this.teamQualifyPt.set(this.teamNumber.indexOf(m.getR2()), 2 + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
                 
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB1())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getB2())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR1())));
-                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreBlue() + this.teamQualifyPt.get(this.teamNumber.indexOf(m.getR2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB1()), m.getScoreBlue() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getB1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getB2()), m.getScoreBlue() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getB2())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR1()), m.getScoreBlue() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getR1())));
+                this.teamRankingPt.set(this.teamNumber.indexOf(m.getR2()), m.getScoreBlue() + this.teamRankingPt.get(this.teamNumber.indexOf(m.getR2())));
             }
         }
     }
@@ -246,7 +257,7 @@ public class DivisionDataFTC implements Serializable {
         return out;
     }
 
-    public void sortTeamData(int[] indexOrder) {
+    public void sortTeamData(ArrayList<Integer> indexOrder) {
         ArrayList<Integer> teamNumberNew = new ArrayList<>();
         ArrayList<Integer> teamMatchCntNew = new ArrayList<>();
         ArrayList<Double> teamAvgScoreNew = new ArrayList<>();
@@ -256,17 +267,17 @@ public class DivisionDataFTC implements Serializable {
         ArrayList<Integer> teamQualifyPtNew = new ArrayList<>();
         ArrayList<Integer> teamRankingPtNew = new ArrayList<>();
         ArrayList<String> teamCommentNew = new ArrayList<>();
-        
-        for(int i = 0; i < indexOrder.length; i++) {
-            teamNumberNew.add(this.teamNumber.get(indexOrder[i]));
-            teamMatchCntNew.add(this.teamMatchCnt.get(indexOrder[i]));
-            teamAvgScoreNew.add(this.teamAvgScore.get(indexOrder[i]));
-            teamWtdScoreNew.add(this.teamWtdScore.get(indexOrder[i]));
-            teamDisconPctNew.add(this.teamDisconPct.get(indexOrder[i]));
-            teamDefendPctNew.add(this.teamDefendPct.get(indexOrder[i]));
-            teamQualifyPtNew.add(this.teamQualifyPt.get(indexOrder[i]));
-            teamRankingPtNew.add(this.teamRankingPt.get(indexOrder[i]));
-            teamCommentNew.add(this.teamComment.get(indexOrder[i]));
+                
+        for(int i = 0; i < indexOrder.size(); i++) {
+            teamNumberNew.add(this.teamNumber.get(indexOrder.get(i).intValue()));
+            teamMatchCntNew.add(this.teamMatchCnt.get(indexOrder.get(i).intValue()));
+            teamAvgScoreNew.add(this.teamAvgScore.get(indexOrder.get(i).intValue()));
+            teamWtdScoreNew.add(this.teamWtdScore.get(indexOrder.get(i).intValue()));
+            teamDisconPctNew.add(this.teamDisconPct.get(indexOrder.get(i).intValue()));
+            teamDefendPctNew.add(this.teamDefendPct.get(indexOrder.get(i).intValue()));
+            teamQualifyPtNew.add(this.teamQualifyPt.get(indexOrder.get(i).intValue()));
+            teamRankingPtNew.add(this.teamRankingPt.get(indexOrder.get(i).intValue()));
+            teamCommentNew.add(this.teamComment.get(indexOrder.get(i).intValue()));
         }
         
         this.teamNumber = teamNumberNew;
@@ -282,7 +293,7 @@ public class DivisionDataFTC implements Serializable {
     public double roundTo(double d, int place) {return (double)(((double)Math.round(d * Math.pow(10, place))) / ((double)Math.pow(10, place)));}    
     
     public void writeToFile(String path) {
-        File f = new File(path);
+        File f = new File(path + this.divisionName);
         if(f.exists()) f.delete();
         
         try {

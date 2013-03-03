@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.GroupLayout;
@@ -34,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import tournamentftc.DivisionDataFTC;
 import tournamentftc.MatchFTC;
 import tournamentftc.QuickSort;
+import tournamentftc.Sorting;
 
 /**
  *
@@ -589,8 +591,10 @@ public class DivisionGUI extends JFrame {
                     String tName = JOptionPane.showInputDialog("Enter the Tournament Name.");
                     String divNum = JOptionPane.showInputDialog("Enter the Division Number.");
                     
-                    if(tName != null & divNum != null)
+                    if(tName != null & divNum != null) {
                         tourneyNameDivNumLabel.setText(tName+" - Division "+divNum);
+                        d.divisionName = divNum;
+                    }
                 }
             }
         });
@@ -624,8 +628,8 @@ public class DivisionGUI extends JFrame {
             matchTableModel.addRow(new Object[]{match.getId() + 1, match.getR1(), match.getR2(), match.getB1(), match.getB2(), match.getScoreRed(), match.getScoreBlue(), "Yes"});
         }
 
-        for (int i = 0; i < d.sortedIndex.size(); i++) {
-            teamTableModel.addRow(new Object[]{d.teamNumber.get(d.sortedIndex.get(i)), d.teamMatchCnt.get(d.sortedIndex.get(i)), d.roundTo(d.teamAvgScore.get(d.sortedIndex.get(i)).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(d.sortedIndex.get(i)).doubleValue(), 3), d.teamDisconPct.get(d.sortedIndex.get(i)) + "%", d.teamDefendPct.get(d.sortedIndex.get(i)) + "%", d.teamRankingPt.get(d.sortedIndex.get(i)), d.teamQualifyPt.get(d.sortedIndex.get(i)), d.teamComment.get(d.sortedIndex.get(i))});
+        for (int i = 0; i < d.teamNumber.size(); i++) {
+            teamTableModel.addRow(new Object[]{d.teamNumber.get(i), d.teamMatchCnt.get(i), d.roundTo(d.teamAvgScore.get(i).doubleValue(), 3), d.roundTo(d.teamWtdScore.get(i).doubleValue(), 3), d.roundTo(d.teamDisconPct.get(i)*100.0, 2) + "%", d.roundTo(d.teamDefendPct.get(i)*100.0, 2) + "%", d.teamQualifyPt.get(i), d.teamRankingPt.get(i), d.teamComment.get(i)});
         }
     }
 
@@ -641,7 +645,17 @@ public class DivisionGUI extends JFrame {
     }
 
     private void addMatchSubmitButtonActionPerformed(ActionEvent evt) {
-        d.addMatch(new MatchFTC(Integer.parseInt(addMatchRed1TextField.getText()), Integer.parseInt(addMatchRed2TextField.getText()), Integer.parseInt(addMatchBlue1TextField.getText()), Integer.parseInt(addMatchBlue2TextField.getText()), Integer.parseInt(addMatchRedScoreTextField.getText()), Integer.parseInt(addMatchBlueScoreTextField.getText())));
+        int j = d.addMatch(new MatchFTC(Integer.parseInt(addMatchRed1TextField.getText()), Integer.parseInt(addMatchRed2TextField.getText()), Integer.parseInt(addMatchBlue1TextField.getText()), Integer.parseInt(addMatchBlue2TextField.getText()), Integer.parseInt(addMatchRedScoreTextField.getText()), Integer.parseInt(addMatchBlueScoreTextField.getText())));
+        d.matchList.get(j).setDefense(d.matchList.get(j).getB1(), this.addMatchBlue1DefenseCheckBox.isSelected());
+        d.matchList.get(j).setDefense(d.matchList.get(j).getB2(), this.addMatchBlue2DefenseCheckBox.isSelected());
+        d.matchList.get(j).setDefense(d.matchList.get(j).getR1(), this.addMatchRed1DefenseCheckBox.isSelected());
+        d.matchList.get(j).setDefense(d.matchList.get(j).getR2(), this.addMatchRed2DefenseCheckBox.isSelected());
+
+        d.matchList.get(j).setConFail(d.matchList.get(j).getB1(), this.addMatchBlue1DisconnectCheckBox.isSelected());
+        d.matchList.get(j).setConFail(d.matchList.get(j).getB2(), this.addMatchBlue2DisconnectCheckBox.isSelected());
+        d.matchList.get(j).setConFail(d.matchList.get(j).getR1(), this.addMatchRed1DisconnectCheckBox.isSelected());
+        d.matchList.get(j).setConFail(d.matchList.get(j).getR2(), this.addMatchRed2DisconnectCheckBox.isSelected());
+        
         d.calcAll();
         this.loadTablesWithData();
     }
@@ -651,6 +665,18 @@ public class DivisionGUI extends JFrame {
             d.matchList.get(matchTable.getSelectedRow()).setTeams(Integer.parseInt(editMatchRed1TextField.getText()), Integer.parseInt(editMatchRed2TextField.getText()), 
                     Integer.parseInt(editMatchBlue1TextField.getText()), Integer.parseInt(editMatchBlue2TextField.getText()));
             d.matchList.get(matchTable.getSelectedRow()).setScore(Integer.parseInt(editMatchRedScoreTextField.getText()), Integer.parseInt(editMatchBlueScoreTextField.getText()));
+
+            int j = matchTable.getSelectedRow();
+            d.matchList.get(j).setDefense(d.matchList.get(j).getB1(), this.editMatchBlue1DefenseCheckBox.isSelected());
+            d.matchList.get(j).setDefense(d.matchList.get(j).getB2(), this.editMatchBlue2DefenseCheckBox.isSelected());
+            d.matchList.get(j).setDefense(d.matchList.get(j).getR1(), this.editMatchRed1DefenseCheckBox.isSelected());
+            d.matchList.get(j).setDefense(d.matchList.get(j).getR2(), this.editMatchRed2DefenseCheckBox.isSelected());
+
+            d.matchList.get(j).setConFail(d.matchList.get(j).getB1(), this.editMatchBlue1DisconnectCheckBox.isSelected());
+            d.matchList.get(j).setConFail(d.matchList.get(j).getB2(), this.editMatchBlue2DisconnectCheckBox.isSelected());
+            d.matchList.get(j).setConFail(d.matchList.get(j).getR1(), this.editMatchRed1DisconnectCheckBox.isSelected());
+            d.matchList.get(j).setConFail(d.matchList.get(j).getR2(), this.editMatchRed2DisconnectCheckBox.isSelected());
+            
             d.calcAll();
             this.loadTablesWithData();
         }
@@ -697,48 +723,36 @@ public class DivisionGUI extends JFrame {
         //DO SORTING STUFF
     }
     
+    public ArrayList<Integer> copyIntArrayList(ArrayList<Integer> t) {
+        ArrayList<Integer> out = new ArrayList<>();
+        for(Integer x : t) out.add(x);
+        return out;
+    }
+    
+    public ArrayList<Double> copyDblArrayList(ArrayList<Double> t) {
+        ArrayList<Double> out = new ArrayList<>();
+        for(Double x : t) out.add(x);
+        return out;
+    }
+    
     public void teamTableHeaderClicked(int i)
     {
         if(i == 0)
-        {
-            //sort by team number
-            d.sortedIndex = QuickSort.Rank(d.teamNumber);
-        }
+            d.sortTeamData(Sorting.sortDescendingInt(copyIntArrayList(d.teamNumber)));
         else if(i == 1)
-        {
-            //sort by match count
-            d.sortedIndex = QuickSort.Rank(d.teamMatchCnt);
-        }
+            d.sortTeamData(Sorting.sortDescendingInt(copyIntArrayList(d.teamMatchCnt)));
         else if(i == 2)
-        {
-            //sort by avg score
-            d.sortedIndex = QuickSort.Rank(d.teamAvgScore);
-        }
+            d.sortTeamData(Sorting.sortDescendingDbl(copyDblArrayList(d.teamAvgScore)));
         else if(i == 3)
-        {
-            //sort by wtd score
-            d.sortedIndex = QuickSort.Rank(d.teamWtdScore);
-        }
+            d.sortTeamData(Sorting.sortDescendingDbl(copyDblArrayList(d.teamWtdScore)));
         else if(i == 4)
-        {
-            //sort by dscon %
-            d.sortedIndex = QuickSort.Rank(d.teamDisconPct);
-        }
+            d.sortTeamData(Sorting.sortDescendingDbl(copyDblArrayList(d.teamDisconPct)));
         else if(i == 5)
-        {
-            //sort by def %
-            d.sortedIndex = QuickSort.Rank(d.teamDefendPct);
-        }
+            d.sortTeamData(Sorting.sortDescendingDbl(copyDblArrayList(d.teamDefendPct)));
         else if(i == 6)
-        {
-            //sort by qual pts
-            d.sortedIndex = QuickSort.Rank(d.teamQualifyPt);
-        }
+            d.sortTeamData(Sorting.sortDescendingInt(copyIntArrayList(d.teamQualifyPt)));
         else if(i == 7)
-        {
-            //sort by rank pts
-            d.sortedIndex = QuickSort.Rank(d.teamRankingPt);
-        }
+            d.sortTeamData(Sorting.sortDescendingInt(copyIntArrayList(d.teamRankingPt)));
         this.loadTablesWithData();
     }
 }
