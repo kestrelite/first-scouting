@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <style>
+  th {
+    cursor: pointer;
+  }
+  </style>
+  <body style="background-color:#101010;">
+  <div class="tab-content">
+    <div class="tab-pane active" id="sorted"><h1>Hello World!</h1>
+      <div class="panel panel-default">
+
+     <!-- Table -->
+    <div class="table-responsive">
+    <table id="teamSortList" class="table table-striped tablesorter">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>PowRank</th>
+          <th>QP</th>
+          <th>RP</th>
+          <th>Average Score</th>
+          <th>Win Rate</th>
+          <th >Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="entry1">
+          <td id="teamNumber">4278</td>
+          <td id="teamName"><b>De.Evolution</b></td>
+          <td id="pow">121121</td>
+          <td id="qp">2020</td>
+          <td id="rp">500</td>
+          <td id="avsc">500</td>
+          <td id="winrate">100%</td>
+          <td id="strategy">
+                <div class="input-group ">
+                  <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div>
+                  <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div>
+                  <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div>
+                  <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div>
+                  <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div>
+                </div>
+          </td>
+        </tr>
+        <tr id="entry2">
+          <td id="teamNumber">3513</td>
+          <td id="teamName"><b>Domo Arigatou</b></td>
+          <td id="pow">9121</td>
+          <td id="qp">20</td>
+          <td id="rp">10</td>
+          <td id="avsc">10</td>
+          <td id="winrate">13%</td>
+          <td id="strategy">
+                <div class="input-group ">
+                  <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div>
+                  <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div>
+                  <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div>
+                  <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div>
+                  <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div>
+                </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    </div>
+    <div class="tab-pane" id="matches"><h1>Hello World!!</h1>
+
+    </div>
+    <div class="tab-pane" id="lookup"><h1>Hello World!!!</h1>
+
+    </div>
+  </div>
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">4278</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav nav-pills">
+      <li data-toggle="pill" class="active erlm"><a href="#sorted">Sorted</a></li>
+      <li data-toggle="pill" class="erlm"><a href="#matches">Matches</a></li>
+      <li data-toggle="pill" class="erlm"><a href="#lookup">Teams</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Team #">
+      </div>
+      <button type="submit" class="btn btn-default">Find</button>
+    </form>
+   <ul class="nav navbar-nav navbar-right">
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jquery/jquery-2.0.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/transition.js"></script>
+    <script src="bootstrap/js/collapse.js"></script>
+    <script src="bootstrap/js/tab.js"></script>
+    <script type="text/javascript" src="jquery/jquery.tablesorter.min.js"></script> 
+
+    <!-- Document Ready Function -->
+    <script>
+      $(document).ready(function() { 
+        $("#teamSortList").tablesorter(); 
+      }); 
+    </script>
+
+    <!-- Tab initialize -->
+    <script type="text/javascript">
+      $('.erlm a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');  
+      });
+    </script>
+ 
+  </body>
+</html>
