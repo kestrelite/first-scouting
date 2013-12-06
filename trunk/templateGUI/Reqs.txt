@@ -1,0 +1,13 @@
+Tabs:
+	- Sorted [default] [clickable headers to resort] 
+		(Team number, PowRank, QP, RP, avg.score, win rate, check box: defensive|offensive|crate blocks|hanging)
+	- Team Lookup
+		- Left panel: Team List [list box of teams]
+		- Mid panel top: Team name, notes, check box: defensive|offensive|crate blocks|hang|connection issues
+		- Mid panel bot: statistics (QP, RP, Power rank, avg match score)
+	- Match List
+		- Match display w/ numbered indexes, edit|delete|recalc
+Quick Add:
+	- Four team numbers (R1, R2, B1, B2)
+	- Final scores
+	- Penalties awarded
