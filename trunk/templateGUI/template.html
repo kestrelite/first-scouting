@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/vnd.microsoft.icon" />
+    <title>FTC Ranks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +27,7 @@
   <body style="background-color:#101010;">
     <h1>De.Evolution</h1>
   <div class="tab-content">
-    <div class="tab-pane active" id="sorted">
+    <div class="tab-pane fade in active" id="sorted">
       <div class="panel panel-default">
 
      <!-- Table -->
@@ -104,10 +105,10 @@
   </div>
 </div>
     </div>
-    <div class="tab-pane" id="matches">
+    <div class="tab-pane fade" id="matches">
 
     </div>
-    <div class="tab-pane" id="lookup">
+    <div class="tab-pane fade" id="lookup">
 
     </div>
   </div>
@@ -126,9 +127,9 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav nav-pills">
-      <li data-toggle="pill" class="active erlm"><a href="#sorted">Sorted</a></li>
-      <li data-toggle="pill" class="erlm"><a href="#matches">Matches</a></li>
-      <li data-toggle="pill" class="erlm"><a href="#lookup">Teams</a></li>
+      <li class="active erlm"><a data-toggle="tab" href="#sorted">Sorted</a></li>
+      <li class="erlm"><a data-toggle="tab" href="#matches">Matches</a></li>
+      <li class="erlm"><a data-toggle="tab" href="#lookup">Teams</a></li>
     </ul>
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -178,6 +179,13 @@
         if($('#qwhite').height() != $('#bottomnav').height()){
             $('#qwhite').height($('#bottomnav').height());
         }
+      });
+
+      var thColor = $('th').css('color');
+      $('th').hover(function(e){
+        $(this).css('color', '#84C4FF').html('<u>'+$(this).text()+'</u>');
+      }, function(e){
+        $(this).css('color', thColor).html($(this).text());
       });
     </script>
 
