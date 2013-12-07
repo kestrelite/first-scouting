@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"math"
 )
@@ -16,18 +14,11 @@ type Team struct {
 	TeamNumber      int
 	TeamName, Notes string
 
-<<<<<<< .mine
 	PowRank, AvgScore, WinRate float32
 	QP, RP                     int
 
 	Wins, Losses int
 	Strategy     []bool
-=======
-	PowRank, QP, RP   float32
-	AvgScore, WinRate float32
-	Wins, Losses      int
-	Strategy          []bool //[Defensive, Offensive, BlockScoring, Hanging, FlagSpinner]
->>>>>>> .r80
 }
 
 type Match struct {
@@ -148,7 +139,6 @@ func main() {
 	var mL []Match
 	tL := make(map[int]Team)
 
-<<<<<<< .mine
 	mL = append(mL, Match{TeamNums: []int{7423, 395, 4134, 6950}, RScore: 139, BScore: 55, RPen: 0, BPen: 0})
 	mL = append(mL, Match{TeamNums: []int{4433, 5944, 6508, 3795}, RScore: 149, BScore: 95, RPen: 0, BPen: 0})
 	mL = append(mL, Match{TeamNums: []int{7056, 6191, 118, 7314}, RScore: 51, BScore: 68, RPen: 0, BPen: 0})
@@ -174,15 +164,10 @@ func main() {
 	mL = append(mL, Match{TeamNums: []int{5944, 4134, 230, 6191}, RScore: 68, BScore: 65, RPen: 0, BPen: 0})
 	mL = append(mL, Match{TeamNums: []int{7056, 4347, 61, 395}, RScore: 356, BScore: 114, RPen: 0, BPen: 0})
 	mL = append(mL, Match{TeamNums: []int{7314, 6508, 7055, 4999}, RScore: 84, BScore: 126, RPen: 0, BPen: 0})
-=======
-	team := Team{4278, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
-	team1 := Team{3513, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
-	team2 := Team{1234, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
->>>>>>> .r80
 
 	tL = UpdateTeamList(mL, tL)
 	tL = PrelimCalc(mL, tL)
-	//tL = ScoreCalc(mL, tL)
+	tL = ScoreCalc(mL, tL)
 
 	fmt.Println(tL)
 	fmt.Println(mL)
