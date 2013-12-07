@@ -4,7 +4,6 @@ import (
 	"../powscl-alg"
 	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 func MarshalTeams(Teams map[int]powalg.Team) string {
