@@ -1,9 +1,9 @@
 package marshal
 
 import (
+	"../powscl-alg"
 	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 func MarshalTeams(Teams map[int]Team) string {
