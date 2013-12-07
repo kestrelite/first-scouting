@@ -128,6 +128,10 @@ func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 
 	for i, v := range teamDatMap {
 		var tmp = teamList[i]
+		tmp.TeamNumber = i
+		if tmp.Strategy == nil {
+			tmp.Strategy = []bool{false, false, false, false, false}
+		}
 		tmp.PowRank = float32(v.Score) / float32(v.Played)
 		teamList[i] = tmp
 	}

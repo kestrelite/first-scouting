@@ -37,6 +37,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		r.ParseForm()
 		if r.Method == "POST" {
+			w.Header().Set("Content-Type", "application/json")
 			if r.Form.Get("type") == "team" {
 				teamJson := r.Form.Get("data")
 				tmp := marshal.UnmarshalTeam([]byte(teamJson))
@@ -50,12 +51,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				} else {
 					Match[n-1] = tmp
 				}
-				fmt.Println("m1:", Match[n-1])
-				//Teams = powalg.Recalculate(Match)
-				fmt.Println("m2:", Teams)
+				Teams = powalg.Recalculate(Match)
 				io.WriteString(w, marshal.MarshalTeams(Teams))
-				//io.WriteString(w, fmt.Sprintf("[%s, %s, %s, %s]", marshal.MarshalTeam(Teams[Match[n].TeamNums[1]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[2]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[3]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[4]])))
-
 			} else if r.Form.Get("type") == "notes" {
 				teamNum, _ := strconv.Atoi(r.Form.Get("num"))
 				note := r.Form.Get("data")
@@ -70,6 +67,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 					n, _ := strconv.Atoi(r.Form.Get("num"))
 					io.WriteString(w, marshal.MarshalTeam(Teams[n]))
 				} else {
+					fmt.Println("ALL TEAMS")
 					io.WriteString(w, marshal.MarshalTeams(Teams))
 				}
 			} else if r.Form.Get("type") == "match" {
