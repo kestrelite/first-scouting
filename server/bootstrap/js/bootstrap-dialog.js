@@ -289,7 +289,7 @@ var BootstrapDialog = null;
             return $container;
         },
         createBodyContent: function() {
-            var $container = $('<textarea id="inputz" style="width:555px;height:250px;">Hello</textarea>');
+            var $container = $('<textarea id="inputz" style="width:555px;height:250px;"></textarea>');
             $container.addClass(this.getNamespace('body'));
 
             // Message

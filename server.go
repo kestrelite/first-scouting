@@ -19,14 +19,11 @@ var Match []powalg.Match
 func main() {
 	Teams = make(map[int]powalg.Team)
 
-	Match = append(Match, powalg.Match{[]int{1, 2, 3, 4}, 1, 1, 1, 1})
-	Match = append(Match, powalg.Match{[]int{4, 3, 2, 1}, 1, 1, 1, 1})
+	teamJson, _ := ioutil.ReadFile("backs/teams.json")
+	matchJson, _ := ioutil.ReadFile("backs/matches.json")
 
-	t1 := powalg.Team{4278, "de.evolution", "da bestest", 1, 1, 1, 1, 1, 1, 1, []bool{true, true, true, true, true}}
-	t2 := powalg.Team{3513, "de.evolution", "da bestest", 1, 1, 1, 1, 1, 1, 1, []bool{true, true, true, true, true}}
-
-	Teams[4278] = t1
-	Teams[3513] = t2
+	Teams = marshal.UnmarshalTeams(Teams, teamJson)
+	Match = marshal.UnmarshalMatches(matchJson)
 
 	chttp.Handle("/", http.FileServer(http.Dir("server")))
 
@@ -70,6 +67,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				w.Header().Set("Content-Type", "text/html")
 				io.WriteString(w, bytes.NewBuffer(f).String())
 			}
+		}
+		if err := ioutil.WriteFile("backs/teams.json", []byte(marshal.MarshalTeams(Teams)), 0644); err != nil {
+			fmt.Println(err)
+		}
+		if err := ioutil.WriteFile("backs/matches.json", []byte(marshal.MarshalMatch(Match)), 0644); err != nil {
+			fmt.Println(err)
 		}
 	}
 }
