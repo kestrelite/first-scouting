@@ -1,8 +1,9 @@
 package server
 
 import (
+	//"../marshal"
 	"bytes"
-	//"fmt"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -35,6 +36,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 			if r.Form.Get("type") == "team" {
 				//Marshal Team Struct
+				fmt.Println(main.Teams[r.Form.Get("num"))
 				io.WriteString(w, "This is a get team")
 			} else if r.Form.Get("type") == "match" {
 				//Marshal Match Struct
