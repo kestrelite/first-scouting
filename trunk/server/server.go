@@ -39,11 +39,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			} else if r.Form.Get("type") == "match" {
 				//Marshal Match Struct
 				io.WriteString(w, "This is a Match Get")
+			} else {
+				f, _ := ioutil.ReadFile("server/template.html")
+				w.Header().Set("Content-Type", "text/html")
+				io.WriteString(w, bytes.NewBuffer(f).String())
 			}
-		} else {
-			f, _ := ioutil.ReadFile("server/template.html")
-			w.Header().Set("Content-Type", "text/html")
-			io.WriteString(w, bytes.NewBuffer(f).String())
 		}
 	}
 }
