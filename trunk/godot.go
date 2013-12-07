@@ -29,21 +29,6 @@ type Match struct {
 	RPen, BPen     int
 }
 
-func MarshalTeams(Teams map[int]Team) string {
-	mapstr := `[`
-	i := 0
-	for _, v := range Teams {
-		val, _ := json.Marshal(v)
-		mapstr += bytes.NewBuffer(val).String()
-		if i != len(Teams)-1 {
-			mapstr += ","
-		}
-		i++
-	}
-	mapstr += `]`
-	return mapstr
-}
-
 func UpdateTeamList(matchList []Match, oldList map[int]Team) map[int]Team {
 	newList := make(map[int]Team)
 	for q := 0; q < len(matchList); q++ {
