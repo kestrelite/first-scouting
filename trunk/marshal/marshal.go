@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 )
 
-func MarshalTeams(Teams map[int]Team) string {
+func MarshalTeams(Teams map[int]powalg.Team) string {
 	mapstr := `[`
 	i := 0
 	for _, v := range Teams {
@@ -21,8 +21,8 @@ func MarshalTeams(Teams map[int]Team) string {
 	return mapstr
 }
 
-func UnmarshalMatches(j []byte) Match {
-	var m Match
+func UnmarshalMatches(j []byte) powalg.Match {
+	var m powalg.Match
 	json.Unmarshal(j, &m)
 	return m
 }

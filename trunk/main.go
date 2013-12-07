@@ -1,11 +1,11 @@
 package main
 
 import (
-	"./marshal"
-	"./powscl-alg"
+	//"./marshal"
+	//"./powscl-alg"
 	"./server"
 )
 
 func main() {
-
+	server.StartServer()
 }
