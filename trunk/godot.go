@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	winScl  = 0.7
-	lossScl = 0.4
+	winScl  = 0.9
+	lossScl = 0.6
 )
 
 type Team struct {
