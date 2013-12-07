@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +17,7 @@
   </head>
 
   <style>
-  th {
+  th, #teamName {
     cursor: pointer;
   }
   h1{
@@ -92,7 +93,7 @@
       </thead>
       <tbody>
         <tr style="visibility:hidden;display:none;" id="entryHide">
-          <td id="teamNumber"></td>
+          <td id="teamNumber"></td> 
           <td id="teamName"><b></b></td>
           <td id="pow"></td>
           <td id="qp"></td>
@@ -108,9 +109,10 @@
                   <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div>
                 </div>
           </td>
+          <td style="visibility:hidden;display:none;" id="notes"></td>
         </tr>
         <tr id="entry1">
-          <td id="teamNumber">4278</td>
+          <td id="teamNumber">2143</td>
           <td id="teamName"><b>De.Evolution</b></td>
           <td id="pow">121121</td>
           <td id="qp">2020</td>
@@ -126,9 +128,10 @@
                   <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div>
                 </div>
           </td>
+          <td style="visiblity:hidden;display:none"id="notes">da bestest</td>
         </tr>
         <tr id="entry2">
-          <td id="teamNumber">3513</td>
+          <td id="teamNumber">2134</td>
           <td id="teamName"><b>Domo Arigatou</b></td>
           <td id="pow">9121</td>
           <td id="qp">20</td>
@@ -258,12 +261,31 @@
                     <div class="input-group-addon">Flag-Spinner: <input checked="'+teamMap[i].Strategy[4]+'" type="checkbox" id="flagspin"></input></div>\
                   </div> \
             </td> \
+            <td style="visibility:hidden;display:none;" id="notes">'+teamMap[i].Notes+'</td> \
           </tr>';
 
           //console.log(tableEntry)
 
           $('table#teamSortList > tbody').append(tableEntry);
         }
+              var thColor = $('#teamName b').css('color');
+      $('#teamName b').hover(function(e){
+        $(this).css('color', '#84C4FF').html('<u>'+$(this).text()+'</u>');
+      }, function(e){
+        $(this).css('color', thColor).html($(this).text());
+      });
+	  $('#teamName b').click(function() {var tN = $(this).parent().siblings("#teamNumber").text(); var n = $(this).parent().siblings("#notes"); BootstrapDialog.show({
+            message: 'Notes',
+            buttons: [{label: 'Close',
+                action: function(dialogItself){
+                	var note = $('textarea#inputz').val();
+                	n.text(note);
+                	$.post('/?type=notes&num='+tN+'&data='+note);
+                    dialogItself.close();
+                }
+            }]
+        }, $(this).parent().siblings('#notes').text());});
+
       }
 
       function levelBars(e, f){
