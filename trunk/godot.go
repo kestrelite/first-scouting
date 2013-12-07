@@ -7,6 +7,11 @@ import (
 	"math"
 )
 
+const (
+	winScl  = 0.7
+	lossScl = 0.4
+)
+
 type Team struct {
 	TeamNumber int
 
@@ -15,65 +20,13 @@ type Team struct {
 	PowRank, QP, RP   float32
 	AvgScore, WinRate float32
 	Wins, Losses      int
-	Strategy          []bool
+	Strategy          map[string]bool
 }
 
 type Match struct {
 	TeamNums       []int
 	RScore, BScore int
 	RPen, BPen     int
-}
-
-func UpdateTeamList(matchList []Match, oldList map[int]Team) map[int]Team {
-	newList := make(map[int]Team)
-	for q := 0; q < len(matchList); q++ {
-		for t := 0; t < len(matchList[q].TeamNums); t++ {
-			newList[matchList[q].TeamNums[t]] = oldList[matchList[q].TeamNums[t]]
-		}
-	}
-	return newList
-}
-
-func PrelimCalc(matchList []Match, teamList map[int]Team) map[int]Team {
-	type TeamTempDat struct {
-		Played, Sum int
-		QP, RP      int
-	}
-	teamDatMap := make(map[int]TeamTempDat)
-
-	for q := 0; q < len(matchList); q++ {
-		for t := 0; t < len(matchList[q].TeamNums); t++ {
-			var teamnum = matchList[q].TeamNums[t]
-			var teamdat = teamDatMap[teamnum]
-			teamdat.Played++
-			var match = matchList[q]
-
-			teamdat.RP += int(math.Min(float64(match.RScore), float64(match.BScore)))
-			if q < 3 {
-				teamdat.Sum += match.RScore - match.RPen
-				if match.RScore > match.BScore {
-					teamdat.QP += 2
-				}
-			} else {
-				teamdat.Sum += match.BScore - match.BPen
-				if match.BScore > match.RScore {
-					teamdat.QP += 2
-				}
-			}
-
-			teamDatMap[teamnum] = teamdat
-		}
-	}
-
-	for i, v := range teamDatMap {
-		var tmp = teamList[i]
-		tmp.AvgScore = float32(v.Sum) / float32(v.Played)
-		tmp.QP = float32(v.QP)
-		tmp.RP = float32(v.RP)
-		teamList[i] = tmp
-	}
-
-	return teamList
 }
 
 func MarshalTeams(Teams map[int]Team) string {
@@ -91,6 +44,106 @@ func MarshalTeams(Teams map[int]Team) string {
 	return mapstr
 }
 
+func UpdateTeamList(matchList []Match, oldList map[int]Team) map[int]Team {
+	newList := make(map[int]Team)
+	for q := 0; q < len(matchList); q++ {
+		for t := 0; t < len(matchList[q].TeamNums); t++ {
+			newList[matchList[q].TeamNums[t]] = oldList[matchList[q].TeamNums[t]]
+		}
+	}
+	return newList
+}
+
+func PrelimCalc(matchList []Match, teamList map[int]Team) map[int]Team {
+	type TeamTempDat struct {
+		Played, Sum int
+		QP, RP      int
+		Win, Loss   int
+	}
+	teamDatMap := make(map[int]TeamTempDat)
+
+	for q := 0; q < len(matchList); q++ {
+		for t := 0; t < len(matchList[q].TeamNums); t++ {
+			var teamnum = matchList[q].TeamNums[t]
+			var teamdat = teamDatMap[teamnum]
+			teamdat.Played++
+			var match = matchList[q]
+
+			teamdat.RP += int(math.Min(float64(match.RScore), float64(match.BScore)))
+			if q < 3 {
+				teamdat.Sum += match.RScore - match.RPen
+				if match.RScore > match.BScore {
+					teamdat.QP += 2
+					teamdat.Win++
+				} else {
+					teamdat.Loss++
+				}
+			} else {
+				teamdat.Sum += match.BScore - match.BPen
+				if match.BScore > match.RScore {
+					teamdat.QP += 2
+					teamdat.Win++
+				} else {
+					teamdat.Loss++
+				}
+			}
+
+			teamDatMap[teamnum] = teamdat
+		}
+	}
+
+	for i, v := range teamDatMap {
+		var tmp = teamList[i]
+		tmp.AvgScore = float32(v.Sum) / float32(v.Played)
+		tmp.QP = float32(v.QP)
+		tmp.RP = float32(v.RP)
+		tmp.Wins = v.Win
+		tmp.Losses = v.Loss
+		teamList[i] = tmp
+	}
+
+	return teamList
+}
+
+func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
+	type TempTeamDat struct {
+		Score  float32
+		Played int
+	}
+	teamDatMap := make(map[int]TempTeamDat)
+
+	for q := 0; q < len(matchList); q++ {
+		for t := 0; t < len(matchList[q].TeamNums); t++ {
+			var teamnum = matchList[q].TeamNums[t]
+			var teamdat = teamDatMap[teamnum]
+			teamdat.Played++
+			var match = matchList[q]
+
+			score := match.RScore
+			if t >= 3 {
+				score = match.BScore
+			}
+			scl := winScl
+			if (t < 3 && match.BScore > match.RScore) || (t >= 3 && match.RScore > match.BScore) {
+				scl = lossScl
+			}
+			partavg := func() float32 {
+				if t == 1 || t == 3 {
+					return teamList[matchList[q].TeamNums[t-1]].AvgScore
+				} else {
+					return teamList[matchList[q].TeamNums[t+1]].AvgScore
+				}
+			}()
+
+			teamdat.Score += float32(scl * (float64(score) - float64(partavg)))
+			teamDatMap[teamnum] = teamdat
+		}
+	}
+
+	fmt.Println(teamDatMap)
+	return teamList
+}
+
 func main() {
 	var mL []Match
 	teams := make(map[int]Team)
@@ -106,9 +159,10 @@ func main() {
 	tL := make(map[int]Team)
 
 	mL = append(mL, Match{TeamNums: []int{1, 2, 3, 4}, RScore: 50, BScore: 30, RPen: 0, BPen: 0})
-	mL = append(mL, Match{TeamNums: []int{6, 2, 7, 4}, RScore: 30, BScore: 50, RPen: 0, BPen: 0})
+	mL = append(mL, Match{TeamNums: []int{1, 3, 2, 4}, RScore: 50, BScore: 30, RPen: 0, BPen: 0})
 	tL = UpdateTeamList(mL, tL)
 	tL = PrelimCalc(mL, tL)
+	tL = ScoreCalc(mL, tL)
 
 	t := MarshalTeams(teams)
 
