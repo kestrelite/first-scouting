@@ -20,7 +20,7 @@ type Team struct {
 	PowRank, QP, RP   float32
 	AvgScore, WinRate float32
 	Wins, Losses      int
-	Strategy          map[string]bool
+	Strategy          []bool //[Defensive, Offensive, BlockScoring, Hanging, FlagSpinner]
 }
 
 type Match struct {
@@ -148,9 +148,9 @@ func main() {
 	var mL []Match
 	teams := make(map[int]Team)
 
-	team := Team{4278, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
-	team1 := Team{3513, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
-	team2 := Team{1234, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
+	team := Team{4278, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
+	team1 := Team{3513, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
+	team2 := Team{1234, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
 
 	teams[4278] = team
 	teams[3513] = team1
@@ -162,7 +162,7 @@ func main() {
 	mL = append(mL, Match{TeamNums: []int{1, 3, 2, 4}, RScore: 50, BScore: 30, RPen: 0, BPen: 0})
 	tL = UpdateTeamList(mL, tL)
 	tL = PrelimCalc(mL, tL)
-	tL = ScoreCalc(mL, tL)
+	//tL = ScoreCalc(mL, tL)
 
 	t := MarshalTeams(teams)
 
