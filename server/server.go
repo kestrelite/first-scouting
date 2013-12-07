@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"bytes"
@@ -7,11 +7,11 @@ import (
 	"net/http"
 )
 
-func main() {
+/*func main() {
 	http.HandleFunc("/ftc", handler)
 	http.Handle("/", http.FileServer(http.Dir("C:/Users/Yousuf/Desktop/first-scouting/templateGUI")))
 	panic(http.ListenAndServe(":4278", nil))
-}
+}*/
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	f, _ := ioutil.ReadFile("template.html")
