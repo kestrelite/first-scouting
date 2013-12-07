@@ -25,7 +25,7 @@
   </style>
 
   <body style="background-color:#101010;">
-
+  <img id="qwhiteTop" src="white.jpg"/>
   <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div id="topNavHead" class="navbar-header">
@@ -261,16 +261,13 @@
         }
       }
 
-      function levelBars(e){
-        if($(window).height() != $(document).height()){
-          $('#qwhite').css('visibility', 'visibile');
-          if($('#qwhite').height() != $('#bottomnav').height()){
-              $('#qwhite').height($('#bottomnav').height());
-          } else{
-            $('#qwhite').css('visibility', 'hidden');
+      function levelBars(e, f){
+          $(e).css('opacity', '0.0');
+          if($(e).height() != $(f).height()){
+              $(e).height($(f).height());
           }
         }
-      }
+      
     </script>
 
     <!-- Event Functions -->
@@ -279,16 +276,21 @@
         $("#teamSortList").tablesorter(); 
         $("#matchSortList").tablesorter(); 
 
-        levelBars(e);
-
         if($('#qwickHolder').width() + $('#topNavHead').width() != $('#topnav').width()){
           while($('#qwickHolder').width() + $('#topNavHead').width() > $('#topnav').width()){
             $('#qwickHolder').width($('#qwickHolder').width()-1)
           }
         }
+
+        levelBars("#qwhite","#bottomnav")
+        levelBars("#qwhiteTop", '#topnav')
       }); 
 
-      $('*').scroll(levelBars(1));
+      $('*').scroll(function(e){
+        levelBars("#qwhite","#bottomnav")
+        levelBars("#qwhiteTop", '#topnav')
+
+      });
 
       var thColor = $('th').css('color');
       $('th').hover(function(e){
