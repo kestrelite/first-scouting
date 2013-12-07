@@ -43,24 +43,25 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				Teams[tmp.TeamNumber] = tmp
 			} else if r.Form.Get("type") == "match" {
 				matchJson := r.Form.Get("data")
-				fmt.Println(matchJson)
 				n, _ := strconv.Atoi(r.Form.Get("num"))
 				tmp := marshal.UnmarshalMatch([]byte(matchJson))
-				fmt.Println(tmp)
 				if n > len(Match) {
 					Match = append(Match, tmp)
 				} else {
 					Match[n-1] = tmp
 				}
-				fmt.Println(Match)
+				fmt.Println("m1:", Match[n-1])
+				//Teams = powalg.Recalculate(Match)
+				fmt.Println("m2:", Teams)
+				io.WriteString(w, marshal.MarshalTeams(Teams))
+				//io.WriteString(w, fmt.Sprintf("[%s, %s, %s, %s]", marshal.MarshalTeam(Teams[Match[n].TeamNums[1]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[2]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[3]]), marshal.MarshalTeam(Teams[Match[n].TeamNums[4]])))
+
 			} else if r.Form.Get("type") == "notes" {
 				teamNum, _ := strconv.Atoi(r.Form.Get("num"))
 				note := r.Form.Get("data")
 				tmp := Teams[teamNum]
-				fmt.Println(Teams[tmp.TeamNumber])
 				tmp.Notes = note
 				Teams[tmp.TeamNumber] = tmp
-				fmt.Println(Teams[tmp.TeamNumber])
 			}
 		} else if r.Method == "GET" {
 			w.Header().Set("Content-Type", "application/json")
@@ -74,7 +75,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			} else if r.Form.Get("type") == "match" {
 				io.WriteString(w, marshal.MarshalMatch(Match))
 			} else {
-				f, _ := ioutil.ReadFile("server/indexUseful.html")
+				f, _ := ioutil.ReadFile("server/index.html")
 				w.Header().Set("Content-Type", "text/html")
 				io.WriteString(w, bytes.NewBuffer(f).String())
 			}
