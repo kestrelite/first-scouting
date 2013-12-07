@@ -66,7 +66,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			} else if r.Form.Get("type") == "match" {
 				io.WriteString(w, marshal.MarshalMatch(Match))
 			} else {
-				f, _ := ioutil.ReadFile("server/template.html")
+				f, _ := ioutil.ReadFile("server/index.html")
 				w.Header().Set("Content-Type", "text/html")
 				io.WriteString(w, bytes.NewBuffer(f).String())
 			}
