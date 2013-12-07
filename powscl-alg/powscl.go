@@ -1,7 +1,6 @@
 package powalg
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -135,6 +134,6 @@ func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 	return teamList
 }
 
-type powalg interface {
-	Recalculate([]Match) map[int]Team
+func Recalculate(mList []Match) map[int]Team {
+	return ScoreCalc(mList, PrelimCalc(mList, UpdateTeamList(mList, make(map[int]Team))))
 }
