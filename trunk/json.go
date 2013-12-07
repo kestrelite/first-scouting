@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"math"
 )
 
 type Team struct {
@@ -39,19 +38,26 @@ func MarshalTeams(Teams map[int]Team) string {
 	return mapstr
 }
 
+func UnmarshalMatches(j []byte) Match {
+	var m Match
+	json.Unmarshal(j, &m)
+	return m
+}
+
 func main() {
-	var mL []Match
 	teams := make(map[int]Team)
 
 	team := Team{4278, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
 	team1 := Team{3513, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
 	team2 := Team{1234, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false, true, true, true}}
 
+	m := Match{[]int{1, 2, 3, 4}, 1, 1, 1, 1}
+
 	teams[4278] = team
 	teams[3513] = team1
 	teams[1234] = team2
 
-	t := MarshalTeams(teams)
+	z, _ := json.Marshal(m)
 
-	fmt.Println(t)
+	fmt.Println(UnmarshalMatches(z))
 }
