@@ -20,7 +20,7 @@
     cursor: pointer;
   }
   h1{
-    color:rgba(138, 138, 138, 0.47);;
+    color:rgba(138, 138, 138, 0.47);
   }
   </style>
 
@@ -36,30 +36,37 @@
     <div id="qwickHolder" style="float:right;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form class="navbar-form navbar-left form-inline" role="form">
         <div class="form-group col-lg-2 row">
-          <input id="qwikR1" type="text" class="form-control" placeholder="R1">
+          <input style="color:#7A0000;" id="qwikR1" type="text" class="form-control" placeholder="R1">
+          <input style="color:#071241;" id="qwikB1" type="text" class="form-control" placeholder="B1">
         </div>
         <div class="form-group col-lg-2 row">
-          <input id="qwikR2" type="text" class="form-control" placeholder="R2">
+          <input style="color:#7A0000;" id="qwikR2" type="text" class="form-control" placeholder="R2">
+          <input style="color:#071241;" id="qwikB2" type="text" class="form-control" placeholder="B2">
         </div>
-        <div class="form-group col-lg-2 row">
+<!--         <div class="form-group col-lg-2 row">
           <input id="qwikB1" type="text" class="form-control" placeholder="B1">
-        </div>
-        <div class="form-group col-lg-2 row">
+        </div> -->
+<!--         <div class="form-group col-lg-2 row">
           <input id="qwikB2" type="text" class="form-control" placeholder="B2">
-        </div>
+        </div> -->
         <div class="form-group col-lg-2 row">
-          <input id="qwikRs" type="text" class="form-control" placeholder="Red Score">
+          <input style="color:#7A0000;" id="qwikRs" type="text" class="form-control" placeholder="Red Score">
+          <input style="color:#071241;" id="qwikBs" type="text" class="form-control" placeholder="Blue Score">
         </div>
-        <div class="form-group col-lg-2 row">
+<!--         <div class="form-group col-lg-2 row">
           <input id="qwikBs" type="text" class="form-control" placeholder="Blue Score">
+        </div> -->
+        <div id="stackPen" class="form-group col-lg-2 row">
+          <input style="color:#7A0000;" id="qwikRp" type="text" class="form-control" placeholder="Red Penalties">
+          <input style="color:#071241;" id="qwikBp" type="text" class="form-control" placeholder="Blue Penalties">
         </div>
-        <div class="form-group col-lg-2 row">
-          <input id="qwikRp" type="text" class="form-control" placeholder="Red Penalties">
-        </div>
-        <div class="form-group col-lg-2 row">
+<!--         <div class="form-group col-lg-2 row">
           <input id="qwikBp" type="text" class="form-control" placeholder="Blue Penalties">
+        </div> -->
+        <div id="stackPen" class="form-group col-lg-2 row">
+           <button id="qwickBtn" id="qwikSub" type="submit" class="form-control btn btn-default">Enter</button>
+           <button id="qwickBtnClear" id="qwikSub" type="submit" class="form-control btn btn-default">Clear</button>
         </div>
-        <button id="qwikSub" type="submit" class="btn btn-default">Enter</button>
       </form>
     </div><!-- /.navbar-collapse -->
   </nav>
@@ -283,7 +290,6 @@
       $('*').scroll(function(e){
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
-
       });
 
       var thColor = $('th').css('color');
