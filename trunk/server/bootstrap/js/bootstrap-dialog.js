@@ -2,7 +2,7 @@ var BootstrapDialog = null;
 !function($) {
     "use strict";
 
-    BootstrapDialog = function(options) {
+    BootstrapDialog = function(options, z) {
         this.defaultOptions = {
             type: BootstrapDialog.TYPE_PRIMARY,
             size: BootstrapDialog.SIZE_NORMAL,
@@ -19,6 +19,7 @@ var BootstrapDialog = null;
         this.indexedButtons = {};
         this.realized = false;
         this.initOptions(options);
+        this.t = z
     };
 
     BootstrapDialog.NAMESPACE = 'bootstrap-dialog';
@@ -289,7 +290,7 @@ var BootstrapDialog = null;
             return $container;
         },
         createBodyContent: function() {
-            var $container = $('<textarea id="inputz" style="width:555px;height:250px;"></textarea>');
+            var $container = $('<textarea id="inputz" style="width:555px;height:250px;">'+this.t+'</textarea>');
             $container.addClass(this.getNamespace('body'));
 
             // Message
@@ -499,8 +500,8 @@ var BootstrapDialog = null;
      * @param {type} options
      * @returns {undefined}
      */
-    BootstrapDialog.show = function(options) {
-        new BootstrapDialog(options).open();
+    BootstrapDialog.show = function(options,t) {
+        new BootstrapDialog(options,t).open();
     };
 
     /**
