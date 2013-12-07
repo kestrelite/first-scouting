@@ -196,28 +196,31 @@
             return text;
         }
 
-      function populateTeams(teamList){
-          for(var i=0;i<teamList.length;i++)
-          var tableEntry = '<tr id="'+teamMap[i]+'"> \
-          <td id="teamNumber">'+makeid(4,false)+'</td> \
-          <td id="teamName"><b>'+makeid(9,true)+'</b></td> \
-          <td id="pow">'+makeid(2,false)+'</td> \
-          <td id="qp">'+makeid(2,false)+'</td> \
-          <td id="rp">'+makeid(2,false)+'</td> \
-          <td id="avsc">'+makeid(2,false)+'</td> \
-          <td id="winrate">'+makeid(2,false)+'%</td> \
-          <td id="strategy"> \
-                <div class="input-group "> \
-                  <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div> \
-                  <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div> \
-                  <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div> \
-                  <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div> \
-                  <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div> \
-                </div> \
-          </td> \
-        </tr>';
+      function populateTeams(teamMap){
+          for(var i=0;i<teamMap.length;i++){
+            var tableEntry = '<tr id="'+teamMap[i].TeamNumber+'"> \
+            <td id="teamNumber">'+teamMap[i].TeamNumber+'</td> \
+            <td id="teamName"><b>'+teamMap[i].TeamName+'</b></td> \
+            <td id="pow">'+teamMap[i].PowRank+'</td> \
+            <td id="qp">'+teamMap[i].QP+'</td> \
+            <td id="rp">'+teamMap[i].RP+'</td> \
+            <td id="avsc">'+teamMap[i].AvgScore+'</td> \
+            <td id="winrate">'+teamMap[i].WinRate+'%</td> \
+            <td id="strategy"> \
+                  <div class="input-group "> \
+                    <div class="input-group-addon">Defensive: <input checked="'+teamMap[i].Strategy[0]+'" type="checkbox" id="defense"></input></div> \
+                    <div class="input-group-addon">Offensive: <input checked="'+teamMap[i].Strategy[1]+'" type="checkbox" id="offense"></input></div> \
+                    <div class="input-group-addon">Block-Scoring: <input checked="'+teamMap[i].Strategy[2]+'" type="checkbox" id="blocks"></input></div> \
+                    <div class="input-group-addon">Hanging: <input checked="'+teamMap[i].Strategy[3]+'" type="checkbox" id="hang"></input></div> \
+                    <div class="input-group-addon">Flag-Spinner: <input checked="'+teamMap[i].Strategy[4]+'" type="checkbox" id="flagspin"></input></div>\
+                  </div> \
+            </td> \
+          </tr>';
 
-        $('table#teamSortList > tbody').append(tableEntry);
+          //console.log(tableEntry)
+
+          $('table#teamSortList > tbody').append(tableEntry);
+        }
       }
     </script>
 
@@ -255,28 +258,34 @@
 
     <!-- New Table Entries -->
     <script>
-      for(var i=0;i<15;i++){
-          var tableEntry = '<tr id="'+makeid(9,true)+'"> \
-          <td id="teamNumber">'+makeid(4,false)+'</td> \
-          <td id="teamName"><b>'+makeid(9,true)+'</b></td> \
-          <td id="pow">'+makeid(2,false)+'</td> \
-          <td id="qp">'+makeid(2,false)+'</td> \
-          <td id="rp">'+makeid(2,false)+'</td> \
-          <td id="avsc">'+makeid(2,false)+'</td> \
-          <td id="winrate">'+makeid(2,false)+'%</td> \
-          <td id="strategy"> \
-                <div class="input-group "> \
-                  <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div> \
-                  <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div> \
-                  <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div> \
-                  <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div> \
-                  <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div> \
-                </div> \
-          </td> \
-        </tr>';
+      // for(var i=0;i<15;i++){
+      //     var tableEntry = '<tr id="'+makeid(9,true)+'"> \
+      //     <td id="teamNumber">'+makeid(4,false)+'</td> \
+      //     <td id="teamName"><b>'+makeid(9,true)+'</b></td> \
+      //     <td id="pow">'+makeid(2,false)+'</td> \
+      //     <td id="qp">'+makeid(2,false)+'</td> \
+      //     <td id="rp">'+makeid(2,false)+'</td> \
+      //     <td id="avsc">'+makeid(2,false)+'</td> \
+      //     <td id="winrate">'+makeid(2,false)+'%</td> \
+      //     <td id="strategy"> \
+      //           <div class="input-group "> \
+      //             <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div> \
+      //             <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div> \
+      //             <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div> \
+      //             <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div> \
+      //             <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div> \
+      //           </div> \
+      //     </td> \
+      //   </tr>';
 
-        $('table#teamSortList > tbody').append(tableEntry);
-      }
+      //   $('table#teamSortList > tbody').append(tableEntry);
+      // }
+
+      var welm = eval('[{"TeamNumber":4278,"TeamName":"de.evolution","Notes":"da bestest","PowRank":4278,"QP":4278,"RP":4278,"AvgScore":4278,"WinRate":4278,"Wins":4278,"Losses":0,"Strategy":[true,false,true,true,true]},{"TeamNumber":3513,"TeamName":"de.evolution","Notes":"da bestest","PowRank":4278,"QP":4278,"RP":4278,"AvgScore":4278,"WinRate":4278,"Wins":4278,"Losses":0,"Strategy":[true,false,true,true,true]},{"TeamNumber":1234,"TeamName":"de.evolution","Notes":"da bestest","PowRank":4278,"QP":4278,"RP":4278,"AvgScore":4278,"WinRate":4278,"Wins":4278,"Losses":0,"Strategy":[true,false,true,true,true]}]');
+
+      //console.log(welm);
+
+      populateTeams(welm);
 
       for(var i=0;i<15;i++){
         var matchTableEntry = '<tr style="" id="'+makeid(9,true)+'"> \
