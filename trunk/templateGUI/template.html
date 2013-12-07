@@ -106,7 +106,39 @@
 </div>
     </div>
     <div class="tab-pane fade" id="matches">
-
+      <div class="panel panel-default">
+     <!-- Table -->
+        <div class="table-responsive">
+        <table id="matchSortList" class="table table-striped tablesorter">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Blue 1</th>
+              <th>Blue 2</th>
+              <th>Red 1</th>
+              <th>Red 2</th>
+              <th>Blue Score</th>
+              <th>Red Score</th>
+              <th>Blue Penalty</th>
+              <th>Red Penalty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="visibility:hidden;display:none;" id="entryHide">
+              <td id="matchNumber"></td>
+              <td id="blue1Num"><b></b></td>
+              <td id="blue2Num"></td>
+              <td id="red1Num"></td>
+              <td id="red2Num"></td>
+              <td id="bscore"></td>
+              <td id="rscore"></td>
+              <td id="bpen"></td>
+              <td id="rpen"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     </div>
     <div class="tab-pane fade" id="lookup">
 
@@ -163,6 +195,30 @@
 
             return text;
         }
+
+      function populateTeams(teamMap){
+          for(var i=0;i<teamMap.length;i++)
+          var tableEntry = '<tr id="'+teamMap[i]+'"> \
+          <td id="teamNumber">'+makeid(4,false)+'</td> \
+          <td id="teamName"><b>'+makeid(9,true)+'</b></td> \
+          <td id="pow">'+makeid(2,false)+'</td> \
+          <td id="qp">'+makeid(2,false)+'</td> \
+          <td id="rp">'+makeid(2,false)+'</td> \
+          <td id="avsc">'+makeid(2,false)+'</td> \
+          <td id="winrate">'+makeid(2,false)+'%</td> \
+          <td id="strategy"> \
+                <div class="input-group "> \
+                  <div class="input-group-addon">Defensive: <input type="checkbox" id="defense"></input></div> \
+                  <div class="input-group-addon">Offensive: <input type="checkbox" id="offense"></input></div> \
+                  <div class="input-group-addon">Block-Scoring: <input type="checkbox" id="blocks"></input></div> \
+                  <div class="input-group-addon">Hanging: <input type="checkbox" id="hang"></input></div> \
+                  <div class="input-group-addon">Flag-Spinner: <input type="checkbox" id="flagspin"></input></div> \
+                </div> \
+          </td> \
+        </tr>';
+
+        $('table#teamSortList > tbody').append(tableEntry);
+      }
     </script>
 
     <!-- Event Functions -->
@@ -200,7 +256,7 @@
     <!-- New Table Entries -->
     <script>
       for(var i=0;i<15;i++){
-          var tableEntry = '<tr id="entryHide"> \
+          var tableEntry = '<tr id="'+makeid(9,true)+'"> \
           <td id="teamNumber">'+makeid(4,false)+'</td> \
           <td id="teamName"><b>'+makeid(9,true)+'</b></td> \
           <td id="pow">'+makeid(2,false)+'</td> \
@@ -220,6 +276,22 @@
         </tr>';
 
         $('table#teamSortList > tbody').append(tableEntry);
+      }
+
+      for(var i=0;i<15;i++){
+        var matchTableEntry = '<tr style="" id="'+makeid(9,true)+'"> \
+              <td id="matchNumber">'+makeid(9,true)+'</td> \
+              <td id="blue1Num">'+makeid(9,true)+'`</td> \
+              <td id="blue2Num">'+makeid(9,true)+'</td> \
+              <td id="red1Num">'+makeid(9,true)+'</td> \
+              <td id="red2Num">'+makeid(9,true)+'</td> \
+              <td id="bscore">'+makeid(9,true)+'</td> \
+              <td id="rscore">'+makeid(9,true)+'</td> \
+              <td id="bpen">'+makeid(9,true)+'</td> \
+              <td id="rpen">'+makeid(9,true)+'</td> \
+            </tr>';
+
+        $('table#matchSortList > tbody').append(matchTableEntry);
       }
     </script>
     
