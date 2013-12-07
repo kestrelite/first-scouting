@@ -44,8 +44,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				fmt.Println(Teams)
 			} else if r.Form.Get("type") == "match" {
 				matchJson := r.Form.Get("data")
+				fmt.Println(matchJson)
 				n, _ := strconv.Atoi(r.Form.Get("num"))
 				tmp := marshal.UnmarshalMatch([]byte(matchJson))
+				fmt.Println(tmp)
 				if n > len(Match) {
 					Match = append(Match, tmp)
 				} else {
