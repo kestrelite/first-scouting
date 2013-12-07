@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="shortcut icon" href="favicon.png" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
     <title>FTC Ranks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -25,7 +25,45 @@
   </style>
 
   <body style="background-color:#101010;">
-    <h1>De.Evolution</h1>
+
+  <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div id="topNavHead" class="navbar-header">
+      <h1>De.Evolution</h1>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="qwickHolder" style="float:right;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left form-inline" role="form">
+        <div class="form-group col-lg-1 row">
+          <input id="qwikR1" type="text" class="form-control " placeholder="R1">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikR2" type="text" class="form-control" placeholder="R2">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikB1" type="text" class="form-control" placeholder="B1">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikB2" type="text" class="form-control" placeholder="B2">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikRs" type="text" class="form-control" placeholder="Red Score">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikBs" type="text" class="form-control" placeholder="Blue Score">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikRp" type="text" class="form-control" placeholder="Red Penalties">
+        </div>
+        <div class="form-group col-lg-1 row">
+          <input id="qwikBp" type="text" class="form-control" placeholder="Blue Penalties">
+        </div>
+        <button id="qwikSub" type="submit" class="btn btn-default">Enter</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
   <div class="tab-content">
     <div class="tab-pane fade in active" id="sorted">
       <div class="panel panel-default">
@@ -222,23 +260,35 @@
           $('table#teamSortList > tbody').append(tableEntry);
         }
       }
+
+      function levelBars(e){
+        if($(window).height() != $(document).height()){
+          $('#qwhite').css('visibility', 'visibile');
+          if($('#qwhite').height() != $('#bottomnav').height()){
+              $('#qwhite').height($('#bottomnav').height());
+          } else{
+            $('#qwhite').css('visibility', 'hidden');
+          }
+        }
+      }
     </script>
 
     <!-- Event Functions -->
     <script>
-      $(document).ready(function() { 
+      $(document).ready(function(e) { 
         $("#teamSortList").tablesorter(); 
+        $("#matchSortList").tablesorter(); 
 
-        if($('#qwhite').height() != $('#bottomnav').height()){
-            $('#qwhite').height($('#bottomnav').height());
+        levelBars(e);
+
+        if($('#qwickHolder').width() + $('#topNavHead').width() != $('#topnav').width()){
+          while($('#qwickHolder').width() + $('#topNavHead').width() > $('#topnav').width()){
+            $('#qwickHolder').width($('#qwickHolder').width()-1)
+          }
         }
       }); 
 
-      $('*').scroll(function(e){
-        if($('#qwhite').height() != $('#bottomnav').height()){
-            $('#qwhite').height($('#bottomnav').height());
-        }
-      });
+      $('*').scroll(levelBars(1));
 
       var thColor = $('th').css('color');
       $('th').hover(function(e){
