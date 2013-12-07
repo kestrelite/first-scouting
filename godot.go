@@ -1,11 +1,15 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"math"
 )
 
 type Team struct {
+	TeamNumber int
+
 	TeamName, Notes string
 
 	PowRank, QP, RP   float32
@@ -72,8 +76,33 @@ func PrelimCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 	return teamList
 }
 
+func MarshalTeams(Teams map[int]Team) string {
+	mapstr := `[`
+	i := 0
+	for _, v := range Teams {
+		val, _ := json.Marshal(v)
+		mapstr += bytes.NewBuffer(val).String()
+		if i != len(Teams)-1 {
+			mapstr += ","
+		}
+		i++
+	}
+	mapstr += `]`
+	return mapstr
+}
+
 func main() {
 	var mL []Match
+	teams := make(map[int]Team)
+
+	team := Team{4278, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
+	team1 := Team{3513, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
+	team2 := Team{1234, "de.evolution", "da bestest", 4278, 4278, 4278, 4278, 4278, 4278, 0, []bool{true, false}}
+
+	teams[4278] = team
+	teams[3513] = team1
+	teams[1234] = team2
+
 	tL := make(map[int]Team)
 
 	mL = append(mL, Match{TeamNums: []int{1, 2, 3, 4}, RScore: 50, BScore: 30, RPen: 0, BPen: 0})
@@ -81,6 +110,7 @@ func main() {
 	tL = UpdateTeamList(mL, tL)
 	tL = PrelimCalc(mL, tL)
 
-	fmt.Println(mL)
-	fmt.Println(tL)
+	t := MarshalTeams(teams)
+
+	fmt.Println(t)
 }
