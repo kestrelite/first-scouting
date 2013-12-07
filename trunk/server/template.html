@@ -35,28 +35,28 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div id="qwickHolder" style="float:right;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form class="navbar-form navbar-left form-inline" role="form">
-        <div class="form-group col-lg-1 row">
-          <input id="qwikR1" type="text" class="form-control " placeholder="R1">
+        <div class="form-group col-lg-2 row">
+          <input id="qwikR1" type="text" class="form-control" placeholder="R1">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikR2" type="text" class="form-control" placeholder="R2">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikB1" type="text" class="form-control" placeholder="B1">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikB2" type="text" class="form-control" placeholder="B2">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikRs" type="text" class="form-control" placeholder="Red Score">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikBs" type="text" class="form-control" placeholder="Blue Score">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikRp" type="text" class="form-control" placeholder="Red Penalties">
         </div>
-        <div class="form-group col-lg-1 row">
+        <div class="form-group col-lg-2 row">
           <input id="qwikBp" type="text" class="form-control" placeholder="Blue Penalties">
         </div>
         <button id="qwikSub" type="submit" class="btn btn-default">Enter</button>
@@ -178,9 +178,6 @@
       </div>
     </div>
     </div>
-    <div class="tab-pane fade" id="lookup">
-
-    </div>
   </div>
 <nav id="bottomnav" class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -197,9 +194,8 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav nav-pills">
-      <li class="active erlm"><a data-toggle="tab" href="#sorted">Sorted</a></li>
+      <li class="active erlm"><a data-toggle="tab" href="#sorted">Teams</a></li>
       <li class="erlm"><a data-toggle="tab" href="#matches">Matches</a></li>
-      <li class="erlm"><a data-toggle="tab" href="#lookup">Teams</a></li>
     </ul>
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -276,11 +272,9 @@
         $("#teamSortList").tablesorter(); 
         $("#matchSortList").tablesorter(); 
 
-        if($('#qwickHolder').width() + $('#topNavHead').width() != $('#topnav').width()){
-          while($('#qwickHolder').width() + $('#topNavHead').width() > $('#topnav').width()){
+          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
             $('#qwickHolder').width($('#qwickHolder').width()-1)
           }
-        }
 
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
