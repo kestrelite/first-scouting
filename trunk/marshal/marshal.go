@@ -21,6 +21,12 @@ func MarshalTeams(Teams map[int]powalg.Team) string {
 	return mapstr
 }
 
+func UnmarshalTeams(j []byte) powalg.Team {
+	var t powalg.Team
+	json.Unmarshal(j, &t)
+	return t
+}
+
 func UnmarshalMatches(j []byte) powalg.Match {
 	var m powalg.Match
 	json.Unmarshal(j, &m)
