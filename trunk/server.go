@@ -49,10 +49,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				fmt.Println(n)
 				if n > len(Match) {
 					Match = append(Match, tmp)
-					fmt.Println(Match)
 				} else {
 					Match[n-1] = tmp
-					fmt.Println(Match)
 				}
 				Teams = powalg.Recalculate(Match)
 				io.WriteString(w, marshal.MarshalTeams(Teams))
