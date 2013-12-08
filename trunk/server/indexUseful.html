@@ -274,17 +274,7 @@
       }, function(e){
         $(this).css('color', thColor).html($(this).text());
       });
-	  $('#teamName b').click(function() {var tN = $(this).parent().siblings("#teamNumber").text(); var n = $(this).parent().siblings("#notes"); BootstrapDialog.show({
-            message: 'Notes',
-            buttons: [{label: 'Close',
-                action: function(dialogItself){
-                	var note = $('textarea#inputz').val();
-                	n.text(note);
-                	$.post('/?type=notes&num='+tN+'&data='+note);
-                    dialogItself.close();
-                }
-            }]
-        }, $(this).parent().siblings('#notes').text());});
+	  
 
       }
 
