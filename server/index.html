@@ -55,6 +55,9 @@
            <button id="qwickBtn" id="qwikSub" type="button" class="form-control btn btn-default">Enter</button>
            <button id="qwickBtnClear" id="qwikSub" type="reset" class="form-control btn btn-default">Clear</button>
         </div>
+        <div class="form-group col-lg-2 row">
+          <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="Match #">
+        </div>
       </form>
     </div><!-- /.navbar-collapse -->
   </nav>
@@ -64,7 +67,7 @@
       <div class="panel panel-default">
 
      <!-- Table -->
-    <div class="table-responsive">
+    <div id="respTeam" class="table-responsive">
     <table id="teamSortList" class="table table-striped tablesorter">
       <thead>
         <tr>
@@ -106,7 +109,7 @@
     <div class="tab-pane fade" id="matches">
       <div class="panel panel-default">
      <!-- Table -->
-        <div class="table-responsive">
+        <div id="respMatch" class="table-responsive">
         <table id="matchSortList" class="table table-striped tablesorter">
           <thead>
             <tr>
@@ -194,6 +197,7 @@
 
       function populateTeams(teamMap){
           for(var i=0;i<teamMap.length;i++){
+            if(i==0) $("#teamSortList tr").not("thead tr").remove();
             var tableEntry = '<tr id="'+teamMap[i].TeamNumber+'"> \
             <td id="teamNumber">'+teamMap[i].TeamNumber+'</td> \
             <td id="teamName"><b>'+teamMap[i].TeamName+'</b></td> \
@@ -204,26 +208,79 @@
             <td id="winrate">'+teamMap[i].WinRate+'%</td> \
             <td id="strategy"> \
                   <div class="input-group "> \
-                    <div class="input-group-addon">Defensive: <input '+(teamMap[i].Strategy[0]?'checked':'')+' type="checkbox" id="defense"></input></div> \
-                    <div class="input-group-addon">Offensive: <input '+(teamMap[i].Strategy[1]?'checked':'')+' type="checkbox" id="offense"></input></div> \
-                    <div class="input-group-addon">Block-Scoring: <input '+(teamMap[i].Strategy[2]?'checked':'')+' type="checkbox" id="blocks"></input></div> \
-                    <div class="input-group-addon">Hanging: <input '+(teamMap[i].Strategy[3]?'checked':'')+' type="checkbox" id="hang"></input></div> \
-                    <div class="input-group-addon">Flag-Spinner: <input '+(teamMap[i].Strategy[4]?'checked':'')+' type="checkbox" id="flagspin"></input></div>\
+                    <div  id="defense" class="input-group-addon">Defensive: <input '+(teamMap[i].Strategy[0]?'checked':'')+' type="checkbox"></input></div> \
+                    <div id="offense" class="input-group-addon">Offensive: <input '+(teamMap[i].Strategy[1]?'checked':'')+' type="checkbox"></input></div> \
+                    <div id="block" class="input-group-addon">Block-Scoring: <input '+(teamMap[i].Strategy[2]?'checked':'')+' type="checkbox"></input></div> \
+                    <div id="hang" class="input-group-addon">Hanging: <input '+(teamMap[i].Strategy[3]?'checked':'')+' type="checkbox"></input></div> \
+                    <div id="flagSpin"class="input-group-addon">Flag-Spinner: <input '+(teamMap[i].Strategy[4]?'checked':'')+' type="checkbox"></input></div>\
                   </div> \
             </td> \
+            <td style="visibility:hidden;display:none;" id="notes">'+teamMap[i].Notes+'</td> \
           </tr>';
 
           //console.log(tableEntry)
-
           $('table#teamSortList > tbody').append(tableEntry);
         }
-              var thColor = $('#teamName b').css('color');
+
+        var save = $('#respTeam').html();
+          $('table#teamSortList').remove();
+          $('#respTeam').append(save);
+      var thColor = $('#teamName b').css('color');
       $('#teamName b').hover(function(e){
         $(this).css('color', '#84C4FF').html('<u>'+$(this).text()+'</u>');
       }, function(e){
         $(this).css('color', thColor).html($(this).text());
       });
+
+           $("table#teamSortList").tablesorter(); 
+                   $('#teamName b').click(function() {var tN = $(this).parent().siblings("#teamNumber").text(); var n = $(this).parent().siblings("#notes"); BootstrapDialog.show({
+            message: 'Notes',
+            buttons: [{label: 'Close',
+                action: function(dialogItself){
+                  var note = $('textarea#inputz').val();
+                  var name = $('input#namez').val();
+                  n.text(note);
+                  $.post('/?type=tname&num='+tN+'&data='+name, function(data, w, s) {
+                    populateTeams(data)
+                  });
+                  $.post('/?type=notes&num='+tN+'&data='+note);
+                    dialogItself.close();
+                } 
+            }]
+        }, $(this).parent().siblings('#notes').text());});
       }
+
+      function populateMatches(matchMap) {
+          //console.log("yes")
+          for(var i=0;i<matchMap.length;i++){
+            if(i==0) $("#matchSortList tr").not("thead tr").remove();
+        var matchTableEntry = '<tr style="" id="match'+i+'"> \
+              <td id="matchNumber">'+(i+1)+'</td> \
+              <td id="blue1Num">'+matchMap[i].TeamNums[2]+'</td> \
+              <td id="blue2Num">'+matchMap[i].TeamNums[3]+'</td> \
+              <td id="red1Num">'+matchMap[i].TeamNums[0]+'</td> \
+              <td id="red2Num">'+matchMap[i].TeamNums[1]+'</td> \
+              <td id="bscore">'+matchMap[i].BScore+'</td> \
+              <td id="rscore">'+matchMap[i].RScore+'</td> \
+              <td id="bpen">'+matchMap[i].BPen+'</td> \
+              <td id="rpen">'+matchMap[i].RPen+'</td> \
+            </tr>';
+
+        $('table#matchSortList > tbody').append(matchTableEntry);
+      }       
+       var save = $('#respMatch').html();
+          $('table#matchSortList').remove();
+          $('#respMatch').append(save);
+
+     var thColor = $('#teamName b').css('color');
+      $('#teamName b').hover(function(e){
+        $(this).css('color', '#84C4FF').html('<u>'+$(this).text()+'</u>');
+      }, function(e){
+        $(this).css('color', thColor).html($(this).text());
+      });
+      
+           $("table#matchSortList").tablesorter(); 
+        }
 
       function levelBars(e, f){
           $(e).css('opacity', '0.0');
@@ -237,8 +294,19 @@
     <!-- Event Functions -->
     <script>
       $(document).ready(function(e) { 
-        $("#teamSortList").tablesorter(); 
-        $("#matchSortList").tablesorter(); 
+        $.get('/?type=team&num=all', function(data, other, thors) {
+          populateTeams(data)
+        });
+        $.get('/?type=match', function(data, other, thors) {
+          populateMatches(data)
+        });
+        $('#qwikNum').val(1);
+        $.get('/?type=matchNum', function(data) {
+          $('#qwikNum').val(1+data);
+        });
+
+        //$(".tablesorter").tablesorter(); 
+       // $("#matchSortList").tablesorter(); 
 
           while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
             $('#qwickHolder').width($('#qwickHolder').width()-1)
@@ -246,6 +314,8 @@
 
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
+
+
       }); 
 
       $('*').scroll(function(e){
@@ -293,35 +363,22 @@
 
       //   $('table#teamSortList > tbody').append(tableEntry);
       // }  
-
-      for(var i=0;i<15;i++){
-        var matchTableEntry = '<tr style="" id="'+makeid(9,true)+'"> \
-              <td id="matchNumber">'+makeid(9,true)+'</td> \
-              <td id="blue1Num">'+makeid(9,true)+'`</td> \
-              <td id="blue2Num">'+makeid(9,true)+'</td> \
-              <td id="red1Num">'+makeid(9,true)+'</td> \
-              <td id="red2Num">'+makeid(9,true)+'</td> \
-              <td id="bscore">'+makeid(9,true)+'</td> \
-              <td id="rscore">'+makeid(9,true)+'</td> \
-              <td id="bpen">'+makeid(9,true)+'</td> \
-              <td id="rpen">'+makeid(9,true)+'</td> \
-            </tr>';
-
-        $('table#matchSortList > tbody').append(matchTableEntry);
-      }
     </script>
       <script>
       var lMatch
 
     function getData() {
       var sendMatch = {"TeamNums":[parseInt($('#qwikR1').val()),parseInt($('#qwikR2').val()),parseInt($('#qwikB1').val()),parseInt($('#qwikB2').val())],"RScore":parseInt($('#qwikRs').val()),"BScore":parseInt($('#qwikBs').val()),"RPen":parseInt($('#qwikRp').val()),"BPen":parseInt($('#qwikBp').val())}
-      lMatch = $.post('/?type=match&num=1&data='+ JSON.stringify(sendMatch));
-      return $.post('/?type=match&num=1&data='+ JSON.stringify(sendMatch));
+      lMatch = $.post('/?type=match&num='+parseInt($('#qwikNum').val())+'&data='+ JSON.stringify(sendMatch), function(data, other, thors) {
+        populateTeams(data)
+      });
     }
     $('#qwickBtn').click(function(e){
-        getData().done(function(){
-          populateTeams(lMatch.responseJSON);
-        })
+      getData();
+      $('#qwikNum').val(parseInt($('#qwikNum').val())+1)
+      $.get('/?type=match', function(data, w, s){
+        populateMatches(data.responseJson);
+      });
     });  
   </script>
   </body>

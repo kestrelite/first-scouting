@@ -1,6 +1,7 @@
 package powalg
 
 import (
+	//"fmt"
 	"math"
 )
 
@@ -21,7 +22,7 @@ type Team struct {
 }
 
 type Match struct {
-	TeamNums       []int
+	TeamNums       []int //R1, R2, B1, B2
 	RScore, BScore int
 	RPen, BPen     int
 }
@@ -81,7 +82,7 @@ func PrelimCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 		tmp.RP = v.RP
 		tmp.Wins = v.Win
 		tmp.Losses = v.Loss
-		tmp.WinRate = float32(v.Win) / float32(v.Win+v.Loss)
+		tmp.WinRate = 100 * (float32(v.Win) / float32(v.Win+v.Loss))
 		teamList[i] = tmp
 	}
 
@@ -131,6 +132,9 @@ func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 		tmp.TeamNumber = i
 		if tmp.Strategy == nil {
 			tmp.Strategy = []bool{false, false, false, false, false}
+		}
+		if tmp.TeamName == "" {
+			tmp.TeamName = "[NONAME]"
 		}
 		tmp.PowRank = float32(v.Score) / float32(v.Played)
 		teamList[i] = tmp
