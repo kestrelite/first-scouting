@@ -22,6 +22,9 @@
   h1{
     color:rgba(138, 138, 138, 0.47);
   }
+  mark{
+    background-color: rgba(228, 228, 228, 0.82);
+  }
   </style>
 
   <body style="background-color:#101010;">
@@ -162,9 +165,9 @@
     </ul>
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Team #">
+        <input id="teamSearch" type="text" class="form-control" placeholder="Team #"/>
       </div>
-      <button type="submit" class="btn btn-default">Find</button>
+      <!-- <button type="submit" class="btn btn-default">Find</button> -->
     </form>
    <ul class="nav navbar-nav navbar-right">
     </ul>
@@ -380,6 +383,54 @@
         populateMatches(data.responseJson);
       });
     });  
+
+    $("#teamSearch").on('keyup',function(event) {
+      if($(this).val() == ""){
+        $('table#teamSortList tbody tr').not('#entryHide').each(function(index) {
+           $(this).show();
+        });
+        $('table#matchSortList tbody tr').not('#entryHide').each(function(index) {
+          $(this).children('#blue1Num').html($(this).children('#blue1Num').text())
+          $(this).children('#blue2Num').html($(this).children('#blue2Num').text())
+          $(this).children('#red1Num').html($(this).children('#red1Num').text())
+          $(this).children('#red2Num').html($(this).children('#red2Num').text())
+           $(this).show();
+        });
+      } else{
+      $('table#teamSortList tbody tr').not('#entryHide').each(function(i) {
+        $(this).children('#teamNumber').text().indexOf($('#teamSearch').val()) == 0? $(this).show():$(this).hide()
+      });
+      $('table#matchSortList tbody tr').not('#entryHide').each(function(i) {
+        var yeah = false;
+        if($(this).children('#blue1Num').text().indexOf($('#teamSearch').val()) == 0){
+          $(this).children('#blue1Num').html('<mark>'+$(this).children('#blue1Num').text()+'</mark>')
+          $(this).show();
+          yeah = true;
+        } else{
+          $(this).children('#blue1Num').html($(this).children('#blue1Num').text())
+        } if($(this).children('#blue2Num').text().indexOf($('#teamSearch').val()) == 0){
+          $(this).children('#blue2Num').html('<mark>'+$(this).children('#blue2Num').text()+'</mark>')
+          $(this).show();
+          yeah = true;
+        } else{
+            $(this).children('#blue2Num').html($(this).children('#blue2Num').text())
+        } if($(this).children('#red1Num').text().indexOf($('#teamSearch').val()) == 0){
+          $(this).children('#red1Num').html('<mark>'+$(this).children('#red1Num').text()+'</mark>')
+          $(this).show();
+          yeah = true;
+        } else{
+          $(this).children('#red1Num').html($(this).children('#red1Num').text())
+        } if($(this).children('#red2Num').text().indexOf($('#teamSearch').val()) == 0){
+          $(this).children('#red2Num').html('<mark>'+$(this).children('#red2Num').text()+'</mark>')
+          $(this).show();
+          yeah = true;
+        } else{
+          $(this).children('#red2Num').html($(this).children('#red2Num').text())
+          yeah?$(this).show():$(this).hide()
+        }
+      });
+      }
+    });
   </script>
   </body>
 </html>
