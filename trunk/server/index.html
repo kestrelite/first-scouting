@@ -220,8 +220,6 @@
             </td> \
             <td style="visibility:hidden;display:none;" id="notes">'+teamMap[i].Notes+'</td> \
           </tr>';
-
-          //console.log(tableEntry)
           $('table#teamSortList > tbody').append(tableEntry);
         }
 
@@ -234,27 +232,27 @@
       }, function(e){
         $(this).css('color', thColor).html($(this).text());
       });
-
            $("table#teamSortList").tablesorter(); 
-                   $('#teamName b').click(function() {var tN = $(this).parent().siblings("#teamNumber").text(); var n = $(this).parent().siblings("#notes"); BootstrapDialog.show({
+                   $('#teamName b').click(function() { var tN = $(this).parent().siblings("#teamNumber").text(); var n = $(this).parent().siblings("#notes"); BootstrapDialog.show({
             message: 'Notes',
             buttons: [{label: 'Close',
                 action: function(dialogItself){
                   var note = $('textarea#inputz').val();
                   var name = $('input#namez').val();
-                  n.text(note);
+                  $.post('/?type=notes&num='+tN+'&data='+note);
+                    dialogItself.close();
+                  $(function () {
+                    $('#namez').val(name);
+                  });
                   $.post('/?type=tname&num='+tN+'&data='+name, function(data, w, s) {
                     populateTeams(data)
                   });
-                  $.post('/?type=notes&num='+tN+'&data='+note);
-                    dialogItself.close();
                 } 
             }]
-        }, $(this).parent().siblings('#notes').text());});
+        }, $(this).parent().siblings("#notes").text(), $(this).text());});
       }
 
       function populateMatches(matchMap) {
-          //console.log("yes")
           for(var i=0;i<matchMap.length;i++){
             if(i==0) $("#matchSortList tr").not("thead tr").remove();
         var matchTableEntry = '<tr style="" id="match'+i+'"> \
@@ -380,7 +378,7 @@
       getData();
       $('#qwikNum').val(parseInt($('#qwikNum').val())+1)
       $.get('/?type=match', function(data, w, s){
-        populateMatches(data.responseJson);
+        populateMatches(data);
       });
     });  
 
