@@ -2,7 +2,7 @@ var BootstrapDialog = null;
 !function($) {
     "use strict";
 
-    BootstrapDialog = function(options, z) {
+    BootstrapDialog = function(options, z, w) {
         this.defaultOptions = {
             type: BootstrapDialog.TYPE_PRIMARY,
             size: BootstrapDialog.SIZE_NORMAL,
@@ -20,6 +20,7 @@ var BootstrapDialog = null;
         this.realized = false;
         this.initOptions(options);
         this.t = z
+        this.n = w
     };
 
     BootstrapDialog.NAMESPACE = 'bootstrap-dialog';
@@ -290,7 +291,7 @@ var BootstrapDialog = null;
             return $container;
         },
         createBodyContent: function() {
-            var $container = $('<div class="form-group col-lg-5 row"> <input id="namez" type="text" class="form-control" placeholder="Team Name"></input> </div> <textarea id="inputz" style="width:555px;height:250px;">'+this.t+'</textarea>');
+            var $container = $('<div class="form-group col-lg-5 row"> <input id="namez" type="text" class="form-control" placeholder="Team Name" value="'+this.n+'"></input> </div> <textarea id="inputz" style="width:555px;height:250px;">'+this.t+'</textarea>');
             $container.addClass(this.getNamespace('body'));
 
             // Message
@@ -500,8 +501,8 @@ var BootstrapDialog = null;
      * @param {type} options
      * @returns {undefined}
      */
-    BootstrapDialog.show = function(options,t) {
-        new BootstrapDialog(options,t).open();
+    BootstrapDialog.show = function(options,t, n) {
+        new BootstrapDialog(options,t, n).open();
     };
 
     /**
