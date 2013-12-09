@@ -329,12 +329,13 @@
         $('*').scroll(function(e){
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
-
-          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
-          $('#qwickHolder').width($('#qwickHolder').width()-1);
-        }
       });
-
+        window.setTimeout(function(){
+          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
+           $('#qwickHolder').width($('#qwickHolder').width()-1);
+           console.log("done")
+          }
+        }, 50);
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
 
