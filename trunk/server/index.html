@@ -16,15 +16,24 @@
   </head>
 
   <style>
+  @font-face
+  {
+    font-family: startcraft;
+    src: url('bootstrap/fonts/Starcraft-Normal.ttf');
+  }
   th, #teamName {
     cursor: pointer;
   }
-  h1{
-    color:rgba(138, 138, 138, 0.47);
+  h1, h2, h3{
+    font-family: startcraft;
+    color:rgba(51, 255, 0, 0.47);
   }
   mark{
     background-color: rgba(228, 228, 228, 0.82);
   }
+/*  thead{
+    position: fixed;
+  }*/
   </style>
 
   <body style="background-color:#101010;">
@@ -32,7 +41,7 @@
   <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div id="topNavHead" class="navbar-header">
-      <h1>De.Evolution</h1>
+      <h1>de.evolution</h1>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,8 +67,8 @@
            <button id="qwickBtn" id="qwikSub" type="button" class="form-control btn btn-default">Enter</button>
            <button id="qwickBtnClear" id="qwikSub" type="reset" class="form-control btn btn-default">Clear</button>
         </div>
-        <div class="form-group col-lg-2 row">
-          <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="Match #">
+        <div class="form-group col-lg-1 row">
+          <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="#">
         </div>
       </form>
     </div><!-- /.navbar-collapse -->
@@ -309,26 +318,45 @@
         //$(".tablesorter").tablesorter(); 
        // $("#matchSortList").tablesorter(); 
 
-          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
-            $('#qwickHolder').width($('#qwickHolder').width()-1)
+          $('*').click(function(e){
+            while(($('#qwickHolder').width() + $('#topNavHead').width()) > $('#topnav').width()){
+            $('#qwickHolder').width($('#qwickHolder').width()-1);
           }
 
+          levelBars("#qwhite","#bottomnav")
+          levelBars("#qwhiteTop", '#topnav')
+        });
+        $('*').scroll(function(e){
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
 
+          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
+          $('#qwickHolder').width($('#qwickHolder').width()-1);
+        }
+      });
 
+        levelBars("#qwhite","#bottomnav")
+        levelBars("#qwhiteTop", '#topnav')
+
+        while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
+          $('#qwickHolder').width($('#qwickHolder').width()-1)
+        }
       }); 
 
-      $('*').scroll(function(e){
-        levelBars("#qwhite","#bottomnav")
-        levelBars("#qwhiteTop", '#topnav')
-      });
 
       var thColor = $('th').css('color');
       $('th').hover(function(e){
         $(this).css('color', '#84C4FF').html('<u>'+$(this).text()+'</u>');
       }, function(e){
         $(this).css('color', thColor).html($(this).text());
+      });
+
+      $("*").load(function(e){
+          while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
+          $('#qwickHolder').width($('#qwickHolder').width()-1)
+        }
+
+        $("#topNavHead").click();
       });
     </script>
 
@@ -394,7 +422,42 @@
           $(this).children('#red2Num').html($(this).children('#red2Num').text())
            $(this).show();
         });
-      } else{
+      } 
+      else if($(this).val().indexOf(".") != -1){
+        console.log("Found Period...")
+        var em = $(this).val();
+        //var strat[] = [false, false, false, false, false];
+         $('table#teamSortList tbody tr').not('#entryHide').each(function(index) {
+            var sho = false;// var curr = $(this);//var how = 0; var many = 0
+            var strag = [false,false,false,false,false]; //d,o,h,f,b
+            var selec = ["#defense", "#offense", "#hang", "#flagSpin", "#block"];
+            console.log($(this).find('#defense').children().prop("checked"));
+            if (em.indexOf('d.') != -1) {strag[0] = true;}
+            if (em.indexOf('o.') != -1) {strag[1] = true;}
+            if (em.indexOf('h.') != -1) {strag[2] = true;}
+            if (em.indexOf('f.') != -1) {strag[3] = true;}
+            if (em.indexOf('b.') != -1) {strag[4] = true;}
+
+            // if (strag[0] != -1 && $(this).find('#defense').children().prop("checked")) {strag[0] = false;sho = true;};
+            // if (strag[1] != -1 && $(this).find('#offense').children().prop("checked")) {strag[1] = false;sho = true;};
+            // if (strag[2] != -1 && $(this).find('#hang').children().prop("checked")) {strag[2] = false;sho = true;};
+            // if (strag[3] != -1 && $(this).find('#flagSpin').children().prop("checked")) {strag[3] = false;sho = true;};
+            // if (strag[4] != -1 && $(this).find('#block').children().prop("checked")) {strag[4] = false;sho = true;};
+            //1100
+            //1010
+            //top & bot == top
+            //console.log(strag);
+            for (var i = strag.length - 1; i >= 0; i--) {
+              if((strag[i] == $(this).find((selec[i]+"")).children().prop("checked") && strag[i]) == strag[i]){
+                sho = true;
+              } else{
+                sho = false;break;
+              }
+            }
+            sho?$(this).show():$(this).hide()
+         });
+        }
+      else {
       $('table#teamSortList tbody tr').not('#entryHide').each(function(i) {
         $(this).children('#teamNumber').text().indexOf($('#teamSearch').val()) == 0? $(this).show():$(this).hide()
       });
