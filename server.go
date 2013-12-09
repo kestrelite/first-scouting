@@ -1,6 +1,7 @@
 package main
 
 import (
+	"./ftcdat"
 	"./marshal"
 	"./powscl-alg"
 	"bytes"
@@ -25,6 +26,8 @@ func main() {
 	Teams = marshal.UnmarshalTeams(Teams, teamJson)
 	Match = marshal.UnmarshalMatches(matchJson)
 
+	Teams = ftcdat.NameCorrect(Teams)
+
 	chttp.Handle("/", http.FileServer(http.Dir("server")))
 
 	http.HandleFunc("/", handler)
@@ -46,13 +49,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				matchJson := r.Form.Get("data")
 				n, _ := strconv.Atoi(r.Form.Get("num"))
 				tmp := marshal.UnmarshalMatch([]byte(matchJson))
-				fmt.Println(n)
 				if n > len(Match) {
 					Match = append(Match, tmp)
 				} else {
 					Match[n-1] = tmp
 				}
-				Teams = powalg.Recalculate(Match)
+				Teams = ftcdat.NameCorrect(powalg.Recalculate(Match))
 				io.WriteString(w, marshal.MarshalTeams(Teams))
 			} else if r.Form.Get("type") == "notes" {
 				teamNum, _ := strconv.Atoi(r.Form.Get("num"))
