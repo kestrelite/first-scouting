@@ -423,6 +423,12 @@
            $(this).show();
         });
       } 
+      else if($(this).val().indexOf("!") == 0){
+         $('table#teamSortList tbody tr').each(function(i) {
+          console.log($(this).find('#teamName b').text().toLowerCase());console.log($('#teamSearch').val().toLowerCase().substr(1));console.log('\n');
+          $(this).find('#teamName b').text().toLowerCase().indexOf($('#teamSearch').val().toLowerCase().substr(1)) == 0? $(this).show():$(this).hide();
+         });
+      }
       else if($(this).val().indexOf(".") != -1){
         console.log("Found Period...")
         var em = $(this).val();
