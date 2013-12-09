@@ -425,19 +425,19 @@
       } 
       else if($(this).val().indexOf("!") == 0){
          $('table#teamSortList tbody tr').each(function(i) {
-          console.log($(this).find('#teamName b').text().toLowerCase());console.log($('#teamSearch').val().toLowerCase().substr(1));console.log('\n');
+          //console.log($(this).find('#teamName b').text().toLowerCase());console.log($('#teamSearch').val().toLowerCase().substr(1));console.log('\n');
           $(this).find('#teamName b').text().toLowerCase().indexOf($('#teamSearch').val().toLowerCase().substr(1)) == 0? $(this).show():$(this).hide();
          });
       }
       else if($(this).val().indexOf(".") != -1){
-        console.log("Found Period...")
+        //console.log("Found Period...")
         var em = $(this).val();
         //var strat[] = [false, false, false, false, false];
          $('table#teamSortList tbody tr').not('#entryHide').each(function(index) {
             var sho = false;// var curr = $(this);//var how = 0; var many = 0
             var strag = [false,false,false,false,false]; //d,o,h,f,b
             var selec = ["#defense", "#offense", "#hang", "#flagSpin", "#block"];
-            console.log($(this).find('#defense').children().prop("checked"));
+           // console.log($(this).find('#defense').children().prop("checked"));
             if (em.indexOf('d.') != -1) {strag[0] = true;}
             if (em.indexOf('o.') != -1) {strag[1] = true;}
             if (em.indexOf('h.') != -1) {strag[2] = true;}
