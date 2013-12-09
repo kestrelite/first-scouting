@@ -42,9 +42,36 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			w.Header().Set("Content-Type", "application/json")
 			if r.Form.Get("type") == "team" {
-				teamJson := r.Form.Get("data")
-				tmp := marshal.UnmarshalTeam([]byte(teamJson))
-				Teams[tmp.TeamNumber] = tmp
+				if r.Form.Get("strat") != "" {
+					var is bool = false
+					m, _ := strconv.Atoi(r.Form.Get("num"))
+					tmp := Teams[m]
+					if r.Form.Get("data") == "1" {
+						is = true
+					}
+					switch r.Form.Get("strat") {
+					case "defense":
+						tmp.Strategy[0] = is
+						break
+					case "offense":
+						tmp.Strategy[1] = is
+						break
+					case "block":
+						tmp.Strategy[2] = is
+						break
+					case "hang":
+						tmp.Strategy[3] = is
+						break
+					case "flag":
+						tmp.Strategy[4] = is
+						break
+					}
+					Teams[m] = tmp
+				} else {
+					teamJson := r.Form.Get("data")
+					tmp := marshal.UnmarshalTeam([]byte(teamJson))
+					Teams[tmp.TeamNumber] = tmp
+				}
 			} else if r.Form.Get("type") == "match" {
 				matchJson := r.Form.Get("data")
 				n, _ := strconv.Atoi(r.Form.Get("num"))
