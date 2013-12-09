@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="bootstrap/favicon.png" type="image/png" />
     <title>FTC Ranks</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -37,6 +37,16 @@
   }
   mark{
     background-color: rgba(228, 228, 228, 0.82);
+  }
+  mark.blue{
+    background-color: rgba(132, 172, 255, 0.82);
+  }
+  mark.red{
+    background-color: rgba(255, 139, 139, 0.82);
+  }
+  #qwikNum {
+    width: 82px;
+    text-align: center;
   }
 /*  thead{
     position: fixed;
@@ -75,7 +85,7 @@
            <button id="qwickBtnClear" id="qwikSub" type="reset" class="form-control btn btn-default">Clear</button>
         </div>
         <div class="form-group col-lg-1 row">
-          <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="#">
+          <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="Match #">
         </div>
       </form>
     </div><!-- /.navbar-collapse -->
@@ -266,6 +276,11 @@
                 } 
             }]
         }, $(this).parent().siblings("#notes").text(), $(this).text());});
+          $('tr div.input-group-addon input').click(function(e){
+            var send = '/?type=team&strat='+$(this).parent().attr('id')+'&num='+$(this).parent().parent().parent().parent().attr('id')+'&data='+($(this).prop('checked')?"1":"0");
+              //console.log(send);
+            $.post(send);
+          });
       }
 
       function populateMatches(matchMap) {
@@ -342,7 +357,7 @@
            $('#qwickHolder').width($('#qwickHolder').width()-1);
            console.log("done")
           }
-        }, 50);
+        }, 200);
         levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
 
@@ -424,10 +439,12 @@
            $(this).show();
         });
         $('table#matchSortList tbody tr').not('#entryHide').each(function(index) {
-          $(this).children('#blue1Num').html($(this).children('#blue1Num').text())
+          $(this).children('#blue1Num,#blue1Num mark').html($(this).children('#blue1Num,#blue1Num mark').text())
           $(this).children('#blue2Num').html($(this).children('#blue2Num').text())
           $(this).children('#red1Num').html($(this).children('#red1Num').text())
           $(this).children('#red2Num').html($(this).children('#red2Num').text())
+          $(this).children('#rscore').html($(this).children('#rscore').text())
+          $(this).children('#bscore').html($(this).children('#bscore').text())
            $(this).show();
         });
       } 
@@ -437,7 +454,7 @@
           $(this).find('#teamName b').text().toLowerCase().indexOf($('#teamSearch').val().toLowerCase().substr(1)) == 0? $(this).show():$(this).hide();
          });
       }
-      else if($(this).val().indexOf(".") != -1){
+      else if($(this).val().indexOf(".") == 0){
         //console.log("Found Period...")
         var em = $(this).val();
         //var strat[] = [false, false, false, false, false];
@@ -446,11 +463,11 @@
             var strag = [false,false,false,false,false]; //d,o,h,f,b
             var selec = ["#defense", "#offense", "#hang", "#flagSpin", "#block"];
            // console.log($(this).find('#defense').children().prop("checked"));
-            if (em.indexOf('d.') != -1) {strag[0] = true;}
-            if (em.indexOf('o.') != -1) {strag[1] = true;}
-            if (em.indexOf('h.') != -1) {strag[2] = true;}
-            if (em.indexOf('f.') != -1) {strag[3] = true;}
-            if (em.indexOf('b.') != -1) {strag[4] = true;}
+            if (em.indexOf('.d') != -1) {strag[0] = true;}
+            if (em.indexOf('.o') != -1) {strag[1] = true;}
+            if (em.indexOf('.h') != -1) {strag[2] = true;}
+            if (em.indexOf('.f') != -1) {strag[3] = true;}
+            if (em.indexOf('.b') != -1) {strag[4] = true;}
 
             // if (strag[0] != -1 && $(this).find('#defense').children().prop("checked")) {strag[0] = false;sho = true;};
             // if (strag[1] != -1 && $(this).find('#offense').children().prop("checked")) {strag[1] = false;sho = true;};
@@ -477,31 +494,43 @@
       });
       $('table#matchSortList tbody tr').not('#entryHide').each(function(i) {
         var yeah = false;
-        if($(this).children('#blue1Num').text().indexOf($('#teamSearch').val()) == 0){
-          $(this).children('#blue1Num').html('<mark>'+$(this).children('#blue1Num').text()+'</mark>')
+        if($(this).children('#blue1Num,#blue1Num mark').text().indexOf($('#teamSearch').val()) == 0){
+          $(this).children('#blue1Num,#blue1Num mark').html('<mark class="blue">'+$(this).children('#blue1Num,#blue1Num mark').text()+'</mark>')
           $(this).show();
+          $(this).children('#bscore').html('<mark class="blue">'+$(this).children('#bscore').text()+'</mark>')
+          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
           yeah = true;
         } else{
-          $(this).children('#blue1Num').html($(this).children('#blue1Num').text())
+          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
+          $(this).children('#blue1Num,#blue1Num mark').html($(this).children('#blue1Num,#blue1Num mark').text())
+          $(this).children('#bscore').html($(this).children('#bscore').text())
+          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
         } if($(this).children('#blue2Num').text().indexOf($('#teamSearch').val()) == 0){
-          $(this).children('#blue2Num').html('<mark>'+$(this).children('#blue2Num').text()+'</mark>')
+          $(this).children('#blue2Num').html('<mark class="blue">'+$(this).children('#blue2Num').text()+'</mark>')
           $(this).show();
+          $(this).children('#bscore').html('<mark class="blue">'+$(this).children('#bscore').text()+'</mark>')
           yeah = true;
         } else{
             $(this).children('#blue2Num').html($(this).children('#blue2Num').text())
+            $(this).children('#bscore').html($(this).children('#bscore').text())
         } if($(this).children('#red1Num').text().indexOf($('#teamSearch').val()) == 0){
-          $(this).children('#red1Num').html('<mark>'+$(this).children('#red1Num').text()+'</mark>')
+          $(this).children('#red1Num').html('<mark class="red">'+$(this).children('#red1Num').text()+'</mark>')
           $(this).show();
+          $(this).children('#rscore').html('<mark class="red">'+$(this).children('#rscore').text()+'</mark>')
           yeah = true;
         } else{
           $(this).children('#red1Num').html($(this).children('#red1Num').text())
+          $(this).children('#rscore').html($(this).children('#rscore').text())
         } if($(this).children('#red2Num').text().indexOf($('#teamSearch').val()) == 0){
-          $(this).children('#red2Num').html('<mark>'+$(this).children('#red2Num').text()+'</mark>')
+          $(this).children('#red2Num').html('<mark class="red">'+$(this).children('#red2Num').text()+'</mark>')
           $(this).show();
+          $(this).children('#rscore').html('<mark class="red">'+$(this).children('#rscore').text()+'</mark>')
           yeah = true;
         } else{
           $(this).children('#red2Num').html($(this).children('#red2Num').text())
-          yeah?$(this).show():$(this).hide()
+          if(yeah){$(this).show()}else{$(this).hide();
+          $(this).children('#rscore').html($(this).children('#rscore').text());$(this).children('#bscore').html($(this).children('#bscore').text());
+        }
         }
       });
       }
