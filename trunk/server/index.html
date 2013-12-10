@@ -81,8 +81,8 @@
           <input style="color:#071241;" id="qwikBp" maxlength="3" type="text" class="form-control" placeholder="Blue Penalties">
         </div>
         <div id="stackPen" class="form-group col-lg-2 row">
-           <button id="qwickBtn" id="qwikSub" type="button" class="form-control btn btn-default">Enter</button>
-           <button id="qwickBtnClear" id="qwikSub" type="reset" class="form-control btn btn-default">Clear</button>
+           <button id="qwickBtn" type="button" class="form-control btn btn-default">Enter</button>
+           <button id="qwickBtnClear" type="reset" class="form-control btn btn-default">Clear</button>
         </div>
         <div class="form-group col-lg-1 row">
           <input style="color:#000;" id="qwikNum" maxlength="3" type="text" class="form-control" placeholder="Match #">
@@ -320,7 +320,14 @@
               $(e).height($(f).height());
           }
         }
-      
+      function serveRecalc(){
+        $.get('/?type=team&num=all', function(data, other, thors) {
+          populateTeams(data)
+        });
+        $.get('/?type=match', function(data, other, thors) {
+          populateMatches(data)
+        });
+      }
     </script>
 
     <!-- Event Functions -->
@@ -433,6 +440,7 @@
       $.get('/?type=match', function(data, w, s){
         populateMatches(data);
       });
+      $("#qwickBtnClear").click();
     });  
 
     $("#teamSearch").on('keyup',function(event) {
