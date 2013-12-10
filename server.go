@@ -119,11 +119,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				io.WriteString(w, bytes.NewBuffer(f).String())
 			}
 		}
-		if err := ioutil.WriteFile("backs/teams.json", []byte(marshal.MarshalTeams(Teams)), 0644); err != nil {
-			fmt.Println(err)
-		}
-		if err := ioutil.WriteFile("backs/matches.json", []byte(marshal.MarshalMatch(Match)), 0644); err != nil {
-			fmt.Println(err)
-		}
+		go func() {
+			if err := ioutil.WriteFile("backs/teams.json", []byte(marshal.MarshalTeams(Teams)), 0644); err != nil {
+				fmt.Println(err)
+			}
+			if err := ioutil.WriteFile("backs/matches.json", []byte(marshal.MarshalMatch(Match)), 0644); err != nil {
+				fmt.Println(err)
+			}
+		}()
 	}
 }
