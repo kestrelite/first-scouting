@@ -321,11 +321,8 @@
           }
         }
       function serveRecalc(){
-        $.get('/?type=team&num=all', function(data, other, thors) {
+        $.get('/?type=recalc', function(data, other, thors) {
           populateTeams(data)
-        });
-        $.get('/?type=match', function(data, other, thors) {
-          populateMatches(data)
         });
       }
     </script>
