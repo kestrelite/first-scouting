@@ -355,7 +355,7 @@
         window.setTimeout(function(){
           while($('#qwickHolder').width() + $('#topNavHead').width() >= $('#topnav').width()){
            $('#qwickHolder').width($('#qwickHolder').width()-1);
-           console.log("done")
+           //console.log("done")
           }
 	levelBars("#qwhite","#bottomnav")
         levelBars("#qwhiteTop", '#topnav')
@@ -500,13 +500,13 @@
           $(this).children('#blue1Num,#blue1Num mark').html('<mark class="blue">'+$(this).children('#blue1Num,#blue1Num mark').text()+'</mark>')
           $(this).show();
           $(this).children('#bscore').html('<mark class="blue">'+$(this).children('#bscore').text()+'</mark>')
-          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
+         // console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
           yeah = true;
         } else{
-          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
+         // console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
           $(this).children('#blue1Num,#blue1Num mark').html($(this).children('#blue1Num,#blue1Num mark').text())
           $(this).children('#bscore').html($(this).children('#bscore').text())
-          console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
+         // console.log( $(this).children('#bscore').html());console.log( $(this).children('#bscore').text());
         } if($(this).children('#blue2Num').text().indexOf($('#teamSearch').val()) == 0){
           $(this).children('#blue2Num').html('<mark class="blue">'+$(this).children('#blue2Num').text()+'</mark>')
           $(this).show();
