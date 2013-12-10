@@ -111,13 +111,12 @@ func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 			if (t < 2 && match.BScore > match.RScore) || (t >= 2 && match.RScore > match.BScore) {
 				scl = lossScl
 			}
-			partavg := func() float32 {
-				if t == 0 || t == 2 {
-					return teamList[matchList[q].TeamNums[t+1]].AvgScore
-				} else {
-					return teamList[matchList[q].TeamNums[t-1]].AvgScore
-				}
-			}()
+			var partavg float32
+			if t == 0 || t == 2 {
+				partavg = teamList[matchList[q].TeamNums[t+1]].AvgScore
+			} else {
+				partavg = teamList[matchList[q].TeamNums[t-1]].AvgScore
+			}
 
 			teamdat.Score += float32(scl * (float64(score) - float64(partavg)))
 			//fmt.Println(match, score, scl, partavg, teamdat.Score)
