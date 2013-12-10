@@ -126,18 +126,31 @@ func ScoreCalc(matchList []Match, teamList map[int]Team) map[int]Team {
 
 	//fmt.Println(teamDatMap)
 
+	var max float64
+	max = 0
 	for i, v := range teamDatMap {
 		var tmp = teamList[i]
 		tmp.TeamNumber = i
 		if tmp.Strategy == nil {
 			tmp.Strategy = []bool{false, false, false, false, false}
 		}
-		if tmp.TeamName == "" {
-			tmp.TeamName = "[NONAME]"
+		if tmp.TeamName == "" || tmp.TeamName == "[NONAME]" {
+			tmp.TeamName = "N/A"
 		}
 		tmp.PowRank = float32(v.Score) / float32(v.Played)
 		teamList[i] = tmp
+		if math.Abs(float64(tmp.PowRank)) > max {
+			max = math.Abs(float64(tmp.PowRank))
+		}
 	}
+
+	//Scales to +100 for highest/lowest scoring team
+	/*for i, _ := range teamDatMap {
+		var tmp = teamList[i]
+		tmp.PowRank *= 100.0 / float32(max)
+		teamList[i] = tmp
+	}*/
+
 	return teamList
 }
 

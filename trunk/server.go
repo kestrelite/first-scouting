@@ -110,6 +110,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				io.WriteString(w, marshal.MarshalMatch(Match))
 			} else if r.Form.Get("type") == "matchNum" {
 				io.WriteString(w, fmt.Sprint(len(Match)))
+			} else if r.Form.Get("type") == "recalc" {
+				Teams = ftcdat.NameCorrect(powalg.Recalculate(Match))
+				io.WriteString(w, marshal.MarshalTeams(Teams))
 			} else {
 				f, _ := ioutil.ReadFile("server/index.html")
 				w.Header().Set("Content-Type", "text/html")
