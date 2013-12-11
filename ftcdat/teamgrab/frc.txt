@@ -1,0 +1,115 @@
+Team,Team_Name
+207,METALCRAFTERS
+294,Beach Cities Robotics
+330,Beach Bots
+597,Wolverines
+606,Cyber Eagles
+687,The Nerd Herd
+702,Bagel Bytes
+812,The Midnight Mechanics
+848,ROBOHUSKIES
+867,Absolute Value
+968,RAWC (Robotics Alliance Of West Covina)
+995,Monkey Wrenchers
+1047,Team Echoes
+1159,Ramona Rampage
+1160,Titanium
+1197,TorBots
+1266,The Devil Duckies
+1372,Lambda^3
+1438,towne_d@auhsd.us
+1452,Omnicats
+1538,The Holy Cows
+1572,Hammer Heads
+1622,Team Spyder
+1644,The Robo-Skunks
+1669,The Jaganators
+1692,CougarBots
+1702,None
+1759,Eagles
+1972,Searing Engineering
+2029,Neo-Tech Robotics
+2102,Team Paradox
+2174,Iron Eagles
+2193,EPIC Robotics
+2404,TNT
+2485,WARLords
+2493,Robokong
+2496,Tru Blu
+2543,TitanBOT
+2599,FULL THROTTLE
+2637,Panthers
+2658,Team Pedestrian
+2827,Crown City Robotics
+2839,The Daedalus Project
+2919,Night Wolves
+2984,The Vikings
+3021,The  Agency
+3041,Spartans Robotics Club
+3128,Aluminum Narwhals
+3195,Robo Ninjas
+3226,Eagle Tech
+3255,Super NURDs
+3295,Poly Techs
+3309,Friarbots
+3341,Manhattan Project
+3408,Killa-Byte Cubs
+3453,DEM BOTS
+3470,Cyborg Zombies
+3473,Team DBotics
+3476,Code Orange
+3477,Chaos Vortex
+3486,Crawford C.L.I.M.B.
+3500,Roboteenz
+3521,Noble Nuts
+3647,Millennium Falcons
+3677,Don Bots
+3704,Robosapiens
+3749,Team Optix
+3752,Roaring Robo-Panthers
+3759,SMARTBOTS
+3849,Absolute Zero
+3934,Robats
+3952,DesTROYers
+3953,LORE of the ROBATS
+3965,Sultans
+3967,Meatless Trojans Warriors
+4014,Top Hat Technicians
+4029,SpartanBots
+4056,ElectroJackets
+4078,Warriors
+4079,Quantum Leap
+4114,Pallin-Drones 
+4117,Wired Up
+4123,BOM Bots (Beta Omicron Mu Bots) 
+4139,Easy as Pi
+4140,WIRED
+4141,Robotic Monarchs
+4144,Semi con-duck-tors
+4160,The Cannons
+4161,T-Birds
+4170,What The FRaC
+4201,Vitruvian Bots
+4210,JagBots
+4276,Viking Robotics
+4322,Clockwork Oranges
+4345,AutoPilots
+4470,  TiGears
+4486,Tee Squares
+4540,OrangeLab
+4556,TBD
+4574,Average Joe's
+4578,CometBots
+4583,Cavers
+4616,Team Pharaohs
+4619,HawkBots
+4705,Full Metal Kats
+4709,Stem-azing
+4736,Temp
+4738,Team No! Robot
+2013014,TBD
+2013139,Rage Robotics
+2013153,Iron Eagles
+2013381,The Mechanized Mustangs
+2013760,If, Then, Else
+

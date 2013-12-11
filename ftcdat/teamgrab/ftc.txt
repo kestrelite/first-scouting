@@ -1,0 +1,134 @@
+Team,Team_Name
+25,Rock 'n Roll Robots
+135,Fusion
+358,The Gaulbots
+359,The Gaulbots2
+542,WHS Robotics
+2885,Kronos
+3493,VHS Robotics Club
+3513,Domo Arigato
+3526,M-BOTs
+3600,ElectroJackets
+3650,Torrey Techies
+3712,Purple F.E.A.R. (Fierce Eagle Advanced Robotics)
+3848,Shockwave
+4112,Warriors
+4119,Brain Nuggets
+4153,RED
+4216,Rise of Hephaestus
+4262,Firebirds
+4278,De.Evolution
+4373,Firebots
+4405,Az-Tech Robotics
+4512,West Torrance Robotics
+4625,Kings and Queens
+4628,Suit Bots
+4947,Cougarobotics
+5015,Buffalo Wings
+5131,Pointers
+5135,Team Uncopyrightable
+5136,Crusader Creators
+5186,PantherBots Alpha
+5197,GearHeads
+5279,Positrons
+5285,Robo Knights
+5390,Vikings
+5420,LAAE
+5498,Unibots
+5540,Skynet
+5555,Option 16
+5755,Nano Slugs
+5822,Bacon Bots
+5826,The Metal Ducks
+5827,Slice-o-Pi
+5828,E.M.P. Chaos
+5995,Scot Bots
+6003,Techno Eagles
+6006,Tru Blu 2
+6016,Ironwolves
+6064,XSMI (Xavier Society for Mechanized Inquiry)
+6074,RAWALA (Robot Assemblers With A Long Acronym)
+6137,RoBowties
+6179,Quantum Fusion 
+6226,Bambusa
+6233,TartanBots
+6300,Cube Squared
+6325,Aluminati
+6350,Robo ReVOLT
+6370,Scouting Legion
+6371,Gear Gurus
+6372,Phylum Metallia
+6373,Parobots
+6374,Gizmologic
+6398,Cyber Rajahs
+6399,Bacon Bytes
+6436,RoboCats
+6500,AutomaDons
+6565,Stuffed Dragons
+6570,Piradians
+6668,PantherBot Omega
+6685,Downtown Magnets High SChool 
+6686,Jordan High School
+6693,Brainstorm
+6940,Apollo19
+7033,Tech Attack
+7051,Circuit Breakers
+7052,Full Metal Rajahs
+7081,Team Avatar
+7086,Junior LLA Roadrunners
+7091,ECHS
+7092,LLA Robo-Runners
+7106,Absolute Value
+7114,Robotics Anonymous
+7119,LARC (Lake Ave Robotics Club)
+7159,Robo Ravens
+7166,The Hairy Eyeballs
+7180,Palominos 
+7195,TITANIUM TITANS
+7214,The Cruzers
+7225,Mendez MESA
+7241,Rock N Roll Robots
+7296,HuskyBots
+7315,Reformation Raiders
+7320, Tiger Nova 7320
+7397,Knights
+7426,2 Legit 2 Quit
+7429,Prototype
+7460,Thunder
+7528,Ipoly FIRST Robotics team aka Broncos
+7530,TBD
+7531,Team Paradox²
+7542,OLP MicroChicks
+7553,Thavma
+7555,RoboZilla
+7609,Lions
+7645,BHS Robotics
+7660,Mad Scientist Club
+7681,Robo Saints
+7686,IDEA
+7696,RSF Eagles
+7741,Robo-Panthers
+7767,Upper Echelon
+7796,Phi-thon
+7824,Eaglebots
+7831,Wreck It!
+7832,Alumbot Asylum
+7833,Built4Cause
+7834,CMI Impact
+7835,Chocolate Thunder
+7848,Some Guys
+7859,Pointless Jellyfish
+7963,Murrieta Springs Robotics Academy
+7971,Undecided
+7992,Lightning Robotics
+8000,Team Paradox3
+8039,Adrenaline Snails
+8057,Rebelbots
+8074,Lincoln High School 
+8075,SVAH
+8097,Bobcats
+8180,Deception
+8181,RoboDuckies
+8182,Dream Destroyers
+8210,LOHI Robotics League
+
